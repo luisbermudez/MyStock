@@ -1,0 +1,21 @@
+<h3>Create account</h3>
+
+{{#if errorMessage}}
+    <p>
+        Uh oh, something went wrong
+        <span>{{ errorMessage }}</span>
+        {{!-- !
+        X --}}
+    </p>
+{{/if}}
+
+<form action="/signup" method="post">
+    
+    <input type="text" name="nameCompany" placeholder="Name / Company">
+
+    <input type="email" name="email" placeholder="Email">
+
+    <input type="password" name="password" placeholder="Password">
+
+    <button type="submit">Sign up</button>
+</form>
