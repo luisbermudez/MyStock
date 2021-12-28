@@ -1,21 +1,32 @@
-<h3>Create account</h3>
-
-{{#if errorMessage}}
-    <p>
-        Uh oh, something went wrong
-        <span>{{ errorMessage }}</span>
-        {{!-- !
-        X --}}
-    </p>
-{{/if}}
-
-<form action="/signup" method="post">
+<div id="signupCont">
+    <h3>Create your account</h3>
     
-    <input type="text" name="nameCompany" placeholder="Name / Company">
-
-    <input type="email" name="email" placeholder="Email">
-
-    <input type="password" name="password" placeholder="Password">
-
-    <button type="submit">Sign up</button>
-</form>
+    {{#if errorMessage}}
+    <div class="errorMessageCont">
+        <span>!</span>
+        <h5>Uh oh, something went wrong</h5>
+        <p>{{ errorMessage }}</p>
+        {{!-- <a class="errorMessageClose">x</a> --}}
+    </div>
+    {{/if}}
+    
+    <form action="/signup" method="post">
+    
+        <div class="inputDiv">
+            <span class="signupInputLabel">Name / Company Name</span>
+            <input class="signupInputField" type="text" name="nameCompany" placeholder="Name / Company Name">
+        </div>
+    
+        <div class="inputDiv">
+            <span class="signupInputLabel">Email</span>
+            <input class="signupInputField" type="email" name="email" placeholder="Email">
+        </div>
+    
+        <div class="inputDiv">
+            <span class="signupInputLabel">Password</span>
+            <input class="signupInputField" type="password" name="password" placeholder="Password">
+        </div>
+    
+        <button id="signupBtn" type="submit" disabled>Sign up</button>
+    </form>
+</div>
