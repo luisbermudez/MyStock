@@ -6,7 +6,7 @@ document.addEventListener(
     // DOM Variables setup
     const signupInput = [...document.getElementsByClassName("signupInputField")];
     const signupInputLabel = [...document.getElementsByClassName("signupInputLabel")];
-    const signupCont = $("signupCont");
+    const genContainer = $("genContainer");
     const signupBtn = $("signupBtn");
 
     const nameCompanyInput = new Input(
@@ -27,13 +27,13 @@ document.addEventListener(
       signupInputLabel[2]
     );
 
-    signupCont.addEventListener("click", (e) => {
+    genContainer.addEventListener("click", (e) => {
       nameCompanyInput.formClickListener(e);
       emailInput.formClickListener(e);
       passwordInput.formClickListener(e);
     });
 
-    signupCont.addEventListener("input", () => {
+    genContainer.addEventListener("input", () => {
       if (
         nameCompanyInput.completeStatusCheck() &&
         emailInput.completeStatusCheck() &&

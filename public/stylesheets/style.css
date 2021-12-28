@@ -4,9 +4,14 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
+#genContainer {
+  display: flex;
+  justify-content: center;
+}
+
 
 /* Mobile style */
-@media (min-width: 375px) {
+@media (min-width: 320px) {
   /* Signup Style */
   #signupCont {
     height: 100vh;
@@ -47,6 +52,7 @@ body {
     color: white;
 
     text-align: center;
+    line-height: 27px;
     font-size: 23px;
     font-weight: 900;
 
@@ -80,6 +86,11 @@ body {
     caret-color: black;
   }
 
+  ::placeholder {
+    color: rgb(163, 163, 163);
+    font-weight: 200;
+  }
+
   .inputDiv {
     position: relative;
     padding: 0;
@@ -96,7 +107,7 @@ body {
     border-radius: 5px;
 
     font-size: 1.1rem;
-    font-weight: 500;
+    font-weight: 600;
     color: black;
   }
 
@@ -110,7 +121,7 @@ body {
   }
 
   .fillingOut:focus {
-    border: 2px solid rgb(137, 100, 197);
+    border: 2px solid rgb(173, 74, 152);
     padding: 24px 8px 10px;
   }
 
@@ -129,18 +140,56 @@ body {
 
   /* Button */
   #signupBtn {
-    background-color: rgb(137, 100, 197);
+    width: 100%;
+    background-color: rgb(173, 74, 152);
     color: white;
     font-size: 16px;
     font-weight: 600;
     padding: 15px 20px;
     border: none;
-    border-radius: 5px;
+    border-radius: 35px;
     margin: 25px 0;
   }
 
   #signupBtn:disabled {
-    background-color: rgb(194, 177, 221);
+    background-color: rgba(173, 74, 152, 0.322);
+  }
+}
+
+@media (min-width: 1024px) {
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  #signupCont {
+    width: 600px;
+    height: 100vh;
+  }
+
+  /* Error Message Alert setup */
+  .errorMessageCont {
+    padding: 20px 70px 20px 120px;
+  }
+
+  .errorMessageCont h5 {
+    font-size: 17px;
+  }
+
+  .errorMessageCont p {
+    font-size: 15px;
+  }
+
+  .errorMessageCont span:first-child {
+    width: 47px;
+    height: 47px;
+    font-size: 30px;
+    line-height: 47px;
+    left: 35px;
+  }
+
+  .errorMessageCont a {
+    right: 35px;
   }
 }
 

@@ -14,6 +14,14 @@ router.post("/signup", async (req, res, next) => {
         const emailLocate = await User.findOne({ email });
         // If the email is not registered, go ahead and validate password
         if (!emailLocate) {
+            const regexEmail = /^\S+@\S+\.\S+$/;
+            if(!regexEmail.test(email)) {
+                res.status(500).render("auth/signup", {
+                  errorMessage: "Please use a valid email addres.",
+                });
+                return;
+            }
+
             const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
             if (!regex.test(password)) {
                 res.status(500).render("auth/signup", {

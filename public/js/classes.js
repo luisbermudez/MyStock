@@ -32,7 +32,7 @@ class Input {
     } else {
       this.inpElement.removeAttribute("class", "emptyField");
       this.inpElement.setAttribute("class", "fillingOut");
-      this.label.style.color = "rgb(137, 100, 197)";
+      this.label.style.color = "rgb(173, 74, 152)";
     }
   }
 
@@ -45,7 +45,7 @@ class Input {
 
     // Sets up style when clicking the input
     if (e.target === this.inpElement) {
-      this.label.style.color = "rgb(137, 100, 197)";
+      this.label.style.color = "rgb(173, 74, 152)";
       this.clickInputListener();
       this.inpElement.addEventListener("keyup", (e) => {
         this.emptyInputCheck(e);
