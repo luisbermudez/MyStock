@@ -17,7 +17,10 @@ router.post("/signup", async (req, res, next) => {
             const regexEmail = /^\S+@\S+\.\S+$/;
             if(!regexEmail.test(email)) {
                 res.status(500).render("auth/signup", {
-                  errorMessage: "Please use a valid email addres.",
+                    emailField: "email",
+                    name: nameCompany,
+                    email: email,
+                    errorMessage: "Please enter a valid email address.",
                 });
                 return;
             }
@@ -25,8 +28,11 @@ router.post("/signup", async (req, res, next) => {
             const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
             if (!regex.test(password)) {
                 res.status(500).render("auth/signup", {
-                errorMessage:
-                    "Password must be at least 6 characters long and contain at least one number, and uppercase letter.",
+                    passwordField: "password",
+                    name: nameCompany,
+                    email: email,
+                    errorMessage:
+                        "Password must be at least 6 characters long and contain at least one number, and uppercase letter."
                 });
                 return;
             }
@@ -47,11 +53,20 @@ router.post("/signup", async (req, res, next) => {
 
             // Cutting first part of mongoose error message
             const shortenedError = error.message.split("$")[1];
-
-            res.status(500).render("auth/signup", { errorMessage: shortenedError });
+            res.status(500).render("auth/signup", {
+                nameField: "name",
+                name: nameCompany,
+                email: email,
+                errorMessage: shortenedError 
+            });
         } else 
         if(error.code === 11000) {
-            res.status(500).render("auth/signup", { errorMessage: "This email has already been registered. Please, try with a different one." })
+            res.status(500).render("auth/signup", { 
+                emailField: "email",
+                name: nameCompany,
+                email: email,
+                errorMessage: "This email has already been registered. Please, try with a different one." 
+            })
         } else {
             next(error);
         }

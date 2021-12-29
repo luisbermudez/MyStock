@@ -1,19 +1,21 @@
 body {
-  margin: 25px;
+  margin: 0;
   padding: 0;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 #genContainer {
+  padding: 0 30px;
   display: flex;
   justify-content: center;
 }
 
 
 /* Mobile style */
-@media (min-width: 320px) {
+@media (min-width: 280px) {
   /* Signup Style */
   #signupCont {
+    width: 100%;
     height: 100vh;
   }
   #signupCont h3 {
@@ -23,26 +25,30 @@ body {
 
   /* Error Messages Alert Style */
   .errorMessageCont {
-    margin: 25px 0 50px;
+    height: 90px;
+    margin: 15px 0 40px;
     position: relative;
     box-sizing: border-box;
     padding: 10px 30px 10px 40px;
     background-color: rgb(255, 255, 255);
     border-radius: 5px;
 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     box-shadow: 3px 3px 8px #9e9e9e94;
   }
 
   .errorMessageCont h5 {
-    font-size: 16px;
+    font-size: 15px;
     margin: 0;
     font-weight: 600;
     color: rgb(10, 10, 10);
   }
 
   .errorMessageCont p {
-    font-size: 14px;
-    font-weight: 200;
+    font-size: 13px;
+    font-weight: 100;
     color: rgb(85, 85, 85);
     margin: 0;
   }
@@ -106,7 +112,7 @@ body {
     border: 1px solid rgb(211, 211, 211);
     border-radius: 5px;
 
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 600;
     color: black;
   }
@@ -126,11 +132,12 @@ body {
   }
 
   .emptyField {
-    border: 2px solid red !important;
+    border: 2px solid rgb(255, 71, 71) !important;
     padding: 24px 8px 10px !important;
   }
 
   .signupInputLabel {
+    color: rgb(126, 126, 126);
     visibility: hidden;
     position: absolute;
     left: 10px;
@@ -152,16 +159,11 @@ body {
   }
 
   #signupBtn:disabled {
-    background-color: rgba(173, 74, 152, 0.322);
+    background-color: rgba(173, 74, 151, 0.342);
   }
 }
 
 @media (min-width: 1024px) {
-  body {
-    margin: 0;
-    padding: 0;
-  }
-
   #signupCont {
     width: 600px;
     height: 100vh;
@@ -192,61 +194,3 @@ body {
     right: 35px;
   }
 }
-
-/* Base elements */
-/* Alert message style  */
-/* .errorMessageCont {
-  width: 60vw;
-
-  margin: 20px;
-
-  position: relative;
-  box-sizing: border-box;
-  padding: 10px 70px 25px 120px;
-  background-color: rgb(255, 255, 255);
-  border-radius: 5px;
-
-  box-shadow: 3px 3px 8px #9e9e9e94;
-}
-
-.errorMessageCont h5 {
-  margin: 0;
-  font-weight: 600;
-  color: rgb(10, 10, 10);
-}
-
-.errorMessageCont p {
-  font-size: 15px;
-  font-weight: 200;
-  color: rgb(85, 85, 85);
-  margin: 0;
-}
-
-.errorMessageCont span:first-child {
-  background-color: rgb(255, 71, 71);
-  color: white;
-
-  text-align: center;
-  font-size: 45px;
-  font-weight: 900;
-
-  position: absolute;
-  top: 50%;
-  transform: translate(0, -50%);
-  left: 20px;
-
-  height: 60px;
-  width: 60px;
-  border-radius: 50%;
-}
-
-.errorMessageCont a {
-  color: black;
-  text-decoration: none;
-  position: absolute;
-  top: 50%;
-  transform: translate(0, -50%);
-  right: 30px;
-  font-size: 20px;
-  font-weight: 800;
-} */

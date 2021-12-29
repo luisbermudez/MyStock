@@ -1,14 +1,14 @@
 class Input {
-  constructor(inpElement, placeholder, label) {
+  constructor(inpElement, label) {
     this.inpElement = inpElement;
-    this.placeholder = placeholder;
+    this.placeholder = inpElement.placeholder;
     this.label = label;
   }
 
   // Sets focus style if field is clicked
   clickInputListener() {
     //   Doesn't set focus style unless field gets an input
-    if (this.label.style.color === "red") {
+    if (this.label.style.color === "rgb(255, 71, 71)") {
       return;
     }
 
@@ -28,7 +28,7 @@ class Input {
     ) {
       this.inpElement.removeAttribute("class", "fillingOut");
       this.inpElement.setAttribute("class", "emptyField");
-      this.label.style.color = "red";
+      this.label.style.color = "rgb(255, 71, 71)";
     } else {
       this.inpElement.removeAttribute("class", "emptyField");
       this.inpElement.setAttribute("class", "fillingOut");
@@ -39,7 +39,7 @@ class Input {
   // Sets the not-empty style
   formClickListener(e) {
     //   Doesn't set Not-focused & not-empty style style unless field gets an input
-    if (this.label.style.color === "red") {
+    if (this.label.style.color === "rgb(255, 71, 71)") {
       return;
     }
 

@@ -7,7 +7,7 @@ const userSchema = new Schema(
       type: String,
       required: [
         true,
-        "$Name or Company Name is required. No worries, if you don't like it you can change it later.",
+        "$Name or Company Name is required. Don't worry, if you don't like it you can change it later.",
       ],
     },
     email: {
