@@ -1,0 +1,69 @@
+<div id="signupCont">
+    <h3>Create your account.</h3>
+
+    {{#if emailField}}
+        {{> errorMessage}}
+        
+        <form action="/signup" method="post">
+            <div class="inputDiv">
+                <span style="visibility: visible;" class="signupInputLabel">Name / Company Name</span>
+                <input value="{{ name }}" class="signupInputField fillingOut" type="text" name="nameCompany">
+            </div>
+        
+            <div class="inputDiv">
+                <span style="visibility: visible; color: rgb(255, 71, 71);" class="signupInputLabel">Email</span>
+                <input value="{{ email }}" class="signupInputField emptyField" type="email" name="email">
+            </div>
+        
+            <div class="inputDiv">
+                <span style="visibility: visible;" class="signupInputLabel">Password</span>
+                <input class="signupInputField fillingOut" type="password" name="password">
+            </div>
+        
+            <button id="signupBtn" type="submit" disabled>Sign up</button>
+        </form>
+    {{else if passwordField}}
+        {{> errorMessage}}
+        
+        <form action="/signup" method="post">
+        
+            <div class="inputDiv">
+                <span style="visibility: visible;" class="signupInputLabel">Name / Company Name</span>
+                <input value="{{ name }}" class="signupInputField fillingOut" type="text" name="nameCompany">
+            </div>
+        
+            <div class="inputDiv">
+                <span style="visibility: visible;" class="signupInputLabel">Email</span>
+                <input value="{{ email }}" class="signupInputField fillingOut" type="email" name="email">
+            </div>
+        
+            <div class="inputDiv">
+                <span style="visibility: visible; color: rgb(255, 71, 71);" class="signupInputLabel">Password</span>
+                <input class="signupInputField emptyField" type="password" name="password">
+            </div>
+        
+            <button id="signupBtn" type="submit" disabled>Sign up</button>
+        </form>
+    {{else}}
+        <form action="/signup" method="post">
+        
+            <div class="inputDiv">
+                <span class="signupInputLabel">Name / Company Name</span>
+                <input class="signupInputField" type="text" name="nameCompany" placeholder="Name / Company Name">
+            </div>
+        
+            <div class="inputDiv">
+                <span class="signupInputLabel">Email</span>
+                <input class="signupInputField" type="email" name="email" placeholder="Email">
+            </div>
+        
+            <div class="inputDiv">
+                <span class="signupInputLabel">Password</span>
+                <input class="signupInputField" type="password" name="password" placeholder="Password">
+            </div>
+        
+            <button id="signupBtn" type="submit" disabled>Sign up</button>
+        </form>
+    {{/if}}
+
+</div>
