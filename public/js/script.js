@@ -45,7 +45,9 @@ document.addEventListener(
 
     errorMessageCont.forEach((each) => {
       each.addEventListener("click", (e) => {
-        e.target.parentNode.style.display = "none";
+        if (e.target.classList[0] === "errorMessageClose"){
+          e.target.parentNode.style.display = "none";
+        }
       })
     })
   },
