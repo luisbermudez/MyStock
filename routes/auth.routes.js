@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 router.get("/signup", (req, res, next) => res.render("auth/signup"));
 
 router.post("/signup", async (req, res, next) => {
-    const { nameCompany, email, password } =req.body;
+    const { nameCompany, email, password } = req.body;
 
     try {
         // Check if the email the user has entered is already registered
@@ -74,5 +74,38 @@ router.post("/signup", async (req, res, next) => {
 });
 
 router.get("/login", (req, res, next) => res.render("auth/login"));
+
+router.post("/login", async (req, res, next) => {
+  const { email, password } = req.body;
+
+  if (email === "" || password === "") {
+    res.render("auth/login", {
+      errorMessage: "Please enter both, email and password to login.",
+    });
+    return;
+  }
+
+  try {
+      const userFromDB = await User.findOne({ email });
+      if (!userFromDB) {
+          res.render("auth/login", {
+            errorMessage:
+              "Email not registered. Try again with a different email or sign up.",
+          });
+          return;
+      } else if (bcryptjs.compareSync(password, userFromDB.password)) {
+          res.redirect("/home");
+      } else {
+          res.render("auth/login", {
+            errorMessage: "Incorrect password.",
+          });
+          return;
+      }
+  } catch(error) {
+      next(error);
+  }
+});
+
+router.get("/home", (req, res, next) => res.render("user/home"));
 
 module.exports = router;
