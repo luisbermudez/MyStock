@@ -1,7 +1,7 @@
 class Input {
-  constructor(inpElement, label) {
+  constructor(inpElement, placeholder, label) {
     this.inpElement = inpElement;
-    this.placeholder = inpElement.placeholder;
+    this.placeholder = placeholder;
     this.label = label;
   }
 
