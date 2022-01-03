@@ -89,14 +89,17 @@ router.post("/login", async (req, res, next) => {
       const userFromDB = await User.findOne({ email });
       if (!userFromDB) {
           res.render("auth/login", {
+            emailInp: email,
             errorMessage:
               "Email not registered. Try again with a different email or sign up.",
           });
           return;
       } else if (bcryptjs.compareSync(password, userFromDB.password)) {
+          req.session.currentUser = userFromDB;
           res.redirect("/home");
       } else {
           res.render("auth/login", {
+            emailInp: email,
             errorMessage: "Incorrect password.",
           });
           return;
@@ -105,6 +108,13 @@ router.post("/login", async (req, res, next) => {
       next(error);
   }
 });
+
+router.post('/logout', (req, res, next) => {
+    req.session.destroy(err => {
+        if(err) next(err);
+        res.redirect('/landpage');
+    })
+})
 
 router.get("/home", (req, res, next) => res.render("user/home"));
 

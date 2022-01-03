@@ -166,6 +166,16 @@ body {
   #loginBtn:disabled {
     background-color: rgba(173, 74, 151, 0.342);
   }
+
+  /* Login Style */
+  #loginSignupLink, #signupLoginLink {
+    font-size: 0.9rem;
+  }
+  #loginSignupLink a, #signupLoginLink a {
+    font-weight: 600;
+    text-decoration: none;
+    color: rgb(173, 74, 152);
+  }
 }
 
 @media (min-width: 1024px) {
@@ -198,5 +208,10 @@ body {
 
   .errorMessageCont a {
     right: 35px;
+  }
+
+  /* Login Style */
+  #loginSignupLink, #signupLoginLink {
+    font-size: 1rem;
   }
 }
