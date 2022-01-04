@@ -1,3 +1,9 @@
+/*
+Colors:
+white: #FEFEFF
+letter-grey: #4C4B4B
+*/
+
 body {
   margin: 0;
   padding: 0;
@@ -5,7 +11,7 @@ body {
 }
 
 #genContainer {
-  padding: 0 30px;
+  padding: 0px;
   display: flex;
   justify-content: center;
 }
@@ -146,7 +152,7 @@ body {
   }
 
   /* Button */
-  #signupBtn {
+  #signupBtn, #landingPage a {
     width: 100%;
     background-color: rgb(173, 74, 152);
     color: white;
@@ -161,7 +167,19 @@ body {
   #signupBtn:disabled {
     background-color: rgba(173, 74, 151, 0.342);
   }
+
+  /*Landing page*/
+  #landingPage {
+    width: 375px;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-image: url("/images/bgLandingMobile.png");
+    background-size: cover;
+    background-position: center; 
+  }
 }
+
+
 
 @media (min-width: 1024px) {
   #signupCont {
