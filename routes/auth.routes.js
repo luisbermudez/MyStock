@@ -4,6 +4,7 @@ const bcryptjs = require('bcryptjs');
 const saltRounds = 10;
 const mongoose = require('mongoose');
 
+router.get("/landing", (req,res,next) => res.render("auth/landing"));
 router.get("/signup", (req, res, next) => res.render("auth/signup"));
 
 router.post("/signup", async (req, res, next) => {
