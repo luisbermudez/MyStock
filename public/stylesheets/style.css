@@ -20,11 +20,13 @@ body {
 /* Mobile style */
 @media (min-width: 280px) {
   /* Signup Style */
-  #signupCont {
+  #signupCont,
+  #loginCont {
     width: 100%;
     height: 100vh;
   }
-  #signupCont h3 {
+  #signupCont h3,
+  #loginCont h3 {
     font-weight: 900;
     margin: 40px 0;
   }
@@ -142,7 +144,8 @@ body {
     padding: 24px 8px 10px !important;
   }
 
-  .signupInputLabel {
+  .signupInputLabel,
+  .loginInputLabel {
     color: rgb(126, 126, 126);
     visibility: hidden;
     position: absolute;
@@ -152,7 +155,9 @@ body {
   }
 
   /* Button */
-  #signupBtn, #landingPage a {
+  
+  #signupBtn,
+  #loginBtn, #landingPage a {
     width: 100%;
     background-color: rgb(173, 74, 152);
     color: white;
@@ -164,7 +169,8 @@ body {
     margin: 25px 0;
   }
 
-  #signupBtn:disabled {
+  #signupBtn:disabled,
+  #loginBtn:disabled {
     background-color: rgba(173, 74, 151, 0.342);
   }
 
@@ -177,12 +183,22 @@ body {
     background-size: cover;
     background-position: center; 
   }
+  /* Login Style */
+  #loginSignupLink, #signupLoginLink {
+    font-size: 0.9rem;
+  }
+  #loginSignupLink a, #signupLoginLink a {
+    font-weight: 600;
+    text-decoration: none;
+    color: rgb(173, 74, 152);
+  }
 }
 
 
 
 @media (min-width: 1024px) {
-  #signupCont {
+  #signupCont,
+  #loginCont {
     width: 600px;
     height: 100vh;
   }
@@ -210,5 +226,10 @@ body {
 
   .errorMessageCont a {
     right: 35px;
+  }
+
+  /* Login Style */
+  #loginSignupLink, #signupLoginLink {
+    font-size: 1rem;
   }
 }

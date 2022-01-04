@@ -1,1 +1,25 @@
-<h3>Log in</h3>
+<div id="loginCont">
+    <h3>Sign in to MyStock</h3>
+
+    {{#if errorMessage}}
+        {{> errorMessage}}
+    {{/if}}
+
+    <form action="/login" method="post">
+
+        <div class="inputDiv">
+            <span class="loginInputLabel">Email</span>
+            <input class="loginInputField" type="email" name="email" placeholder="Email">
+        </div>
+
+        <div class="inputDiv">
+            <span class="loginInputLabel">Password</span>
+            <input class="loginInputField" type="password" name="password" placeholder="Password">
+        </div>
+
+        <button id="loginBtn" type="submit" disabled>Log in</button>
+    </form>
+
+    <p id="loginSignupLink">Don't have an account? <a href="/signup">Sign up</a></p>
+
+</div>
