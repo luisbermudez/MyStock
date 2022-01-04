@@ -13,9 +13,9 @@ document.addEventListener(
 
 
     // Input classes creation
-    const nameCompanyInput = new Input(signupInput[0], signupInputLabel[0]);
-    const emailInput = new Input(signupInput[1], signupInputLabel[1]);
-    const passwordInput = new Input(signupInput[2], signupInputLabel[2]);
+    const nameCompanyInput = new Input(signupInput[0], "Name or Company Name", signupInputLabel[0]);
+    const emailInput = new Input(signupInput[1], "Email", signupInputLabel[1]);
+    const passwordInput = new Input(signupInput[2], "Password", signupInputLabel[2]);
 
     genContainer.addEventListener("click", (e) => {
       nameCompanyInput.formClickListener(e);
@@ -45,7 +45,9 @@ document.addEventListener(
 
     errorMessageCont.forEach((each) => {
       each.addEventListener("click", (e) => {
-        e.target.parentNode.style.display = "none";
+        if (e.target.classList[0] === "errorMessageClose"){
+          e.target.parentNode.style.display = "none";
+        }
       })
     })
   },
