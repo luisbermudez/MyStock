@@ -1,7 +1,7 @@
 class Input {
-  constructor(inpElement, label) {
+  constructor(inpElement, placeholder, label) {
     this.inpElement = inpElement;
-    this.placeholder = inpElement.placeholder;
+    this.placeholder = placeholder;
     this.label = label;
   }
 
@@ -68,6 +68,22 @@ class Input {
       return true;
     }
   }
+}
+
+function formEventListeners(genCont, [...inputs]) {
+  genCont.addEventListener("click", (e) => {
+    inputs.forEach(input => {
+      input.formClickListener(e);
+    });
+  });
+
+  genCont.addEventListener("keyup", (e) => {
+    if(e.keyCode === 9) {
+      inputs.forEach(input => {
+        input.formClickListener(e);
+      });
+    };
+  });
 }
 
 function $(id) {

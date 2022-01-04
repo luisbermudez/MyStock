@@ -1,3 +1,9 @@
+/*
+Colors:
+white: #FEFEFF
+letter-grey: #4C4B4B
+*/
+
 body {
   margin: 0;
   padding: 0;
@@ -5,7 +11,7 @@ body {
 }
 
 #genContainer {
-  padding: 0 30px;
+  padding: 0px;
   display: flex;
   justify-content: center;
 }
@@ -14,11 +20,14 @@ body {
 /* Mobile style */
 @media (min-width: 280px) {
   /* Signup Style */
-  #signupCont {
+  #signupCont,
+  #loginCont {
     width: 100%;
     height: 100vh;
+    padding: 0 40px;
   }
-  #signupCont h3 {
+  #signupCont h3,
+  #loginCont h3 {
     font-weight: 900;
     margin: 40px 0;
   }
@@ -136,7 +145,8 @@ body {
     padding: 24px 8px 10px !important;
   }
 
-  .signupInputLabel {
+  .signupInputLabel,
+  .loginInputLabel {
     color: rgb(126, 126, 126);
     visibility: hidden;
     position: absolute;
@@ -146,25 +156,65 @@ body {
   }
 
   /* Button */
-  #signupBtn {
+  
+  #signupBtn,
+  #loginBtn, #landingPage a {
     width: 100%;
-    background-color: rgb(173, 74, 152);
-    color: white;
+    background-color: #fdfcfd;
+    color: #4C4B4B;
     font-size: 16px;
     font-weight: 600;
     padding: 15px 20px;
     border: none;
     border-radius: 35px;
     margin: 25px 0;
+    box-shadow: 3px 3px 13px #6d6c6c94;
   }
 
-  #signupBtn:disabled {
+  #signupBtn:disabled,
+  #loginBtn:disabled {
     background-color: rgba(173, 74, 151, 0.342);
+  }
+
+  /*Landing page*/
+  #landingPage {
+    width: 100vw;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-image: url("/images/bgLandingMobile.png");
+    background-size: cover;
+    background-position: center; 
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  #landingPage a{
+    text-decoration: none ;
+    width: 220px;
+    padding: 19px 15px;
+    margin-top: 15px;
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+  /* Login Style */
+  #loginSignupLink, #signupLoginLink {
+    font-size: 0.9rem;
+  }
+  #loginSignupLink a, #signupLoginLink a {
+    font-weight: 600;
+    text-decoration: none;
+    color: rgb(173, 74, 152);
   }
 }
 
+
+
 @media (min-width: 1024px) {
-  #signupCont {
+  #signupCont,
+  #loginCont {
     width: 600px;
     height: 100vh;
   }
@@ -192,5 +242,28 @@ body {
 
   .errorMessageCont a {
     right: 35px;
+  }
+
+  /* Login Style */
+  #loginSignupLink, #signupLoginLink {
+    font-size: 1rem;
+  }
+
+  /*landingpage style*/
+  #landingPage {
+    padding: 0px;
+    width: 100vw;
+    background-image: url("/images/bgLandingdesk.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  #landingPage a{
+    width: 600px;
+    padding: 30px 0px;
+    font-size: 45px;
+    margin-top: 40px;
+    border-radius: 70px;
   }
 }

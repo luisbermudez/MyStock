@@ -16,6 +16,9 @@ const path = require("path");
 
 const app = express();
 
+// Session app require
+require('./config/session.config')(app);
+
 // Register partials
 app.set("view engine", "hbs");
 app.set("views", path.join(__dirname, "views"));

@@ -4,10 +4,11 @@ const bcryptjs = require('bcryptjs');
 const saltRounds = 10;
 const mongoose = require('mongoose');
 
+router.get("/landing", (req,res,next) => res.render("auth/landing"));
 router.get("/signup", (req, res, next) => res.render("auth/signup"));
 
 router.post("/signup", async (req, res, next) => {
-    const { nameCompany, email, password } =req.body;
+    const { nameCompany, email, password } = req.body;
 
     try {
         // Check if the email the user has entered is already registered
@@ -74,5 +75,48 @@ router.post("/signup", async (req, res, next) => {
 });
 
 router.get("/login", (req, res, next) => res.render("auth/login"));
+
+router.post("/login", async (req, res, next) => {
+  const { email, password } = req.body;
+
+  if (email === "" || password === "") {
+    res.render("auth/login", {
+      errorMessage: "Please enter both, email and password to login.",
+    });
+    return;
+  }
+
+  try {
+      const userFromDB = await User.findOne({ email });
+      if (!userFromDB) {
+          res.render("auth/login", {
+            emailInp: email,
+            errorMessage:
+              "Email not registered. Try again with a different email or sign up.",
+          });
+          return;
+      } else if (bcryptjs.compareSync(password, userFromDB.password)) {
+          req.session.currentUser = userFromDB;
+          res.redirect("/home");
+      } else {
+          res.render("auth/login", {
+            emailInp: email,
+            errorMessage: "Incorrect password.",
+          });
+          return;
+      }
+  } catch(error) {
+      next(error);
+  }
+});
+
+router.post('/logout', (req, res, next) => {
+    req.session.destroy(err => {
+        if(err) next(err);
+        res.redirect('/landing');
+    })
+})
+
+router.get("/home", (req, res, next) => res.render("user/home"));
 
 module.exports = router;

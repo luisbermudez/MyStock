@@ -22,6 +22,8 @@
         
             <button id="signupBtn" type="submit" disabled>Sign up</button>
         </form>
+
+        <p id="loginSignupLink">Already have an account? <a href="/login">Log in</a></p>
     {{else if passwordField}}
         {{> errorMessage}}
         
@@ -44,12 +46,14 @@
         
             <button id="signupBtn" type="submit" disabled>Sign up</button>
         </form>
+
+        <p id="loginSignupLink">Already have an account? <a href="/login">Log in</a></p>
     {{else}}
         <form action="/signup" method="post">
         
             <div class="inputDiv">
                 <span class="signupInputLabel">Name / Company Name</span>
-                <input class="signupInputField" type="text" name="nameCompany" placeholder="Name / Company Name">
+                <input class="signupInputField" type="text" name="nameCompany" placeholder="Name or Company Name">
             </div>
         
             <div class="inputDiv">
@@ -64,6 +68,8 @@
         
             <button id="signupBtn" type="submit" disabled>Sign up</button>
         </form>
+
+        <p id="signupLoginLink">Already have an account? <a href="/login">Log in</a></p>
     {{/if}}
 
 </div>
