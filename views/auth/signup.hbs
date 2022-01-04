@@ -1,5 +1,5 @@
 <div id="signupCont">
-    <h3>Create your account</h3>
+    <h3>Create your account.</h3>
 
     {{#if emailField}}
         {{> errorMessage}}
@@ -22,6 +22,8 @@
         
             <button id="signupBtn" type="submit" disabled>Sign up</button>
         </form>
+
+        <p id="loginSignupLink">Already have an account? <a href="/login">Log in</a></p>
     {{else if passwordField}}
         {{> errorMessage}}
         
@@ -44,6 +46,8 @@
         
             <button id="signupBtn" type="submit" disabled>Sign up</button>
         </form>
+
+        <p id="loginSignupLink">Already have an account? <a href="/login">Log in</a></p>
     {{else}}
         <form action="/signup" method="post">
         
@@ -64,6 +68,8 @@
         
             <button id="signupBtn" type="submit" disabled>Sign up</button>
         </form>
+
+        <p id="signupLoginLink">Already have an account? <a href="/login">Log in</a></p>
     {{/if}}
 
 </div>

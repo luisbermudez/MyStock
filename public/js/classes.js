@@ -70,6 +70,22 @@ class Input {
   }
 }
 
+function formEventListeners(genCont, [...inputs]) {
+  genCont.addEventListener("click", (e) => {
+    inputs.forEach(input => {
+      input.formClickListener(e);
+    });
+  });
+
+  genCont.addEventListener("keyup", (e) => {
+    if(e.keyCode === 9) {
+      inputs.forEach(input => {
+        input.formClickListener(e);
+      });
+    };
+  });
+}
+
 function $(id) {
   return document.getElementById(id);
 }

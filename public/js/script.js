@@ -1,41 +1,33 @@
 document.addEventListener(
   "DOMContentLoaded",
   () => {
+    // General DOM elements
+    const errorMessageCont = [...document.getElementsByClassName("errorMessageCont")];
+    const genContainer = $("genContainer");
+
     // Signup logic
     // DOM Variables setup
-    const errorMessageCont = [...document.getElementsByClassName("errorMessageCont")];
     const signupInput = [...document.getElementsByClassName("signupInputField")];
     const signupInputLabel = [...document.getElementsByClassName("signupInputLabel")];
-    const genContainer = $("genContainer");
     const signupBtn = $("signupBtn");
 
-    console.log(signupInput);
-
-
     // Input classes creation
-    const nameCompanyInput = new Input(signupInput[0], "Name or Company Name", signupInputLabel[0]);
-    const emailInput = new Input(signupInput[1], "Email", signupInputLabel[1]);
-    const passwordInput = new Input(signupInput[2], "Password", signupInputLabel[2]);
+    const signupNameCompanyInput = new Input(signupInput[0], "Name or Company Name", signupInputLabel[0]);
+    const signupEmailInput = new Input(signupInput[1], "Email", signupInputLabel[1]);
+    const signupPasswordInput = new Input(signupInput[2], "Password", signupInputLabel[2]);
 
-    genContainer.addEventListener("click", (e) => {
-      nameCompanyInput.formClickListener(e);
-      emailInput.formClickListener(e);
-      passwordInput.formClickListener(e);
-    });
-
-    genContainer.addEventListener("keyup", (e) => {
-      if(e.keyCode === 9) {
-        nameCompanyInput.formClickListener(e);
-        emailInput.formClickListener(e);
-        passwordInput.formClickListener(e);
-      }
-    });
+    // Signup event listeners
+    formEventListeners(genContainer, [
+      signupNameCompanyInput,
+      signupEmailInput,
+      signupPasswordInput,
+    ]);
 
     genContainer.addEventListener("input", () => {
       if (
-        nameCompanyInput.completeStatusCheck() &&
-        emailInput.completeStatusCheck() &&
-        passwordInput.completeStatusCheck()
+        signupNameCompanyInput.completeStatusCheck() &&
+        signupEmailInput.completeStatusCheck() &&
+        signupPasswordInput.completeStatusCheck()
       ) {
         signupBtn.disabled = false;
       } else {
@@ -43,6 +35,34 @@ document.addEventListener(
       }
     });
 
+    // Login logic
+    // DOM Variables setup
+    const loginInput = [...document.getElementsByClassName("loginInputField")];
+    const loginInputLabel = [...document.getElementsByClassName("loginInputLabel")];
+    const loginBtn = $("loginBtn");
+
+    // Input classes creation
+    const loginEmailInput = new Input(loginInput[0], "Email", loginInputLabel[0]);
+    const loginPasswordInput = new Input(loginInput[1], "Password", loginInputLabel[1]);
+
+    // Login event listeners
+    formEventListeners(genContainer, [
+      loginEmailInput,
+      loginPasswordInput,
+    ]);
+
+    genContainer.addEventListener("input", () => {
+      if (
+        loginEmailInput.completeStatusCheck() &&
+        loginPasswordInput.completeStatusCheck()
+      ) {
+        loginBtn.disabled = false;
+      } else {
+        loginBtn.disabled = true;
+      }
+    });
+
+    // Error message event listener
     errorMessageCont.forEach((each) => {
       each.addEventListener("click", (e) => {
         if (e.target.classList[0] === "errorMessageClose"){
