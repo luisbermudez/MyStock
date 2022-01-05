@@ -19,13 +19,19 @@ body {
 
 /* Mobile style */
 @media (min-width: 280px) {
+  /* Mobile height style */
+  #signupCont,
+  #loginCont,
+  #landingPage {
+    min-height: 100vh;
+    min-height: fill-available;
+    min-height: -webkit-fill-available;
+  }
+
   /* Signup Style */
   #signupCont,
   #loginCont {
     width: 100%;
-    min-height: 100vh;
-    min-height: fill-available;
-    min-height: -webkit-fill-available;
     padding: 0 40px;
   }
   #signupCont h3,
