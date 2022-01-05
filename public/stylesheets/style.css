@@ -19,9 +19,6 @@ body {
 /* Mobile style */
 @media (min-width: 280px) {
   /* Signup Style */
-  #signupCont,
-  #loginCont,
-  #landingPage,
   body {
       min-height: 100vh;
       min-height: fill-available;
@@ -185,6 +182,7 @@ body {
 
   /*Landing page*/
   #landingPage {
+    height: 100%;
     width: 100vw;
     background-repeat: no-repeat;
     background-image: url("/images/bgLandingMobile.png");
