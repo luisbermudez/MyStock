@@ -4,6 +4,11 @@ white: #FEFEFF
 letter-grey: #4C4B4B
 */
 
+html {
+  height: fill-available;
+  height: -webkit-fill-available;
+}
+
 body {
   margin: 0;
   padding: 0;
