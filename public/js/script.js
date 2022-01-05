@@ -95,14 +95,6 @@ document.addEventListener(
         }
       });
     });
-
-    // Landing page logic
-    // mobile screen size
-    const landingPageCont = $("landingPage");
-    let deviceWidth = window.matchMedia("(max-width: 1024px)");
-    if (deviceWidth.matches) {
-      window.addEventListener("resize", setHeight(landingPageCont));
-    }
   },
   false
 );
