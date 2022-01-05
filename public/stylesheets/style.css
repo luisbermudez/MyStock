@@ -13,6 +13,10 @@ body {
   margin: 0;
   padding: 0;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+
+  min-height: 100vh;
+  min-height: fill-available;
+  min-height: -webkit-fill-available;
 }
 
 #genContainer {
@@ -24,15 +28,6 @@ body {
 
 /* Mobile style */
 @media (min-width: 280px) {
-  /* Mobile height style */
-  #signupCont,
-  #loginCont,
-  #landingPage {
-    min-height: 100vh;
-    min-height: fill-available;
-    min-height: -webkit-fill-available;
-  }
-
   /* Signup Style */
   #signupCont,
   #loginCont {
