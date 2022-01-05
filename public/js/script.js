@@ -2,19 +2,37 @@ document.addEventListener(
   "DOMContentLoaded",
   () => {
     // General DOM elements
-    const errorMessageCont = [...document.getElementsByClassName("errorMessageCont")];
+    const errorMessageCont = [
+      ...document.getElementsByClassName("errorMessageCont"),
+    ];
     const genContainer = $("genContainer");
 
     // Signup logic
     // DOM Variables setup
-    const signupInput = [...document.getElementsByClassName("signupInputField")];
-    const signupInputLabel = [...document.getElementsByClassName("signupInputLabel")];
+    const signupInput = [
+      ...document.getElementsByClassName("signupInputField"),
+    ];
+    const signupInputLabel = [
+      ...document.getElementsByClassName("signupInputLabel"),
+    ];
     const signupBtn = $("signupBtn");
 
     // Input classes creation
-    const signupNameCompanyInput = new Input(signupInput[0], "Name or Company Name", signupInputLabel[0]);
-    const signupEmailInput = new Input(signupInput[1], "Email", signupInputLabel[1]);
-    const signupPasswordInput = new Input(signupInput[2], "Password", signupInputLabel[2]);
+    const signupNameCompanyInput = new Input(
+      signupInput[0],
+      "Name or Company Name",
+      signupInputLabel[0]
+    );
+    const signupEmailInput = new Input(
+      signupInput[1],
+      "Email",
+      signupInputLabel[1]
+    );
+    const signupPasswordInput = new Input(
+      signupInput[2],
+      "Password",
+      signupInputLabel[2]
+    );
 
     // Signup event listeners
     formEventListeners(genContainer, [
@@ -38,18 +56,25 @@ document.addEventListener(
     // Login logic
     // DOM Variables setup
     const loginInput = [...document.getElementsByClassName("loginInputField")];
-    const loginInputLabel = [...document.getElementsByClassName("loginInputLabel")];
+    const loginInputLabel = [
+      ...document.getElementsByClassName("loginInputLabel"),
+    ];
     const loginBtn = $("loginBtn");
 
     // Input classes creation
-    const loginEmailInput = new Input(loginInput[0], "Email", loginInputLabel[0]);
-    const loginPasswordInput = new Input(loginInput[1], "Password", loginInputLabel[1]);
+    const loginEmailInput = new Input(
+      loginInput[0],
+      "Email",
+      loginInputLabel[0]
+    );
+    const loginPasswordInput = new Input(
+      loginInput[1],
+      "Password",
+      loginInputLabel[1]
+    );
 
     // Login event listeners
-    formEventListeners(genContainer, [
-      loginEmailInput,
-      loginPasswordInput,
-    ]);
+    formEventListeners(genContainer, [loginEmailInput, loginPasswordInput]);
 
     genContainer.addEventListener("input", () => {
       if (
@@ -65,11 +90,19 @@ document.addEventListener(
     // Error message event listener
     errorMessageCont.forEach((each) => {
       each.addEventListener("click", (e) => {
-        if (e.target.classList[0] === "errorMessageClose"){
+        if (e.target.classList[0] === "errorMessageClose") {
           e.target.parentNode.style.display = "none";
         }
-      })
-    })
+      });
+    });
+
+    // Landing page logic
+    // mobile screen size
+    const landingPageCont = $("landingPage");
+    let deviceWidth = window.matchMedia("(max-width: 1024px)");
+    if (deviceWidth.matches) {
+      window.addEventListener("resize", setHeight(landingPageCont));
+    }
   },
   false
 );

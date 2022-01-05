@@ -89,3 +89,7 @@ function formEventListeners(genCont, [...inputs]) {
 function $(id) {
   return document.getElementById(id);
 }
+
+function setHeight(element) {
+  element.style.minHeight = window.innerHeight + "px"
+};

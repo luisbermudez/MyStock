@@ -19,12 +19,6 @@ body {
 /* Mobile style */
 @media (min-width: 280px) {
   /* Signup Style */
-  body {
-      min-height: 100vh;
-      min-height: fill-available;
-      min-height: -webkit-fill-available;
-  }
-
   #signupCont,
   #loginCont {
     width: 100%;
