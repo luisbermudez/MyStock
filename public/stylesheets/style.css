@@ -4,11 +4,6 @@ white: #FEFEFF
 letter-grey: #4C4B4B
 */
 
-html {
-  height: fill-available;
-  height: -webkit-fill-available;
-}
-
 body {
   margin: 0;
   padding: 0;
@@ -21,7 +16,6 @@ body {
   justify-content: center;
 }
 
-
 /* Mobile style */
 @media (min-width: 280px) {
   /* Signup Style */
@@ -33,7 +27,7 @@ body {
       min-height: fill-available;
       min-height: -webkit-fill-available;
   }
-  
+
   #signupCont,
   #loginCont {
     width: 100%;
