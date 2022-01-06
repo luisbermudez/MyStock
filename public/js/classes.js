@@ -32,7 +32,8 @@ class Input {
     } else {
       this.inpElement.removeAttribute("class", "emptyField");
       this.inpElement.setAttribute("class", "fillingOut");
-      this.label.style.color = "rgb(173, 74, 152)";
+      // this.label.style.color = "rgb(173, 74, 152)";
+      this.label.style.color = "white";
     }
   }
 
@@ -45,13 +46,15 @@ class Input {
 
     // Sets up style when clicking the input
     if (e.target === this.inpElement) {
-      this.label.style.color = "rgb(173, 74, 152)";
+      // this.label.style.color = "rgb(173, 74, 152)";
+      this.label.style.color = "white";
       this.clickInputListener();
       this.inpElement.addEventListener("keyup", (e) => {
         this.emptyInputCheck(e);
       });
     } else {
-      this.label.style.color = "rgb(126, 126, 126)";
+      // this.label.style.color = "rgb(126, 126, 126)";
+      this.label.style.color = "white";
 
       if (this.inpElement.value === "") {
         this.inpElement.setAttribute("placeholder", this.placeholder);

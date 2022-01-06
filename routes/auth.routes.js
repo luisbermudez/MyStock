@@ -4,9 +4,9 @@ const bcryptjs = require('bcryptjs');
 const saltRounds = 10;
 const mongoose = require('mongoose');
 
-router.get("/landing", (req,res,next) => res.render("auth/landing"));
+router.get("/landing", loggedOut, (req,res,next) => res.render("auth/landing"));
 
-router.get("/signup", (req, res, next) => res.render("auth/signup"));
+router.get("/signup", loggedOut,(req, res, next) => res.render("auth/signup"));
 
 router.post("/signup", async (req, res, next) => {
     const { nameCompany, email, password } = req.body;
@@ -75,7 +75,7 @@ router.post("/signup", async (req, res, next) => {
     }
 });
 
-router.get("/login", (req, res, next) => res.render("auth/login"));
+router.get("/login", loggedOut, (req, res, next) => res.render("auth/login"));
 
 router.post("/login", async (req, res, next) => {
   const { email, password } = req.body;
@@ -118,6 +118,6 @@ router.post('/logout', (req, res, next) => {
     })
 })
 
-router.get("/home", (req, res, next) => res.render("user/home"));
+router.get("/home", loggedIn, (req, res, next) => res.render("user/home"));
 
 module.exports = router;
