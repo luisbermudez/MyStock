@@ -1,0 +1,17 @@
+<h3>Edit your Profile</h3>
+
+<div>
+
+<form id="" action="/user-edit/{{userIn._id}}" method="POST" enctype="multipart/form-data">
+    <span id="nameUpload">Name/Company</span>
+    <input type="text" name="name" value="{{userIn.name}}">
+
+    <span id="nameUpload">Email</span>
+    <input type="text" name="email" value="{{userIn.email}}">
+
+    <span id="nameUpload">Password</span>
+    <input type="text" name="password" value="{{userIn.password}}">
+
+    <button class="btn saveChanges" type="submit">Save Changes</button>
+</form>
+</div>
