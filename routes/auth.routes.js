@@ -132,4 +132,17 @@ router.get('/user-edit', loggedIn, (req,res,next) => {
 
 router.get("/home", loggedIn, (req, res, next) => res.render("user/home"));
 
+//Collections
+router.get('/collection', loggedIn, (req,res,next) => {
+    res.render('user/collection')
+});
+
+router.get('/edit-collection', loggedIn, (req,res,next) => {
+    res.render('user/edit-collection')
+});
+
+router.post('/edit-collection', (req, res, next) => {
+    const { collectiomName, colllectionImage } = req.body
+});
+
 module.exports = router;

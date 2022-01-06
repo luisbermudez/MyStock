@@ -33,6 +33,7 @@ const userSchema = new Schema(
       type: String,
       default: "images/pp.png",
     },
+    _userCollections: [String]
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`
