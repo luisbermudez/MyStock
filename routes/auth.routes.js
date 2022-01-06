@@ -3,6 +3,8 @@ const User = require("../models/User.model");
 const bcryptjs = require('bcryptjs');
 const saltRounds = 10;
 const mongoose = require('mongoose');
+const { loggedIn, loggedOut } = require('../middleware/route-guard');
+const req = require("express/lib/request");
 
 router.get("/landing", (req,res,next) => res.render("auth/landing"));
 router.get("/signup", (req, res, next) => res.render("auth/signup"));
@@ -116,6 +118,16 @@ router.post('/logout', (req, res, next) => {
         res.redirect('/landing');
     })
 })
+
+//userProfile
+router.get('/user-profile', loggedIn, (req, res, next) =>{
+    res.render('user/user-profile', {userIn: req.session.currentUser})
+});
+
+router.get('/user-edit', loggedIn, (req,res,next) => {
+    res.render('user/user-edit', {userIn: req.session.currentUser})
+})
+
 
 router.get("/home", (req, res, next) => res.render("user/home"));
 
