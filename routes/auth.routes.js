@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 const { loggedIn, loggedOut } = require('../middleware/route-guard');
 const req = require("express/lib/request");
 
-router.get("/landing", loggedOut, (req,res,next) => res.render("auth/landing"));
+router.get("/", loggedOut, (req,res,next) => res.render("auth/landing"));
 
 router.get("/signup", loggedOut,(req, res, next) => res.render("auth/signup"));
 
@@ -116,7 +116,7 @@ router.post("/login", async (req, res, next) => {
 router.post('/logout', (req, res, next) => {
     req.session.destroy(err => {
         if(err) next(err);
-        res.redirect('/landing');
+        res.redirect('/');
     })
 })
 
@@ -130,6 +130,6 @@ router.get('/user-edit', loggedIn, (req,res,next) => {
 })
 
 
-router.get("/home", (req, res, next) => res.render("user/home"));
+router.get("/home", loggedIn, (req, res, next) => res.render("user/home"));
 
 module.exports = router;
