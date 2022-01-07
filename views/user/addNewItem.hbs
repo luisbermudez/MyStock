@@ -1,0 +1,46 @@
+<div id="newItemForm">
+    <h3>Add new item</h3>
+
+    <form action="/add-new-item" method="post" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label class="form-label">Item image:</label>
+            <input type="file" name="itemImage" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <div class="form-text">Add an image of the new product.</div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Item name:</label>
+            <input type="text" name="itemName" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Quantity:</label>
+            <input type="number" name="itemQuantity" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Price:</label>
+            <input type="number" name="itemPrice" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3 form-check">
+            <input type="checkbox" name="itemProperties" value="true" class="form-check-input" id="extraProperties">
+            <label class="form-check-label">Add more vailable properties</label>
+        </div>
+
+        <div id="extraPropOptions" class="mb-3">
+            <label class="form-label">Size:</label>
+            <select name="size" class="form-select" aria-label="Default select example">
+                <option value="null">Pick a size</option>
+                <option value="Small">Small</option>
+                <option value="Medium">Medium</option>
+                <option value="Large">Large</option>
+            </select>
+
+            <div class="mb-3">
+                <label class="form-label">Color:</label>
+                <input type="text" name="itemColor" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+    {{> navBar}}
+    {{> sideBar}}
+</div>

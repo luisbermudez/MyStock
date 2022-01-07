@@ -95,6 +95,18 @@ document.addEventListener(
         }
       });
     });
+
+    // Add new item - Add extra properties event listener
+    const checkBoxProperties = $("extraProperties");
+    const extraProperties = $("extraPropOptions");
+
+    checkBoxProperties.addEventListener('change', function() {
+      if (this.checked) {
+        extraProperties.style.display = "block";
+      } else {
+        extraProperties.style.display = "none";
+      }
+    })
   },
   false
 );

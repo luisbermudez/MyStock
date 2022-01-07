@@ -1,6 +1,7 @@
 const { Schema, model } = require("mongoose");
 
 const itemSchema = new Schema ({
+    // _ownerCollection: [{ type: Schema.Types.ObjectId, ref: "Collection"}],
     itemName: {
         type: String,
         required:true
@@ -16,13 +17,15 @@ const itemSchema = new Schema ({
     itemPrice: Number,
     itemProperties: Boolean,
     size: {
-        enum: [ "Small", "Medium", "Large" ],
-        default: "Small"
-    }
+        type: String,
+        enum: [ "Small", "Medium", "Large", "null" ],
+        // default: "Small"
+    },
+    itemColor: String
 },
 {
     timestamps: true
 }
 );
 
-module.exports = model("Item", userSchema);
+module.exports = model("Item", itemSchema);
