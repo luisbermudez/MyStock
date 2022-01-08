@@ -5,15 +5,7 @@
     <div>
         <h5>{{itemName}}</h5>
         <p>Quantity: {{itemQuantity}} items</p>
-        <p>Price: ${{itemPrice}}</p>
+        <a class="btn btn-dark btn-sm" href="/item/{{_id}}" role="button">Details</a>
 
-        {{#if itemProperties}}
-            {{#if size}}
-                <p>Size: {{size}}</p>
-            {{/if}}
-            {{#if itemColor}}
-                <p>Color: {{itemColor}}</p>
-            {{/if}}
-        {{/if}}
     </div>
 </div>

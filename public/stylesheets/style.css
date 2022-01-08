@@ -27,7 +27,9 @@ body {
   #loginCont,
   #itemsCont,
   #homeCont,
-  #newItemForm {
+  #newItemForm,
+  #itemDetailsCont, 
+  #editItemForm {
     width: 100%;
     /* height: 100vh; */
     padding: 0 30px;
@@ -404,21 +406,99 @@ body {
   }
 
   .newIconNotEmpty {
+    color: white;
+    border-color: white;
     position: fixed;
     bottom: 90px;
-    right: 50px;
-    background: rgba(216, 216, 216, 0.39);
+    right: 30px;
+    background: black;
   }
 
   #itemsCont > #pictureDiv {
     text-align: center;
     line-height: 100px;
-    background: rgb(255, 255, 255);
-    border-bottom: 1px solid rgb(206, 206, 206);
+    background: rgb(49, 49, 49);
+    color: white;
   }
 
   #viewer {
     margin: 120px 0;
+  }
+
+  .itemCardProt .btn {
+    margin-top: 10px;
+  }
+
+  /* Items details style */
+  #itemDetailsCont > img {
+    height: 180px;
+    width: 180px;
+    margin: 30px auto;
+    padding: 20px 0;
+    display: block;
+    box-sizing: content-box;
+  }
+
+  #itemDetailsCont h2 {
+    margin-left: 10px;
+  }
+
+  #itemDetailsCont h6 {
+    margin-left: 25px;
+    color: rgb(92, 92, 92);
+  }
+
+  #itemDetailsCont .btn {
+    position: absolute;
+    right: 40px;
+    top: 296px;
+  }
+
+  #updateOrCancelEdit a {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  #updateOrCancelEdit {
+    display: flex;
+    justify-content: space-around;
+    margin: 0 25px;
+  }
+
+  #editItemForm section {
+    display: flex;
+  }
+
+  #editItemForm h3 {
+    margin-top: 70px;
+  }
+
+  .bi-chevron-left {
+    position: fixed;
+    height: 35px;
+    width: 35px;
+    top: 20px;
+    left: 30px;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+  }
+
+  #editItemForm .btn-danger {
+    margin: 10px auto;
+    position: absolute;
+    right: 35px;
+    top: 60px;
+  }
+
+  #editItemForm img {
+    height: 75px;
+    width: 75px;
+  }
+
+  #itemImageUpload {
+    display: none;
   }
 }
 
@@ -524,7 +604,7 @@ body {
     height: 100vh;
     width: 75px;
 
-    position: absolute;
+    position: fixed;
     left: 0;
     top: 0;
   }

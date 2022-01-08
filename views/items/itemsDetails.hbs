@@ -1,0 +1,28 @@
+<div id="itemDetailsCont">
+    <a href="/items">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+        </svg>
+    </a>
+
+    <img src="{{theItem.itemImage}}" alt="{{theItem.itemName}} image">
+    <hr>
+    <h2>{{theItem.itemName}}</h2>
+    <hr>
+    <h6>Quantity: {{theItem.itemQuantity}}</h6>
+    <h6>Price: ${{theItem.itemPrice}}</h6>
+
+    {{#if theItem.itemProperties}}
+        {{#if size}}
+            <h6>Size: {{theItem.size}}</h6>
+        {{/if}}
+        {{#if theItem.itemColor}}
+            <h6>Color: {{theItem.itemColor}}</h6>
+        {{/if}}
+    {{/if}}
+
+    <a class="btn btn-dark btn-sm" href="/item/{{theItem._id}}/edit" role="button">Edit</a>
+
+    {{> navBar}}
+    {{> sideBar}}
+</div>
