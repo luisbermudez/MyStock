@@ -1,11 +1,13 @@
-<div class="itemCardProt">
-    <div>
-        <img src="{{itemImage}}" alt="item Picture">
-    </div>
-    <div>
-        <h5>{{itemName}}</h5>
-        <p>Quantity: {{itemQuantity}} items</p>
-        <a class="btn btn-dark btn-sm" href="/item/{{_id}}" role="button">Details</a>
+<a href="/item/{{_id}}">
+    <div class="itemCardProt">
+        <div>
+            <img src="{{itemImage}}" alt="item Picture">
+        </div>
+        <div>
+            <h5>{{itemName}}</h5>
+            <p>Quantity: {{itemQuantity}} items</p>
+            <a class="btn btn-dark btn-sm" href="/item/{{_id}}" role="button">Details</a>
 
+        </div>
     </div>
-</div>
+</a>
