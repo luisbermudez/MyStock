@@ -652,4 +652,9 @@ body {
   #viewer {
     margin: 170px 0 130px;
   }
+
+  .bi-chevron-left {
+    top: 20px;
+    left: 130px;
+  }
 }
