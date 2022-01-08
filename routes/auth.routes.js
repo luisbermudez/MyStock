@@ -120,29 +120,4 @@ router.post('/logout', (req, res, next) => {
     })
 })
 
-//userProfile
-router.get('/user-profile', loggedIn, (req, res, next) =>{
-    res.render('user/user-profile', {userIn: req.session.currentUser})
-});
-
-router.get('/user-edit', loggedIn, (req,res,next) => {
-    res.render('user/user-edit', {userIn: req.session.currentUser})
-})
-
-
-router.get("/home", loggedIn, (req, res, next) => res.render("user/home"));
-
-//Collections
-router.get('/collection', loggedIn, (req,res,next) => {
-    res.render('user/collection')
-});
-
-router.get('/edit-collection', loggedIn, (req,res,next) => {
-    res.render('user/edit-collection')
-});
-
-router.post('/edit-collection', (req, res, next) => {
-    const { collectiomName, colllectionImage } = req.body
-});
-
 module.exports = router;

@@ -5,7 +5,7 @@ const collectionSchema = new Schema (
     {
         collectionName: {
             type: String,
-            default: untitledCollection
+            default: "untitledCollection"
             /* mincharacter lenght*/ 
         },
         collectionImage: {
@@ -19,4 +19,4 @@ const collectionSchema = new Schema (
     }
 );
 
-module.exports = model("User", userSchema);
+module.exports = model("Collection", collectionSchema);

@@ -31,7 +31,7 @@ const userSchema = new Schema(
     },
     profilePicture: {
       type: String,
-      default: "images/pp.png",
+      default: "images/PlanetProfile.png",
     },
     _userCollections: [String]
   },

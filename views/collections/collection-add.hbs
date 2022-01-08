@@ -1,0 +1,18 @@
+
+<div id="newCollectionForm">
+    <h2>Add you collection</h2>
+        <form action="/collection-add" method="POST" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label class="form-label">Collection image:</label>
+            <input type="file" name="collectionImage" class="form-control" id="">
+            <div class="form-text">Add an image of the new collection.</div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Collection name:</label>
+            <input type="text" name="collectionName" class="form-control" id="">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    {{> navBar}}
+    {{> sideBar}}
+</div>

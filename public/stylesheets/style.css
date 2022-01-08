@@ -29,9 +29,11 @@ body {
   #homeCont,
   #newItemForm,
   #itemDetailsCont, 
-  #editItemForm {
+  #editItemForm,
+  #collectionView,
+  #userProfile {
     width: 100%;
-    /* height: 100vh; */
+    height: 100vh; 
     padding: 0 30px;
   }
 
@@ -526,7 +528,9 @@ body {
   #homeCont,
   #newItemForm,
   #itemDetailsCont, 
-  #editItemForm {
+  #editItemForm,
+  #collectionView,
+  #userProfile {
     margin-left: 75px;
   }
 

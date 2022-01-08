@@ -14,14 +14,14 @@ router.get('/items', loggedIn, async (req, res, next) => {
     try {
         const itemsFromDB = await Item.find();
 
-        res.render("user/items", { items: itemsFromDB });
+        res.render("items/items", { items: itemsFromDB });
     } catch(err) {
 
     }
 });
 
 // New item
-router.get("/add-new-item", loggedIn, (req, res, next) => res.render('user/addNewItem'));
+router.get("/add-new-item", loggedIn, (req, res, next) => res.render('items/addNewItem'));
 
 router.post('/add-new-item', Upload.single("itemImage"), async (req, res, next) => {
     const { itemName, itemQuantity, itemPrice, itemProperties, size, itemColor } = req.body;
@@ -81,6 +81,7 @@ router.post("/item/:itemId/delete", async (req, res, next) => {
         next(err);
     }
 });
+
 
 router.get("/item/:itemId/edit", loggedIn, async (req, res, next) => {
     const { itemId } = req.params;

@@ -41,6 +41,12 @@ app.use("/", auth);
 const items = require('./routes/items.route');
 app.use('/', items);
 
+const collection = require('./routes/collection.routes');
+app.use('/', collection);
+
+const profile = require('./routes/profile.routes');
+app.use('/', profile)
+
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
 

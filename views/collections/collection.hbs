@@ -1,0 +1,20 @@
+<div id="collectionView">
+
+
+    {{#if collections}}
+    <div id="viewer">
+        {{#each collections}}
+            {{> collectionsCard}} 
+        {{/each}}
+        </div>
+        <a href="/collection-add" class="addNewIcon newIconNotEmpty">+</a>
+    {{else}}
+        <div id="emptyCollection">
+            <h5>Add a new Collection</h5>
+            <a href="/collection-add" class="addNewIcon">+</a>
+        </div>
+    {{/if}}
+
+    {{> navBar}}
+    {{> sideBar}}
+</div>
