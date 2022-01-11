@@ -1,15 +1,35 @@
 <div id="editItemForm">
+    <div class="chevronDiv">
+        <h4>Add a new item</h4>
+    </div>
+
     <a href="/item/{{theItem._id}}">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
-        </svg>
+        <i class="bi-chevron-left"></i>
     </a>
 
-    <h3>Edit item</h3>
+    <button id="deleteBin" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <i class="bi bi-trash"></i>
+    </button>
 
-    <form action="/item/{{theItem._id}}/delete" method="post">
-        <button class="btn-sm btn btn-danger" type="submit">Delete item</button>
-    </form>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Are you sure?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Deleting this item is permanent and cannot be undone.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Cancel</button>
+                <form action="/item/{{theItem._id}}/delete" method="post">
+                    <button type="submit" class="btn btn-danger ms-2">Delete</button>
+                </form>
+            </div>
+            </div>
+        </div>
+    </div>
 
     <form action="/item/{{theItem._id}}/edit" method="post" enctype="multipart/form-data">
         <section>
@@ -22,22 +42,22 @@
             </label>
             <input type="file" name="itemImage" class="form-control" id="itemImageUpload">
 
-        {{!-- <div class="mb-3">
+        {{!-- <div class="me-3">
             <label class="form-label">Item image:</label>
             <input value="{{theItem.itemImage}}" type="file" name="itemImage" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
         </div> --}}
-        <div class="mb-3">
+        <div class="mb-3 mt-5">
             <label class="form-label">Item name:</label>
             <input value="{{theItem.itemName}}" type="text" name="itemName" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
         </div>
         </section>
 
         <section>
-            <div class="mb-3">
+            <div class="mb-3 me-2">
                 <label class="form-label">Quantity:</label>
                 <input value="{{theItem.itemQuantity}}" type="number" name="itemQuantity" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
             </div>
-            <div class="mb-3">
+            <div class="mb-3 ms-2">
                 <label class="form-label">Price:</label>
                 <input value="{{theItem.itemPrice}}" type="number" name="itemPrice" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
             </div>
@@ -48,6 +68,7 @@
                 <label class="form-label">Size:</label>
                 <select name="size" class="form-select" aria-label="Default select example">
                     <option selected>{{theItem.size}}</option>
+                    <option value="null">No size</option>
                     <option value="Small">Small</option>
                     <option value="Medium">Medium</option>
                     <option value="Large">Large</option>
@@ -57,7 +78,7 @@
             <div class="mb-3">
                 <label class="form-label">Size:</label>
                 <select name="size" class="form-select" aria-label="Default select example">
-                    <option selected>No size selected</option>
+                    <option value="null">No size selected</option>
                     <option value="Small">Small</option>
                     <option value="Medium">Medium</option>
                     <option value="Large">Large</option>
