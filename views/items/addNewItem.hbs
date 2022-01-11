@@ -12,6 +12,15 @@
             <input type="text" name="itemName" class="form-control" id="">
         </div>
         <div class="mb-3">
+            <label class="form-label">Collection name:</label>
+            <select name="_ownerCollection"> 
+            {{#each collectionsList}}
+            <option value="{{this._id}}">{{this.collectionName}}</option>
+            {{/each}}
+            </select>
+        {{!-- <input type="text" name="collectionName" class="form-control" id=""> --}}
+        </div>
+        <div class="mb-3">
             <label class="form-label">Quantity:</label>
             <input type="number" name="itemQuantity" class="form-control" id="">
         </div>

@@ -12,7 +12,7 @@ const collectionSchema = new Schema (
             type: String,
             //default: 
         },
-        _collectionItems: [String]
+        _collectionItems: [ { type: Schema.Types.ObjectId, ref: "Item" } ]
     }, 
     {
         timestamps: true

@@ -56,14 +56,65 @@ router.get('/collection/:collectionId', loggedIn, async(req,res,next) =>{
     
 });
 
+//deletecollection
+
+// router.post('/collection/:collectionId/delete', async (req, res, next) =>{
+//     const { collectionId } =req.params;
+
+//     try{
+//         await Collection.findByIdAndDelete(collectionId);
+//         res.redirect('/collections');
+//     }catch(err){
+//         console.log(err);
+//         next(err);
+// }})
 
 //edit collection
-router.get('/edit-collection', loggedIn, (req,res,next) => {
-    res.render('collections/edit-collection')
+router.get('/edit-collection/:collectionId', loggedIn, async(req,res,next) => {
+    const { collectionId } = req.params;
+    try{
+    const collectionFromDB = await Collection.findById(
+        collectionId,
+    )
+        res.render('collections/edit-collection', { collections: collectionFromDB});
+    }catch(err){
+        console.log(err)
+        next(err);
+    }
 });
 
-router.post('/edit-collection', (req, res, next) => {
-    const { collectiomName, colllectionImage } = req.body
+router.post('/edit-collection/:collectionId', Upload.single("collectionImage"), loggedIn, async (req, res, next) => {
+    const { collectionId } = req.params;
+    const { collectionName, collectionImage } = req.body
+    let picture;
+
+    try{
+        if(req.file) {
+            picture = req.file.path;
+            const collectionFromDB = await Collection.findByIdAndUpdate(
+                collectionId,
+                {
+                    collectionName,
+                    collectionImage
+                },
+                { new: true }
+            );
+            return res.redirect (`/collection/${collectionFromDB._id}`);
+        }else{
+            const collectionFromDB = await Collection.findByIdAndUpdate(
+                collectionId,
+                {
+                    collectionName,
+                    collectionImage
+                },
+                { new: true }
+            );
+            return res.redirect (`/collection/${collectionFromDB._id}`);
+        }
+    } catch(err) {
+        console.log(err);
+        next(err);
+    }
 });
 
 module.exports = router;

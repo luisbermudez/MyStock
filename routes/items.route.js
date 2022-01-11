@@ -3,6 +3,7 @@ const router = require("express").Router();
 const { loggedIn, loggedOut } = require("../middleware/route-guard");
 
 const Item = require('../models/Item.model');
+const Collection = require('../models/Collection.model');
 const mongoose = require("mongoose"); 
 
 const Upload = require('../helper/multer');
@@ -16,30 +17,40 @@ router.get('/items', loggedIn, async (req, res, next) => {
 
         res.render("items/items", { items: itemsFromDB });
     } catch(err) {
-
+      console.log(err);
+      next(err);
     }
 });
 
 // New item
-router.get("/add-new-item", loggedIn, (req, res, next) => res.render('items/addNewItem'));
+router.get("/add-new-item", loggedIn, async(req, res, next) => {
+  try{
+    const collectionsFromDB = await Collection.find();
+    res.render('items/addNewItem', { collectionsList: collectionsFromDB })
+  }catch(err) {
+    console.log(err);
+    next(err);
+}
+});
 
 router.post('/add-new-item', Upload.single("itemImage"), async (req, res, next) => {
-    const { itemName, itemQuantity, itemPrice, itemProperties, size, itemColor } = req.body;
+    const { itemName, _ownerCollection, itemQuantity, itemPrice, itemProperties, size, itemColor } = req.body;
+    console.log("err",req.body)
 
     let picture = req.file.path;
 
     try {
-        // const newItem = 
-        await Item.create({
+        const newItem = await Item.create({
           itemName,
           itemImage: picture,
+          _ownerCollection,
           itemQuantity,
           itemPrice,
           itemProperties,
           size,
           itemColor
         });
-
+          let collectionUpdated = await Collection.findByIdAndUpdate({ _id: _ownerCollection}, {$push: { _collectionItems: newItem._id } });
         return res.redirect('/items');
     } catch(err) {
         console.log(err);

@@ -31,7 +31,10 @@ body {
   #itemDetailsCont, 
   #editItemForm,
   #collectionView,
-  #userProfile {
+  #userProfile,
+  #userProfileEdit,
+  #userEdit,
+  #collectionDetailsCont {
     width: 100%;
     height: 100vh;
     padding: 0 30px;
@@ -356,7 +359,8 @@ body {
   }
 
   /* Items empty style */
-  #itemsCont {
+  #itemsCont,
+  #collectionView {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -395,9 +399,25 @@ body {
     margin: 30px 0;
   }
 
+  .collectionCardProt{
+    box-shadow: 3px 3px 8px #9e9e9e94;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    margin: 30px 0;
+    padding: 10px 0;
+  }
+
   .itemCardProt img {
     width: 140px;
     height: 140px;
+    padding: 15px;
+    margin-right: 20px;
+  }
+
+  .collectionCardProt img {
+    width: 180px;
+    height: 180px;
     padding: 15px;
     margin-right: 20px;
   }
@@ -416,7 +436,8 @@ body {
     background: black;
   }
 
-  #itemsCont > #pictureDiv {
+  #itemsCont > #pictureDiv,
+  #collectionDetailsCont > #pictureDiv {
     text-align: center;
     line-height: 100px;
     background: rgb(190, 190, 190);
@@ -432,7 +453,11 @@ body {
   }
 
   /* Items details style */
-  #itemDetailsCont > img {
+  #itemDetailsCont > img,
+  #collectionDetailsCont > img,
+  #userProfile > img,
+  #userProfileEdit > img,
+  #userEdit > img {
     height: 180px;
     width: 180px;
     margin: 30px auto;
@@ -441,7 +466,8 @@ body {
     box-sizing: content-box;
   }
 
-  #itemDetailsCont h2 {
+  #itemDetailsCont h2,
+  #collectionDetailsCont h2 {
     margin-left: 10px;
   }
 
@@ -450,7 +476,8 @@ body {
     color: rgb(92, 92, 92);
   }
 
-  #itemDetailsCont .btn {
+  #itemDetailsCont .btn,
+  #collectionDetailsCont .btn {
     position: absolute;
     right: 40px;
     top: 296px;
@@ -467,7 +494,8 @@ body {
     margin: 0 25px;
   }
 
-  #editItemForm section {
+  #editItemForm section,
+  #editCollectionForm {
     display: flex;
   }
 
@@ -530,7 +558,8 @@ body {
   #itemDetailsCont, 
   #editItemForm,
   #collectionView,
-  #userProfile {
+  #userProfile,
+  #userProfileEdit {
     margin-left: 75px;
   }
 

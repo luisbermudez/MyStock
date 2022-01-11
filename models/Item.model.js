@@ -1,7 +1,7 @@
 const { Schema, model } = require("mongoose");
 
 const itemSchema = new Schema ({
-    // _ownerCollection: [{ type: Schema.Types.ObjectId, ref: "Collection"}],
+    _ownerCollection: { type: Schema.Types.ObjectId, ref: "Collection"},
     itemName: {
         type: String,
         required:true
