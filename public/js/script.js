@@ -107,6 +107,18 @@ document.addEventListener(
         extraProperties.style.display = "none";
       }
     })
+
+    //add itemns in collection
+    const checkBoxForAddAnItem = $("addNewItem");
+    const newItemContainer = $("newItemContainer");
+
+    checkBoxForAddAnItem.addEventListener('change', function(){
+      if (this.checked) {
+        newItemContainer.style.display = "block";
+      } else {
+        newItemContainer.style.display = "none";
+      }
+    })
   },
   false
 );

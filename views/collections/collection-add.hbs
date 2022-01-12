@@ -1,6 +1,13 @@
 
 <div id="newCollectionForm">
-    <h2>Add you collection</h2>
+    <div class="chevronDiv">
+        <h4>Add a new Collection</h4>
+    </div>
+
+    <a href="/collection">
+        <i class="bi-chevron-left"></i>
+    </a>
+    
         <form action="/collection-add" method="POST" enctype="multipart/form-data">
         <div class="mb-3">
             <label class="form-label">Collection image:</label>
@@ -10,6 +17,55 @@
         <div class="mb-3">
             <label class="form-label">Collection name:</label>
             <input type="text" name="collectionName" class="form-control" id="">
+        </div>
+
+
+        <div class="mb-3 form-check form-switch">
+            <label class="form-check-label" for="addNewItem">Do you want to add a new item?</label>
+            <input name="addNewItem" class="form-check-input" type="checkbox" role="switch" id="addNewItem">
+        </div>
+
+        <div id="newItemContainer" class="mb-3">
+        <form action="/add-new-item" method="post" enctype="multipart/form-data" id="">
+        <section>
+            <div class="mb-3">
+                <label class="form-label">Item image:</label>
+                <input type="file" name="itemImage" class="form-control" id="">
+                <div class="form-text">Add an image of the new product.</div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Item name:</label>
+                <input type="text" name="itemName" class="form-control" id="">
+            </div>
+        </section>
+        <div class="mb-3">
+            <label class="form-label">Quantity:</label>
+            <input type="number" name="itemQuantity" class="form-control" id="">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Price:</label>
+            <input type="number" name="itemPrice" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3 form-check form-switch">
+            <label class="form-check-label" for="extraProperties">Add more available properties</label>
+            <input name="itemProperties" class="form-check-input" type="checkbox" role="switch" id="extraProperties">
+        </div>
+
+        <div id="extraPropOptions" class="mb-3">
+            <label class="form-label">Size:</label>
+            <select name="size" class="form-select" aria-label="Default select example">
+                <option value="null">Pick a size</option>
+                <option value="Small">Small</option>
+                <option value="Medium">Medium</option>
+                <option value="Large">Large</option>
+            </select>
+
+            <div class="mb-3">
+                <label class="form-label">Color:</label>
+                <input type="text" name="itemColor" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            </div>
+        </div>
+        </form>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
         </form>
