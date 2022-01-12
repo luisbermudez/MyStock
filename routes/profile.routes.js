@@ -63,6 +63,11 @@ router.post('/userProfile/:userId/edit', loggedIn, Upload.single("profilePicture
     //res.render('user/user-edit', {userIn: req.session.currentUser})
 });
 
+//edit password
+router.get('/edit-pass', loggedIn, (req,res, next) => {
+    res.render('user/private/edit-pass', {userIn: req.session.currentUser});
+});
+
 
 
 router.get("/home", loggedIn, (req, res, next) => res.render("user/home"));

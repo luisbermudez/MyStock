@@ -473,10 +473,7 @@ body {
 
   /* Items details style */
   #itemDetailsCont > img,
-  #collectionDetailsCont > img,
-  #userProfile > img,
-  #userProfileEdit > img,
-  #userEdit > img {
+  #collectionDetailsCont > img {
     height: 180px;
     width: 180px;
     margin: 45px auto 30px;
@@ -485,19 +482,33 @@ body {
     box-sizing: content-box;
   }
 
+  #userProfile > img,
+  #userProfileEdit > img,
+  #userEdit > img {
+    height: 200px;
+    width: 215px;
+    margin: 45px auto 30px;
+    padding: 20px 0;
+    display: block;
+    box-sizing: content-box;
+  }
+
   #itemDetailsCont h2,
-  #collectionDetailsCont h2 {
+  #collectionDetailsCont h2,
+  #userProfile h1 {
     margin-left: 10px;
   }
 
-  #itemDetailsCont h6 {
+  #itemDetailsCont h6,
+  #userProfile h2 {
     margin-left: 25px;
     color: rgb(92, 92, 92);
   }
 
 
   #collectionDetailsCont .btn,
-  #itemDetailsCont .bi-pencil-square {
+  #itemDetailsCont .bi-pencil-square,
+  #userProfile .bi-pencil-square {
     position: absolute;
     right: 40px;
     top: 312px;
@@ -513,7 +524,8 @@ body {
   }
   
   /* Items edit view */
-  #editItemForm {
+  #editItemForm,
+  #userProfileEdit {
     margin-top: 100px;
     position: relative;
   }
@@ -530,7 +542,8 @@ body {
   }
 
   #editItemForm section,
-  #editCollectionForm {
+  #editCollectionForm,
+  #userProfileEdit section {
     display: flex;
     justify-content: space-between;
   }
@@ -572,7 +585,8 @@ body {
     border: none;
   }
 
-  #editItemForm img {
+  #editItemForm img,
+  #userProfileEdit img {
     height: 112px;
     width: 112px;
     margin: 0 20px 15px 0;

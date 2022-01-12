@@ -1,17 +1,18 @@
 <div id="userProfile">
-    <a href="/home">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
-        </svg>
-    </a>
+        <a href="/home"> 
+            <i class="bi-chevron-left"></i>
+        </a>
     <img src="{{userIn.profilePicture}}" alt="userPicture">
+        <hr>
+            <h1>Name/Company: {{userIn.name}}</h1>
+        <hr>
     
     <div class="user-info">
-        <h1>Name/Company: {{userIn.name}}</h1>
         <h2>Email: {{userIn.email}}</h2>
-        <h2>Password: {{userIn.password}}</h2>
-        <a class="btn btn-dark btn-sm" href="/user-edit">Edit profile</a>
+        <h2><a href="/edit-pass">Password: *********</a></h2>
+        {{!-- <a class="btn btn-dark btn-sm" href="/user-edit">Edit profile</a> --}}
     </div>
+    <a href="/user-edit"><i class="bi bi-pencil-square"></i></a>
     {{> navBar}}
     {{> sideBar}}
 </div>
