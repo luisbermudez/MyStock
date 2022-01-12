@@ -52,6 +52,16 @@
         </div>
         </section>
 
+        <div class="mb-3">
+            <label class="form-label">Collection name:</label>
+            <select name="_ownerCollection" class="form-select">
+                <option selected>Current collection: <b>{{theItem._ownerCollection.collectionName}}</b></option>
+                {{#each theCollections}}
+                    <option value="{{this._id}}">{{this.collectionName}}</option>
+                {{/each}}
+            </select>
+        </div>
+
         <section>
             <div class="mb-3 me-2">
                 <label class="form-label">Quantity:</label>

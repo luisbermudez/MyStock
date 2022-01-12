@@ -11,10 +11,11 @@ const async = require("hbs/lib/async");
 
 
 router.get('/items', loggedIn, async (req, res, next) => {
+    const userId = req.session.currentUser._id;
 
     try {
-        const itemsFromDB = await Item.find();
-
+        const itemsFromDB = await Item.find({ _userCreator: userId });
+        console.log(req.session.currentUser._id)
         res.render("items/items", { items: itemsFromDB });
     } catch(err) {
       console.log(err);
@@ -35,12 +36,13 @@ router.get("/add-new-item", loggedIn, async(req, res, next) => {
 
 router.post('/add-new-item', Upload.single("itemImage"), async (req, res, next) => {
     const { itemName, _ownerCollection, itemQuantity, itemPrice, itemProperties, size, itemColor } = req.body;
-    console.log("err",req.body)
+    const creatorUser = req.session.currentUser._id;
 
     let picture = req.file.path;
 
     try {
         const newItem = await Item.create({
+          _userCreator: creatorUser,
           itemName,
           itemImage: picture,
           _ownerCollection,
@@ -65,7 +67,10 @@ router.get("/item/:itemId", loggedIn, async (req, res, next) => {
     let sizeCheck = true;
 
     try {
-        const itemFromDB = await Item.findById(itemId);
+        const itemFromDB = await Item.findById(itemId)
+          .populate("_ownerCollection");
+
+        console.log(itemFromDB._ownerCollection);
         if (itemFromDB.size === "null") {
           sizeCheck = false;
         }
@@ -99,12 +104,16 @@ router.get("/item/:itemId/edit", loggedIn, async (req, res, next) => {
     let sizeCheck = true;
 
     try {
-        const itemFromDB = await Item.findById(itemId);
+        const itemFromDB = await Item.findById(itemId)
+          .populate("_ownerCollection");
+        const collectionsFromDB = await Collection.find();
+
         if (itemFromDB.size === "null") {
           sizeCheck = false;
         }
         return res.render("items/itemsEdit", {
           theItem: itemFromDB,
+          theCollections: collectionsFromDB,
           size: sizeCheck,
         });
     } catch(err) {
@@ -115,7 +124,8 @@ router.get("/item/:itemId/edit", loggedIn, async (req, res, next) => {
 
 router.post("/item/:itemId/edit", Upload.single("itemImage"), loggedIn, async (req, res, next) => {
     const { itemId } = req.params;
-    const { itemName, 
+    const { itemName,
+        _ownerCollection,
         itemQuantity, 
         itemPrice, 
         itemProperties, 
@@ -132,6 +142,7 @@ router.post("/item/:itemId/edit", Upload.single("itemImage"), loggedIn, async (r
             itemId,
             {
               itemName,
+              _ownerCollection,
               itemImage: picture,
               itemQuantity,
               itemPrice,
@@ -147,6 +158,7 @@ router.post("/item/:itemId/edit", Upload.single("itemImage"), loggedIn, async (r
               itemId,
               {
                 itemName,
+                _ownerCollection,
                 itemQuantity,
                 itemPrice,
                 itemProperties,

@@ -9,18 +9,21 @@
     
 
     <form action="/add-new-item" method="post" enctype="multipart/form-data">
-        <div class="mb-3">
-            <label class="form-label">Item image:</label>
-            <input type="file" name="itemImage" class="form-control" id="">
-            <div class="form-text">Add an image of the new product.</div>
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Item name:</label>
-            <input type="text" name="itemName" class="form-control" id="">
-        </div>
+        <section>
+            <div class="mb-3">
+                <label class="form-label">Item image:</label>
+                <input type="file" name="itemImage" class="form-control" id="">
+                <div class="form-text">Add an image of the new product.</div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Item name:</label>
+                <input type="text" name="itemName" class="form-control" id="">
+            </div>
+        </section>
+
         <div class="mb-3">
             <label class="form-label">Collection name:</label>
-            <select name="_ownerCollection"> 
+            <select name="_ownerCollection" class="form-select"> 
             {{#each collectionsList}}
             <option value="{{this._id}}">{{this.collectionName}}</option>
             {{/each}}
@@ -35,9 +38,9 @@
             <label class="form-label">Price:</label>
             <input type="number" name="itemPrice" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
         </div>
-        <div class="mb-3 form-check">
-            <input type="checkbox" name="itemProperties" value="true" class="form-check-input" id="extraProperties">
-            <label class="form-check-label">Add more vailable properties</label>
+        <div class="mb-3 form-check form-switch">
+            <label class="form-check-label" for="extraProperties">Add more vailable properties</label>
+            <input name="itemProperties" class="form-check-input" type="checkbox" role="switch" id="extraProperties">
         </div>
 
         <div id="extraPropOptions" class="mb-3">

@@ -1,6 +1,7 @@
 const { Schema, model } = require("mongoose");
 
 const itemSchema = new Schema ({
+    _userCreator: { type: Schema.Types.ObjectId, ref: "User"},
     _ownerCollection: { type: Schema.Types.ObjectId, ref: "Collection"},
     itemName: {
         type: String,
