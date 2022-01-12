@@ -11,10 +11,9 @@ const async = require("hbs/lib/async");
 
 
 router.get('/items', loggedIn, async (req, res, next) => {
-    const userId = req.session.currentUser._id;
-
+    const creatorUser = req.session.currentUser._id;
     try {
-        const itemsFromDB = await Item.find({ _userCreator: userId });
+        const itemsFromDB = await Item.find({ _userCreator: creatorUser });
         console.log(req.session.currentUser._id)
         res.render("items/items", { items: itemsFromDB });
     } catch(err) {
@@ -25,8 +24,11 @@ router.get('/items', loggedIn, async (req, res, next) => {
 
 // New item
 router.get("/add-new-item", loggedIn, async(req, res, next) => {
+  const creatorUser = req.session.currentUser._id;
   try{
-    const collectionsFromDB = await Collection.find();
+    const collectionsFromDB = await Collection.find({
+      _userCreator: creatorUser
+    });
     res.render('items/addNewItem', { collectionsList: collectionsFromDB })
   }catch(err) {
     console.log(err);
@@ -37,7 +39,6 @@ router.get("/add-new-item", loggedIn, async(req, res, next) => {
 router.post('/add-new-item', Upload.single("itemImage"), async (req, res, next) => {
     const { itemName, _ownerCollection, itemQuantity, itemPrice, itemProperties, size, itemColor } = req.body;
     const creatorUser = req.session.currentUser._id;
-
     let picture = req.file.path;
 
     try {

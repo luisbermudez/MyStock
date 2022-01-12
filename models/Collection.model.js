@@ -3,6 +3,7 @@ const { Schema, model } = require("mongoose");
 
 const collectionSchema = new Schema (
     {
+        _userCreator: { type: Schema.Types.ObjectId, ref: "User"},
         collectionName: {
             type: String,
             default: "untitledCollection"

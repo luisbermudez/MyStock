@@ -11,8 +11,11 @@ const async = require("hbs/lib/async");
 
 //Collections
 router.get('/collection', loggedIn, async (req,res,next) => {
+    const creatorUser = req.session.currentUser._id;
     try{
-        const collectionsFromDB = await Collection.find()
+        const collectionsFromDB = await Collection.find({
+            _userCreator: creatorUser
+        });
         return res.render('collections/collection', {collections: collectionsFromDB})
     }catch(err){
     console.log("error", err);
@@ -27,11 +30,12 @@ router.get('/collection-add', loggedIn, (req,res, next) =>{
 
 router.post('/collection-add', Upload.single("collectionImage"), async (req,res,next) => {
     const { collectionName, collectionImage } = req.body;
-
+    const creatorUser = req.session.currentUser._id;
     let picture = req.file.path;
 
     try{
         await Collection.create({
+            _userCreator: creatorUser,
             collectionName, 
             collectionImage: picture
         });
