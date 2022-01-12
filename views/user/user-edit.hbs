@@ -1,13 +1,22 @@
 
 <div id="userProfileEdit">
-    <a href="/user-profile">
+    <div class="chevronDiv">
+        <h4>Edit User</h4>
+    </div>
+
+    <a href="/user-profile/{{userin._id}}">
+        <i class="bi-chevron-left"></i>
+    </a>
+
+    {{!-- <a href="/user-profile">
         <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
             <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
         </svg>
-    </a>
+    </a> --}}
 
-<form id="userEdit" action="/userProfile/{{userIn._id}}/edit" method="POST" enctype="multipart/form-data">
-<img src="{{userIn.profilePicture}}">
+<form action="/userProfile/{{userIn._id}}/edit" method="POST" enctype="multipart/form-data">
+    <section>
+            <img src="{{userIn.profilePicture}}">
             <label for="itemImageUpload">
                 <svg id="itemImageUploadBtn" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-camera-fill" viewBox="0 0 16 16">
                     <path d="M10.5 8.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
@@ -16,18 +25,25 @@
             </label>
             <input type="file" name="profilePicture" class="form-control" id="itemImageUpload">
 
+    <div class="mb-3 mt-5">
+        <span id="nameUpload">Name/Company</span>
+        <input type="text" name="name" value="{{userIn.name}}">
+    </div>
+    </section>
 
-    <span id="nameUpload">Name/Company</span>
-    <input type="text" name="name" value="{{userIn.name}}">
-
-    <span id="nameUpload">Email</span>
-    <input type="text" name="email" value="{{userIn.email}}">
+    <section>
+    <div class="mb-3 mt-5">
+        <span id="nameUpload">Email</span>
+        <input type="text" name="email" value="{{userIn.email}}">
+    </div>
+    </section>
 
     <!--<span id="nameUpload">Password</span>
     <input type="text" name="password" value="{{userIn.password}}">-->
-
+    <div id="updateOrCancelEdit">
     <button class="btn btn-dark btn-sm" type="submit">Save Changes</button>
+    </div>
+</form>
     {{> navBar}}
     {{> sideBar}}
-</form>
 </div>
