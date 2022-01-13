@@ -51,7 +51,11 @@ router.get('/collection/:collectionId', loggedIn, async(req,res,next) =>{
     const { collectionId } = req.params;
 
     try{
-        const collectionsFromDB = await Collection.findById(collectionId);
+        const collectionsFromDB = await Collection.findById(
+          collectionId
+        ).populate("_collectionItems");
+
+        console.log(collectionsFromDB);
         return res.render('collections/collection-details', { collections: collectionsFromDB });
     }catch(err) {
         console.log(err);

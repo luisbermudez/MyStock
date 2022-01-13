@@ -157,7 +157,22 @@ router.post("/item/:itemId/edit", Upload.single("itemImage"), loggedIn, async (r
             },
             { new: true }
           );
-          return res.redirect(`/item/${itemFromDB._id}`);
+
+          const checkDuplkts = await Collection.findOne({
+            _id: _ownerCollection,
+            _collectionItems: itemId,
+          });
+
+          if (checkDuplkts) {
+            return res.redirect(`/item/${itemFromDB._id}`);
+          } else {
+            await Collection.findByIdAndUpdate(
+              { _id: _ownerCollection },
+              { $push: { _collectionItems: itemId } }
+            );
+            return res.redirect(`/item/${itemFromDB._id}`);
+          }
+            
         } else {
             const itemFromDB = await Item.findByIdAndUpdate(
               itemId,
@@ -172,7 +187,21 @@ router.post("/item/:itemId/edit", Upload.single("itemImage"), loggedIn, async (r
               },
               { new: true }
             );
-            return res.redirect(`/item/${itemFromDB._id}`);
+
+            const checkDuplkts = await Collection.findOne({
+              _id: _ownerCollection,
+              _collectionItems: itemId,
+            });
+
+            if (checkDuplkts) {
+              return res.redirect(`/item/${itemFromDB._id}`);
+            } else {
+              await Collection.findByIdAndUpdate(
+                { _id: _ownerCollection },
+                { $push: { _collectionItems: itemId } }
+              );
+              return res.redirect(`/item/${itemFromDB._id}`);
+            }
         }
     } catch(err) {
         console.log(err);
