@@ -13,6 +13,10 @@
     <h6>Price: ${{theItem.itemPrice}}</h6>-->
     <a class="btn btn-dark btn-sm" href="/edit-collection/{{collections._id}}" role="button">Edit</a>
 
+    {{#each collections._collectionItems}}
+        {{> itemCard this}}
+    {{/each}}
+
     {{> navBar}}
     {{> sideBar}}
 </div>
