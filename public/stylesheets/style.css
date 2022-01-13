@@ -33,7 +33,9 @@ body {
   #userProfile,
   #userProfileEdit,
   #userEdit,
-  #collectionDetailsCont {
+  #collectionDetailsCont,
+  #newCollectionForm,
+  #editCollectionForm {
     width: 100%;
     height: 100vh;
     padding: 0 30px;
@@ -586,7 +588,8 @@ body {
   }
 
   #editItemForm img,
-  #userProfileEdit img {
+  #userProfileEdit img,
+  #editCollectionForm img {
     height: 112px;
     width: 112px;
     margin: 0 20px 15px 0;
@@ -613,6 +616,21 @@ body {
   #itemImageUploadBtn:hover {
     background-color: rgba(255, 255, 255, 0.712);
   }
+
+  /*new collection style*/
+  #newItemContainer {
+    display: none;
+  }
+
+  #newCollectionForm {
+    margin-top: 90px !important;
+    margin-bottom: 180px !important;
+  }
+
+  /* form [action="/add-new-item"] {
+    margin-bottom: 200px;
+  } */
+
 }
 
 
@@ -627,7 +645,9 @@ body {
   #editItemForm,
   #collectionView,
   #userProfile,
-  #userProfileEdit {
+  #userProfileEdit,
+  #newCollectionForm,
+  #editCollectionForm {
     margin-left: 75px;
   }
 

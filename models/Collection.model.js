@@ -13,7 +13,8 @@ const collectionSchema = new Schema (
             type: String,
             //default: 
         },
-        _collectionItems: [ { type: Schema.Types.ObjectId, ref: "Item" } ]
+        _collectionItems: [ { type: Schema.Types.ObjectId, ref: "Item" } ],
+        addNewItem: Boolean
     }, 
     {
         timestamps: true

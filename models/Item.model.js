@@ -9,7 +9,7 @@ const itemSchema = new Schema ({
     },
     itemImage: {
         type: String,
-        required: true
+        // required: true
     },
     itemQuantity: {
         type: Number, 

@@ -3,6 +3,7 @@ const router = require("express").Router();
 const { loggedIn, loggedOut } = require("../middleware/route-guard");
 
 const Collection = require('../models/Collection.model');
+const Item = require('../models/Item.model');
 const mongoose = require("mongoose"); 
 
 const Upload = require('../helper/multer');
@@ -15,7 +16,7 @@ router.get('/collection', loggedIn, async (req,res,next) => {
     try{
         const collectionsFromDB = await Collection.find({
             _userCreator: creatorUser
-        });
+        })
         return res.render('collections/collection', {collections: collectionsFromDB})
     }catch(err){
     console.log("error", err);
@@ -29,16 +30,37 @@ router.get('/collection-add', loggedIn, (req,res, next) =>{
 });
 
 router.post('/collection-add', Upload.single("collectionImage"), async (req,res,next) => {
-    const { collectionName, collectionImage } = req.body;
+    const { collectionName, 
+            collectionImage, 
+            itemName,
+            _ownerCollection, 
+            itemQuantity, 
+            itemPrice, 
+            itemProperties, 
+            size, 
+            itemColor } = req.body;
     const creatorUser = req.session.currentUser._id;
     let picture = req.file.path;
 
     try{
-        await Collection.create({
+        const newCollectionforDTB = await Collection.create({
             _userCreator: creatorUser,
             collectionName, 
             collectionImage: picture
         });
+        let newOBJc = newCollectionforDTB.toObject()
+        console.log("Test", newOBJc._id )
+        const newItemforDB = await Item.create({
+            _ownerCollection: newOBJc._id,
+            itemName,
+            _ownerCollection, 
+            itemQuantity, 
+            itemPrice, 
+            itemProperties, 
+            size, 
+            itemColor 
+        });
+        console.log("Test const", newItemforDB)
         return res.redirect('/collection');
     } catch(err){
         console.log(err);
@@ -51,11 +73,8 @@ router.get('/collection/:collectionId', loggedIn, async(req,res,next) =>{
     const { collectionId } = req.params;
 
     try{
-        const collectionsFromDB = await Collection.findById(
-          collectionId
-        ).populate("_collectionItems");
-
-        console.log(collectionsFromDB);
+        const collectionsFromDB = await Collection.findById(collectionId)
+        .populate("_collectionItems")
         return res.render('collections/collection-details', { collections: collectionsFromDB });
     }catch(err) {
         console.log(err);
@@ -65,17 +84,16 @@ router.get('/collection/:collectionId', loggedIn, async(req,res,next) =>{
 });
 
 //deletecollection
+router.post('/collection/:collectionsId/delete', async (req, res, next) =>{
+    const { collectionsId } =req.params;
 
-// router.post('/collection/:collectionId/delete', async (req, res, next) =>{
-//     const { collectionId } =req.params;
-
-//     try{
-//         await Collection.findByIdAndDelete(collectionId);
-//         res.redirect('/collections');
-//     }catch(err){
-//         console.log(err);
-//         next(err);
-// }})
+    try{
+        await Collection.findByIdAndDelete(collectionsId);
+        res.redirect('/collection');
+    }catch(err){
+        console.log(err);
+        next(err);
+}})
 
 //edit collection
 router.get('/edit-collection/:collectionId', loggedIn, async(req,res,next) => {
