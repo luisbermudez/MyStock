@@ -1,10 +1,27 @@
 <div id="homeCont">
-    <div id="pictureDiv"></div>
-
+<div id="collectionCardQ">
+    <div>
+        <i class="bi bi-clouds"></i>
+    </div>
     <div>
         <h5>Collections</h5>
-        <a class="addNewIcon">+</a>
-    </div> 
+        {{!-- {{#each _userCollections}} --}}
+        <p>Total quantity: {{_userCollections.length}}</p>
+        {{!-- {{/each}} --}}
+        <a href="/collection" class="btn btn-primary">Details</a>
+    </div>
+</div>
+
+<div id="itemCardQ">
+    <div>
+        <i class="bi bi-cloud"></i>
+    </div>
+    <div>
+        <h5>Items</h5>
+        <p>Total quantity: {{userin.item}}</p>
+        <a href="/items" class="btn btn-primary">Details</a>
+    </div>
+</div>
 
     {{> navBar}}
     {{> sideBar}}

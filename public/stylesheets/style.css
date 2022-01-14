@@ -118,6 +118,16 @@ body {
     font-weight: 900;
   }
 
+  /*Home*/
+  #homeCont .bi-clouds,
+  #homeCont .bi-cloud {
+    font-size: 7rem;
+    margin: 20px 30px;
+  }
+
+
+
+
 
   /* Input Style */
   input:-webkit-autofill {
@@ -430,13 +440,21 @@ body {
     margin: 30px 0;
   }
 
-  .collectionCardProt{
+  .collectionCardProt,
+  #collectionCardQ,
+  #itemCardQ {
     box-shadow: 3px 3px 8px #9e9e9e94;
     display: flex;
     align-items: center;
     border-radius: 10px;
     margin: 30px 0;
     padding: 10px 0;
+  }
+
+  .collectionCardProt h5,
+  #collectionCardQ h5,
+  #itemCardQ h5 {
+    margin-top: 25px;
   }
   
   .itemCardProt h5 {
@@ -457,7 +475,10 @@ body {
     margin-right: 20px;
   }
 
-  .itemCardProt p {
+  .itemCardProt p,
+  .collectionCardProt,
+  #collectionCardQ,
+  #itemCardQ {
     margin-bottom: 10px;
     color: gray;
   }

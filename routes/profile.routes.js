@@ -84,5 +84,8 @@ router.post('edit-pass', loggedIn, async(req, res, next) => {
 
 
 router.get("/home", loggedIn, (req, res, next) => res.render("user/home"));
+//importar modelo y hace un find con el id del usuario rq.session.currentuse_id
+//checar ruta de colecciones en la primera 
+
 
 module.exports = router;
