@@ -5,7 +5,7 @@
     const newPassErrMess = document.getElementById("newPassErrMess");
     const confirmPassErrMess = document.getElementById("confirmPassErrMess");
 
-    newPasswordInput.addEventListener('keydown',() => {
+    newPasswordInput.addEventListener('input',() => {
     newPasswordCheck = newPasswordInput.value
     console.log("newpass", newPasswordCheck)
 
@@ -18,13 +18,13 @@
     }
         });
     
-    confirmPasswordInput.addEventListener('keydown', () => {
-        let confirmPasswordCheck = confirmPasswordInput.value
+    confirmPasswordInput.addEventListener("input", () => {
+      let confirmPasswordCheck = confirmPasswordInput.value;
 
-        if(newPasswordCheck !== confirmPasswordCheck){
-            console.log("Password does not match")
-            confirmPassErrMess.innerHTML = "Password does not match"
-        }else{
-            confirmPassErrMess.innerHTML = ""
-        }
-    })
+      if (newPasswordCheck !== confirmPasswordCheck) {
+        console.log("Password does not match");
+        confirmPassErrMess.innerHTML = "Password does not match";
+      } else {
+        confirmPassErrMess.innerHTML = "";
+      }
+    });

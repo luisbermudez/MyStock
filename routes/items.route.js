@@ -42,18 +42,40 @@ router.post('/add-new-item', Upload.single("itemImage"), async (req, res, next) 
     let picture = req.file.path;
 
     try {
-        const newItem = await Item.create({
-          _userCreator: creatorUser,
-          itemName,
-          itemImage: picture,
-          _ownerCollection,
-          itemQuantity,
-          itemPrice,
-          itemProperties,
-          size,
-          itemColor
-        });
-          let collectionUpdated = await Collection.findByIdAndUpdate({ _id: _ownerCollection}, {$push: { _collectionItems: newItem._id } });
+        if(itemProperties) {
+          const newItem = await Item.create({
+            _userCreator: creatorUser,
+            itemName,
+            itemImage: picture,
+            _ownerCollection,
+            itemQuantity,
+            itemPrice,
+            itemProperties,
+            size,
+            itemColor,
+          });
+          
+          await Collection.findByIdAndUpdate(
+            { _id: _ownerCollection },
+            { $push: { _collectionItems: newItem._id } }
+          );
+        } else {
+          const newItem = await Item.create({
+            _userCreator: creatorUser,
+            itemName,
+            itemImage: picture,
+            _ownerCollection,
+            itemQuantity,
+            itemPrice,
+            itemProperties: "false",
+          });
+
+          await Collection.findByIdAndUpdate(
+            { _id: _ownerCollection },
+            { $push: { _collectionItems: newItem._id } }
+          );
+        }
+        
         return res.redirect('/items');
     } catch(err) {
         console.log(err);
@@ -143,47 +165,83 @@ router.post("/item/:itemId/edit", Upload.single("itemImage"), loggedIn, async (r
         if (req.file) {
           picture = req.file.path;
 
-          const itemFromDB = await Item.findByIdAndUpdate(
-            itemId,
-            {
-              itemName,
-              _ownerCollection,
-              itemImage: picture,
-              itemQuantity,
-              itemPrice,
-              itemProperties,
-              size,
-              itemColor,
-            },
-            { new: true }
-          );
+          if(itemProperties) {
+            if(size === undefined) {
+              const itemFromDB = await Item.findByIdAndUpdate(
+                itemId,
+                {
+                  itemName,
+                  _ownerCollection,
+                  itemImage: picture,
+                  itemQuantity,
+                  itemPrice,
+                  itemProperties,
+                  size: undefined,
+                  itemColor,
+                },
+                { new: true }
+              );
 
-          const checkDuplkts = await Collection.findOne({
-            _id: _ownerCollection,
-            _collectionItems: itemId,
-          });
+              const checkDuplkts = await Collection.findOne({
+                _id: _ownerCollection,
+                _collectionItems: itemId,
+              });
 
-          if (checkDuplkts) {
-            return res.redirect(`/item/${itemFromDB._id}`);
+              if (checkDuplkts) {
+                return res.redirect(`/item/${itemFromDB._id}`);
+              } else {
+                await Collection.findByIdAndUpdate(
+                  { _id: _ownerCollection },
+                  { $push: { _collectionItems: itemId } }
+                );
+
+                return res.redirect(`/item/${itemFromDB._id}`);
+              }
+            } else {
+              const itemFromDB = await Item.findByIdAndUpdate(
+                itemId,
+                {
+                  itemName,
+                  _ownerCollection,
+                  itemImage: picture,
+                  itemQuantity,
+                  itemPrice,
+                  itemProperties,
+                  size,
+                  itemColor,
+                },
+                { new: true }
+              );
+
+              const checkDuplkts = await Collection.findOne({
+                _id: _ownerCollection,
+                _collectionItems: itemId,
+              });
+
+              if (checkDuplkts) {
+                return res.redirect(`/item/${itemFromDB._id}`);
+              } else {
+                await Collection.findByIdAndUpdate(
+                  { _id: _ownerCollection },
+                  { $push: { _collectionItems: itemId } }
+                );
+
+                return res.redirect(`/item/${itemFromDB._id}`);
+              }
+            }
+
           } else {
-            await Collection.findByIdAndUpdate(
-              { _id: _ownerCollection },
-              { $push: { _collectionItems: itemId } }
-            );
-            return res.redirect(`/item/${itemFromDB._id}`);
-          }
-            
-        } else {
             const itemFromDB = await Item.findByIdAndUpdate(
               itemId,
               {
                 itemName,
                 _ownerCollection,
+                itemImage: picture,
                 itemQuantity,
                 itemPrice,
-                itemProperties,
-                size,
-                itemColor,
+                itemProperties: "false",
+                size: undefined,
+                itemColor: undefined,
               },
               { new: true }
             );
@@ -200,8 +258,109 @@ router.post("/item/:itemId/edit", Upload.single("itemImage"), loggedIn, async (r
                 { _id: _ownerCollection },
                 { $push: { _collectionItems: itemId } }
               );
+
               return res.redirect(`/item/${itemFromDB._id}`);
             }
+          }
+          
+        } else {
+
+          if(itemProperties) {
+            if (size === undefined) {
+              const itemFromDB = await Item.findByIdAndUpdate(
+                itemId,
+                {
+                  itemName,
+                  _ownerCollection,
+                  itemImage: picture,
+                  itemQuantity,
+                  itemPrice,
+                  itemProperties,
+                  size: undefined,
+                  itemColor,
+                },
+                { new: true }
+              );
+
+              const checkDuplkts = await Collection.findOne({
+                _id: _ownerCollection,
+                _collectionItems: itemId,
+              });
+
+              if (checkDuplkts) {
+                return res.redirect(`/item/${itemFromDB._id}`);
+              } else {
+                await Collection.findByIdAndUpdate(
+                  { _id: _ownerCollection },
+                  { $push: { _collectionItems: itemId } }
+                );
+
+                return res.redirect(`/item/${itemFromDB._id}`);
+              }
+            } else {
+              const itemFromDB = await Item.findByIdAndUpdate(
+                itemId,
+                {
+                  itemName,
+                  _ownerCollection,
+                  itemImage: picture,
+                  itemQuantity,
+                  itemPrice,
+                  itemProperties,
+                  size,
+                  itemColor,
+                },
+                { new: true }
+              );
+
+              const checkDuplkts = await Collection.findOne({
+                _id: _ownerCollection,
+                _collectionItems: itemId,
+              });
+
+              if (checkDuplkts) {
+                return res.redirect(`/item/${itemFromDB._id}`);
+              } else {
+                await Collection.findByIdAndUpdate(
+                  { _id: _ownerCollection },
+                  { $push: { _collectionItems: itemId } }
+                );
+
+                return res.redirect(`/item/${itemFromDB._id}`);
+              }
+            }
+
+          } else {
+            const itemFromDB = await Item.findByIdAndUpdate(
+              itemId,
+              {
+                itemName,
+                _ownerCollection,
+                itemQuantity,
+                itemPrice,
+                itemProperties: "false",
+                size: undefined,
+                itemColor: undefined,
+              },
+              { new: true }
+            );
+
+            const checkDuplkts = await Collection.findOne({
+              _id: _ownerCollection,
+              _collectionItems: itemId,
+            });
+
+            if (checkDuplkts) {
+              return res.redirect(`/item/${itemFromDB._id}`);
+            } else {
+              await Collection.findByIdAndUpdate(
+                { _id: _ownerCollection },
+                { $push: { _collectionItems: itemId } }
+              );
+            }
+
+            return res.redirect(`/item/${itemFromDB._id}`);
+          }
         }
     } catch(err) {
         console.log(err);

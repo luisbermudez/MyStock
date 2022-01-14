@@ -31,9 +31,9 @@ router.get('/collection-add', loggedIn, (req,res, next) =>{
 
 router.post('/collection-add', Upload.single("collectionImage"), async (req,res,next) => {
     const { collectionName, 
-            collectionImage, 
             itemName,
-            _ownerCollection, 
+            _ownerCollection,
+            addNewItem,
             itemQuantity, 
             itemPrice, 
             itemProperties, 
@@ -48,19 +48,23 @@ router.post('/collection-add', Upload.single("collectionImage"), async (req,res,
             collectionName, 
             collectionImage: picture
         });
-        let newOBJc = newCollectionforDTB.toObject()
-        console.log("Test", newOBJc._id )
-        const newItemforDB = await Item.create({
-            _ownerCollection: newOBJc._id,
-            itemName,
-            _ownerCollection, 
-            itemQuantity, 
-            itemPrice, 
-            itemProperties, 
-            size, 
-            itemColor 
-        });
-        console.log("Test const", newItemforDB)
+
+        if(addNewItem) {
+            let newOBJc = newCollectionforDTB.toObject();
+            console.log("Test", newOBJc._id);
+            const newItemforDB = await Item.create({
+              _ownerCollection: newOBJc._id,
+              itemName,
+              _ownerCollection,
+              itemQuantity,
+              itemPrice,
+              itemProperties,
+              size,
+              itemColor,
+            });
+            console.log("Test const", newItemforDB);
+        }
+        
         return res.redirect('/collection');
     } catch(err){
         console.log(err);

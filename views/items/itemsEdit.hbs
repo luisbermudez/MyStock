@@ -73,34 +73,54 @@
             </div>
         </section>
 
-        {{#if size}}
-            <div class="mb-3">
-                <label class="form-label">Size:</label>
-                <select name="size" class="form-select" aria-label="Default select example">
-                    <option selected>{{theItem.size}}</option>
-                    <option value="null">No size</option>
-                    <option value="Small">Small</option>
-                    <option value="Medium">Medium</option>
-                    <option value="Large">Large</option>
-                </select>
+        {{#if theItem.itemProperties}}
+            <div class="mb-3 form-check form-switch">
+                <label class="form-check-label" for="extraPropertiesEdit">Add more available properties</label>
+                <input value="true" name="itemProperties" class="form-check-input" type="checkbox" role="switch" id="extraPropertiesEdit" checked>
             </div>
+
+            <div id="extraPropEditContainer">
+                <div class="mb-3">
+                    <label class="form-label">Size:</label>
+                    <select name="size" class="form-select" aria-label="Default select example">
+                        <option selected>{{theItem.size}}</option>
+                        <option value="undefined">No size</option>
+                        <option value="Small">Small</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Large">Large</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Color:</label>
+                    <input value="{{theItem.itemColor}}" type="text" name="itemColor" class="form-control" id="exampleInputEmail1">
+                </div>
+            </div>
+
         {{else}}
-            <div class="mb-3">
-                <label class="form-label">Size:</label>
-                <select name="size" class="form-select" aria-label="Default select example">
-                    <option value="null">No size selected</option>
-                    <option value="Small">Small</option>
-                    <option value="Medium">Medium</option>
-                    <option value="Large">Large</option>
-                </select>
+            <div class="mb-3 form-check form-switch">
+                <label class="form-check-label" for="extraPropertiesEdit">Add more available properties</label>
+                <input value="true" name="itemProperties" class="form-check-input" type="checkbox" role="switch" id="extraPropertiesEdit">
             </div>
+
+            <div id="extraPropEditContainer" class="containerHidden">
+                <div class="mb-3">
+                    <label class="form-label">Size:</label>
+                    <select name="size" class="form-select" aria-label="Default select example">
+                        <option value="undefined">No size</option>
+                        <option value="Small">Small</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Large">Large</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Color:</label>
+                    <input value="{{theItem.itemColor}}" type="text" name="itemColor" class="form-control" id="exampleInputEmail1">
+                </div>
+            </div>
+
         {{/if}}
-
-
-        <div class="mb-3">
-            <label class="form-label">Color:</label>
-            <input value="{{theItem.itemColor}}" type="text" name="itemColor" class="form-control" id="exampleInputEmail1">
-        </div>
 
         <div id="updateOrCancelEdit">
             <a class="btn btn-outline-dark" href="/item/{{theItem._id}}" role="button">Cancel</a>
@@ -111,4 +131,18 @@
 
     {{> navBar}}
     {{> sideBar}}
+    <script>
+        const extraPropertiesEdit = document.getElementById("extraPropertiesEdit");
+        const extraPropEditContainer = document.getElementById("extraPropEditContainer");
+
+        extraPropertiesEdit.addEventListener("change", function () {
+            if (this.checked) {
+                console.log("Switchet is checked: ", extraPropEditContainer.style.display)
+                extraPropEditContainer.style.display = "block";
+            } else {
+                console.log("Switchet is not checked: ", extraPropEditContainer.style.display)
+                extraPropEditContainer.style.display = "none";
+            }
+        });
+    </script>
 </div>
