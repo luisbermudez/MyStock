@@ -19,12 +19,6 @@ const app = express();
 // Session app require
 require('./config/session.config')(app);
 
-// Register partials
-app.set("view engine", "hbs");
-app.set("views", path.join(__dirname, "views"));
-
-hbs.registerPartials(__dirname + "/views/partials");
-
 // ℹ️ This function is getting exported from the config folder. It runs most pieces of middleware
 require("./config")(app);
 
@@ -72,8 +66,6 @@ passport.use(
       callbackURL: "/auth/google/callback",
     },
     (accessToken, refreshToken, profile, done) => {
-      // to see the structure of the data in received response:
-      console.log("Google account details:", profile);
 
       User.findOne({ googleID: profile.id })
         .then((user) => {
@@ -86,7 +78,7 @@ passport.use(
             googleID: profile.id,
             nameCompany: profile.displayName,
             email: profile.emails[0].value,
-            // password: "00NAna",
+            password: "00NAna",
             profilePicture: profile.photos[0].value,
           })
             .then((newUser) => {
@@ -101,5 +93,11 @@ passport.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+// Register partials
+app.set("view engine", "hbs");
+app.set("views", path.join(__dirname, "views"));
+
+hbs.registerPartials(__dirname + "/views/partials");
 
 module.exports = app;

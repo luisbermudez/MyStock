@@ -138,12 +138,6 @@ router.get("/auth/google/callback", (req, res, next) => {
       return next(err);
     }
 
-    if (!theUser) {
-      // Unauthorized, `failureDetails` contains the error messages from our logic in "LocalStrategy" {message: '…'}.
-      res.render("auth/login", { errorMessage: "Wrong password or username" });
-      return;
-    }
-
     const saveCurrentUser = new Promise((resolve, reject) => {
       setTimeout(() => {
         resolve();
@@ -151,10 +145,8 @@ router.get("/auth/google/callback", (req, res, next) => {
     });
 
     saveCurrentUser
-      .then(() => req.session.currentUser = theUser)
-      .then(() => res.redirect("/home"))
-      .catch(err => console.log(err)); 
-    return console.log("text:", req.session.currentUser);
+      .then(() => (req.session.currentUser = theUser))
+      .then(() => res.redirect("/home"));
   })(req, res, next);
 });
 

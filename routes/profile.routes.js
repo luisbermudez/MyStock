@@ -11,6 +11,7 @@ const async = require("hbs/lib/async");
 
 //userProfile
 router.get('/user-profile', loggedIn, (req, res, next) =>{
+    console.log("HERE:", req.session.currentUser);
     res.render('user/user-profile', {userIn: req.session.currentUser})
 });
 
