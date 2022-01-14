@@ -6,6 +6,8 @@ const mongoose = require('mongoose');
 const { loggedIn, loggedOut } = require('../middleware/route-guard');
 const req = require("express/lib/request");
 
+const passport = require("passport");
+
 router.get("/", loggedOut, (req,res,next) => res.render("auth/landing"));
 
 router.get("/signup", loggedOut,(req, res, next) => res.render("auth/signup"));
@@ -118,6 +120,42 @@ router.post('/logout', (req, res, next) => {
         if(err) next(err);
         res.redirect('/');
     })
-})
+});
+
+router.get(
+"/auth/google",
+  passport.authenticate("google", {
+    scope: [
+      "https://www.googleapis.com/auth/userinfo.profile",
+      "https://www.googleapis.com/auth/userinfo.email",
+    ],
+  })
+);
+
+router.get("/auth/google/callback", (req, res, next) => {
+  passport.authenticate("google", (err, theUser, failureDetails) => {
+    if (err) {
+      return next(err);
+    }
+
+    if (!theUser) {
+      // Unauthorized, `failureDetails` contains the error messages from our logic in "LocalStrategy" {message: '…'}.
+      res.render("auth/login", { errorMessage: "Wrong password or username" });
+      return;
+    }
+
+    const saveCurrentUser = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve();
+      }, 200);
+    });
+
+    saveCurrentUser
+      .then(() => req.session.currentUser = theUser)
+      .then(() => res.redirect("/home"))
+      .catch(err => console.log(err)); 
+    return console.log("text:", req.session.currentUser);
+  })(req, res, next);
+});
 
 module.exports = router;

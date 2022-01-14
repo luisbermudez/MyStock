@@ -11,10 +11,8 @@ module.exports = app => {
         resave: true,
         saveUninitialized: false,
         cookie: {
-          sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
-          secure: process.env.NODE_ENV === "production",
           httpOnly: true,
-          // maxAge: 6e4 * 60 * 24
+          maxAge: 6e4 * 60
         },
         store: MongoStore.create({
           mongoUrl:

@@ -5,35 +5,36 @@ const userSchema = new Schema(
   {
     nameCompany: {
       type: String,
-      required: [
-        true,
-        "$Name or Company Name is required. Don't worry, if you don't like it you can change it later.",
-      ],
+      // required: [
+      //   true,
+      //   "$Name or Company Name is required. Don't worry, if you don't like it you can change it later.",
+      // ],
     },
     email: {
+      googleID: String,
       type: String,
-      required: [true, "$Email is required"],
-      match: [/^\S+@\S+\.\S+$/, "$Please use a valid email addres."],
-      unique: [
-        true,
-        "$This email has already been registered. Please, try a different one.",
-      ],
+      // required: [true, "$Email is required"],
+      // match: [/^\S+@\S+\.\S+$/, "$Please use a valid email addres."],
+      // unique: [
+      //   true,
+      //   "$This email has already been registered. Please, try a different one.",
+      // ],
       lowercase: true,
       trim: true,
     },
     password: {
       type: String,
-      required: [true, "$Password field is required"],
-      match: [
-        /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/,
-        "$Password must be at least 6 characters long and contain at least one number, and uppercase letter.",
-      ],
+      // required: [true, "$Password field is required"],
+      // match: [
+      //   /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/,
+      //   "$Password must be at least 6 characters long and contain at least one number, and uppercase letter.",
+      // ],
     },
     profilePicture: {
       type: String,
       default: "images/PlanetProfile.png",
     },
-    _userCollections: [String]
+    // _userCollections: [String]
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`

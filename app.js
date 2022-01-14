@@ -50,4 +50,57 @@ app.use('/', profile)
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
 
+// Google sign up
+const passport = require("passport");
+const User = require("./models/User.model");
+
+passport.serializeUser((user, cb) => cb(null, user._id));
+
+passport.deserializeUser((id, cb) => {
+  User.findById(id)
+    .then((user) => cb(null, user))
+    .catch((err) => cb(err));
+});
+
+const GoogleStrategy = require("passport-google-oauth20").Strategy;
+
+passport.use(
+  new GoogleStrategy(
+    {
+      clientID:
+        "947016374633-kaqcu4bjt91efabcmp2rssfmscjesbf6.apps.googleusercontent.com",
+      clientSecret: "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",
+      callbackURL: "/auth/google/callback",
+    },
+    (accessToken, refreshToken, profile, done) => {
+      // to see the structure of the data in received response:
+      console.log("Google account details:", profile);
+
+      User.findOne({ googleID: profile.id })
+        .then((user) => {
+          if (user) {
+            done(null, user);
+            return;
+          }
+
+          User.create({
+            googleID: profile.id,
+            nameCompany: profile.displayName,
+            email: profile.emails[0].value,
+            // password: "00NAna",
+            profilePicture: profile.photos[0].value,
+          })
+            .then((newUser) => {
+              done(null, newUser);
+            })
+            .catch((err) => done(err)); // closes User.create()
+        })
+        .catch((err) => done(err)); // closes User.findOne()
+    }
+  )
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 module.exports = app;
