@@ -100,25 +100,25 @@ document.addEventListener(
     const checkBoxProperties = $("extraProperties");
     const extraProperties = $("extraPropOptions");
 
-    checkBoxProperties.addEventListener('change', function() {
+    checkBoxProperties.addEventListener("change", function () {
       if (this.checked) {
         extraProperties.style.display = "block";
       } else {
         extraProperties.style.display = "none";
       }
-    })
+    });
 
     //add items in collection
     const checkBoxForAddAnItem = $("addNewItem");
     const newItemContainer = $("newItemContainer");
 
-    checkBoxForAddAnItem.addEventListener('change', function(){
+    checkBoxForAddAnItem.addEventListener("change", function () {
       if (this.checked) {
         newItemContainer.style.display = "block";
       } else {
         newItemContainer.style.display = "none";
       }
-    })
+    });
   },
   false
 

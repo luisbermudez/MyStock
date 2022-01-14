@@ -3,6 +3,7 @@ const { Schema, model } = require("mongoose");
 // TODO: Please make sure you edit the user model to whatever makes sense in this case
 const userSchema = new Schema(
   {
+    googleID: String,
     nameCompany: {
       type: String,
       required: [
@@ -33,7 +34,7 @@ const userSchema = new Schema(
       type: String,
       default: "images/PlanetProfile.png",
     },
-    _userCollections: [String]
+    // _userCollections: [String]
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`

@@ -183,8 +183,7 @@ body {
 
   /* Button */
   #signupBtn,
-  #loginBtn, 
-  #landingPage a {
+  #loginBtn, #landingPage a, #gLogin {
     width: 100%;
     background-color: #fdfcfd;
     color: #4C4B4B;
@@ -256,6 +255,25 @@ body {
   }
   #loginSignupLink a, #signupLoginLink a {
     font-weight: 600;
+    text-decoration: none;
+  }
+
+  #gLogin {
+    text-align: center;
+    position: relative;
+    background-color: rgb(43, 43, 43);
+  }
+
+  #gLogin i {
+    position: absolute;
+    left: 18px;
+    font-size: 1.2rem;
+    top: 13px;
+    color: white;
+  }
+
+  #gLogin a {
+    color: white;
     text-decoration: none;
   }
 

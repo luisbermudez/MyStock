@@ -11,15 +11,12 @@ module.exports = app => {
         resave: true,
         saveUninitialized: false,
         cookie: {
-          sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
-          secure: process.env.NODE_ENV === "production",
           httpOnly: true,
-        //   maxAge: 6e4 * 60,
+          maxAge: 6e4 * 60
         },
         store: MongoStore.create({
           mongoUrl:
-            process.env.MONGODB_URI || "mongodb://localhost/projectNumberTwo",
-            ttl: 60 * 60 * 24
+            process.env.MONGODB_URI || "mongodb://localhost/projectNumberTwo"
         }),
       })
     );
