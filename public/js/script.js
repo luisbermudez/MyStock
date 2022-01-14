@@ -108,7 +108,7 @@ document.addEventListener(
       }
     })
 
-    //add itemns in collection
+    //add items in collection
     const checkBoxForAddAnItem = $("addNewItem");
     const newItemContainer = $("newItemContainer");
 
@@ -121,4 +121,6 @@ document.addEventListener(
     })
   },
   false
+
+  
 );

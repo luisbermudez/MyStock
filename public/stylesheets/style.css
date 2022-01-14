@@ -35,7 +35,8 @@ body {
   #userEdit,
   #collectionDetailsCont,
   #newCollectionForm,
-  #editCollectionForm {
+  #editCollectionForm,
+  #userPasswordEdit {
     width: 100%;
     height: 100vh;
     padding: 0 30px;
@@ -182,7 +183,8 @@ body {
 
   /* Button */
   #signupBtn,
-  #loginBtn, #landingPage a {
+  #loginBtn, 
+  #landingPage a {
     width: 100%;
     background-color: #fdfcfd;
     color: #4C4B4B;
@@ -497,12 +499,14 @@ body {
 
   #itemDetailsCont h2,
   #collectionDetailsCont h2,
-  #userProfile h1 {
+  #userProfile h1,
+  #userProfileEdit h2 {
     margin-left: 10px;
   }
 
   #itemDetailsCont h6,
-  #userProfile h2 {
+  #userProfile h2,
+  #userPasswordEdit h2{
     margin-left: 25px;
     color: rgb(92, 92, 92);
   }
@@ -510,7 +514,8 @@ body {
 
   #collectionDetailsCont .btn,
   #itemDetailsCont .bi-pencil-square,
-  #userProfile .bi-pencil-square {
+  #userProfile .bi-pencil-square,
+  #collectionDetailsCont .bi-pencil-square {
     position: absolute;
     right: 40px;
     top: 312px;
@@ -527,7 +532,8 @@ body {
   
   /* Items edit view */
   #editItemForm,
-  #userProfileEdit {
+  #userProfileEdit,
+  #userPasswordEdit {
     margin-top: 100px;
     position: relative;
   }
@@ -647,7 +653,9 @@ body {
   #userProfile,
   #userProfileEdit,
   #newCollectionForm,
-  #editCollectionForm {
+  #editCollectionForm,
+  #collectionDetailsCont,
+  #userPasswordEdit {
     margin-left: 75px;
   }
 
@@ -816,7 +824,8 @@ body {
   }
 
   /* Item details style */
-  #itemDetailsCont .bi-pencil-square {
+  #itemDetailsCont .bi-pencil-square,
+  #collectionDetailsCont .bi-pencil-square {
     top: 317px;
     right: 390px;
   }

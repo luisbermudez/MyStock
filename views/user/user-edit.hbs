@@ -8,12 +8,6 @@
         <i class="bi-chevron-left"></i>
     </a>
 
-    {{!-- <a href="/user-profile">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
-        </svg>
-    </a> --}}
-
 <form action="/userProfile/{{userIn._id}}/edit" method="POST" enctype="multipart/form-data">
     <section>
             <img src="{{userIn.profilePicture}}">
@@ -37,9 +31,6 @@
         <input type="text" name="email" value="{{userIn.email}}">
     </div>
     </section>
-
-    <!--<span id="nameUpload">Password</span>
-    <input type="text" name="password" value="{{userIn.password}}">-->
     <div id="updateOrCancelEdit">
     <button class="btn btn-dark btn-sm" type="submit">Save Changes</button>
     </div>

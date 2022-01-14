@@ -64,9 +64,54 @@ router.post('/userProfile/:userId/edit', loggedIn, Upload.single("profilePicture
 });
 
 //edit password
-router.get('/edit-pass', loggedIn, (req,res, next) => {
-    res.render('user/private/edit-pass', {userIn: req.session.currentUser});
+router.get('/edit-pass', loggedIn, async(req,res, next) => {
+    const { userId } = req.body;
+    try{
+        const userFromDB = await User.findById(userId)
+        res.render('user/private/edit-pass', {userIn: req.session.currentUser});
+    }catch(err){
+        console.log(err)
+        next(err);
+    }
 });
+
+router.post('edit-pass', loggedIn, async(req, res, next) => {
+    
+    // const { userId } = req.body;
+    // const { newPassword, confirmPassword } = req.body;
+
+
+    // try {
+    //     if(newPassword != confirmPassword){
+    //         res.status(500).render ("private/edit-pass",{
+    //             errorMessage: "The password does no match "
+    //         });
+    //         const userFromDB = await User.findByIdAndUpdate(
+    //             userId,
+    //             {
+    //                 password
+    //             },
+    //             { new: true }
+    //         );
+            
+    //         const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+    //         if (!regex.test(password)) {
+    //             res.status(500).render("auth/signup", {
+    //                 confirmPassword: "password",
+    //                 errorMessage:
+    //                     "Password must be at least 6 characters long and contain at least one number, and uppercase letter."
+    //             });
+    //             return;
+    //         }
+    //         return res.redirect (`/user-profile/${userFromDB._id}`);
+    //     }else{
+    //     }
+    // } catch (err) {
+    //     console.log(err);
+    //     next(err);
+    // }
+
+}) 
 
 
 
