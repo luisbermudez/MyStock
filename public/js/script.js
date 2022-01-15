@@ -33,19 +33,26 @@ document.addEventListener(
       "Password",
       signupInputLabel[2]
     );
+    const singupPasswordConfirmInput = new Input(
+      signupInput[3],
+      "Confirm Password",
+      signupInputLabel[3]
+    );
 
     // Signup event listeners
     formEventListeners(genContainer, [
       signupNameCompanyInput,
       signupEmailInput,
       signupPasswordInput,
+      singupPasswordConfirmInput,
     ]);
 
     genContainer.addEventListener("input", () => {
       if (
         signupNameCompanyInput.completeStatusCheck() &&
         signupEmailInput.completeStatusCheck() &&
-        signupPasswordInput.completeStatusCheck()
+        signupPasswordInput.completeStatusCheck() &&
+        singupPasswordConfirmInput.completeStatusCheck()
       ) {
         signupBtn.disabled = false;
       } else {
