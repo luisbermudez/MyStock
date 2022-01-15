@@ -14,11 +14,21 @@
                 <span style="visibility: visible; color: rgb(255, 71, 71);" class="signupInputLabel">Email</span>
                 <input value="{{ email }}" class="signupInputField emptyField" type="email" name="email">
             </div>
+
+            <hr>
+            <span id="setupPassSpan">Set up your password.</span>
         
             <div class="inputDiv">
                 <span style="visibility: visible;" class="signupInputLabel">Password</span>
-                <input class="signupInputField fillingOut" type="password" name="password">
+                <input id="signupNewPassInput" class="signupInputField fillingOut" type="password" name="password">
             </div>
+            <span id="singupMatchErr"></span>
+            
+            <div class="inputDiv">
+                <span style="visibility: visible;" class="signupInputLabel">Confirm Password</span>
+                <input id="singupConfirmNewPassInput" class="signupInputField fillingOut" type="password" name="passwordConfirm">
+            </div>
+            <span id="singupCompareErr"></span>
         
             <button id="signupBtn" type="submit" disabled>Sign up</button>
         </form>
@@ -38,11 +48,21 @@
                 <span style="visibility: visible;" class="signupInputLabel">Email</span>
                 <input value="{{ email }}" class="signupInputField fillingOut" type="email" name="email">
             </div>
+
+            <hr>
+            <span id="setupPassSpan">Set up your password.</span>
         
             <div class="inputDiv">
                 <span style="visibility: visible; color: rgb(255, 71, 71);" class="signupInputLabel">Password</span>
-                <input class="signupInputField emptyField" type="password" name="password">
+                <input id="signupNewPassInput" class="signupInputField emptyField" type="password" name="password">
             </div>
+            <span id="singupMatchErr"></span>
+
+            <div class="inputDiv">
+                <span style="visibility: visible;" class="signupInputLabel">Confirm Password</span>
+                <input id="singupConfirmNewPassInput" class="signupInputField fillingOut" type="password" name="passwordConfirm">
+            </div>
+            <span id="singupCompareErr"></span>
         
             <button id="signupBtn" type="submit" disabled>Sign up</button>
         </form>
@@ -61,10 +81,20 @@
                 <input class="signupInputField" type="email" name="email" placeholder="Email">
             </div>
         
+            <hr>
+            <span id="setupPassSpan">Set up your password.</span>
+
             <div class="inputDiv">
                 <span class="signupInputLabel">Password</span>
-                <input class="signupInputField" type="password" name="password" placeholder="Password">
+                <input id="signupNewPassInput" class="signupInputField" type="password" name="password" placeholder="Password">
             </div>
+            <span id="singupMatchErr"></span>
+
+            <div class="inputDiv">
+                <span class="signupInputLabel">Confirm Password</span>
+                <input id="singupConfirmNewPassInput" class="signupInputField" type="password" name="passwordConfirm" placeholder="Confirm Password">
+            </div>
+            <span id="singupCompareErr"></span>
         
             <button id="signupBtn" type="submit" disabled>Sign up</button>
         </form>
@@ -72,4 +102,33 @@
         <p id="signupLoginLink">Already have an account? <a href="/login">Log in</a></p>
     {{/if}}
 
+<script>
+    let signupNewPassCheck;
+    const signupNewPassInput = document.getElementById("signupNewPassInput");
+    const singupConfirmNewPassInput = document.getElementById("singupConfirmNewPassInput");
+    const singupMatchErr = document.getElementById("singupMatchErr");
+    const singupCompareErr = document.getElementById("singupCompareErr");
+
+    signupNewPassInput.addEventListener("input", () => {
+        signupNewPassCheck = signupNewPassInput.value;
+
+        const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+         if(!regex.test(signupNewPassCheck)){
+            singupMatchErr.innerHTML = "Password should have at least: 6 characters long, 1 number and 1 uppercase letter."
+        }else{
+            singupMatchErr.innerHTML = ""
+        }
+    });
+
+    singupConfirmNewPassInput.addEventListener("input", () => {
+        let confirmPassCheck = singupConfirmNewPassInput.value;
+
+        if (signupNewPassCheck !== confirmPassCheck) {
+            singupCompareErr.innerHTML = "Password does not match";
+        } else {
+            singupCompareErr.innerHTML = "";
+        }
+    })
+
+</script>
 </div>

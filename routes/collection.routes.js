@@ -29,7 +29,10 @@ router.get('/collection-add', loggedIn, (req,res, next) =>{
     res.render('collections/collection-add')
 });
 
-router.post('/collection-add', Upload.single("collectionImage"), async (req,res,next) => {
+router.post('/collection-add', Upload.fields([
+    { name: "collectionImage", maxCount: 1},
+    { name: "itemImage", maxCount: 1},
+]), async (req,res,next) => {
     const { collectionName, 
             itemName,
             _ownerCollection,
@@ -40,30 +43,48 @@ router.post('/collection-add', Upload.single("collectionImage"), async (req,res,
             size, 
             itemColor } = req.body;
     const creatorUser = req.session.currentUser._id;
-    let picture = req.file.path;
+
+    let pictureForNewCollection = req.files.collectionImage[0].path;
+    let pictureForNewItem = req.files.itemImage[0].path;
 
     try{
-        const newCollectionforDTB = await Collection.create({
-            _userCreator: creatorUser,
-            collectionName, 
-            collectionImage: picture
+        const newCollectionforDTB = new Collection({
+          _userCreator: creatorUser,
+          collectionName,
+          collectionImage: pictureForNewCollection,
         });
 
-        if(addNewItem) {
-            let newOBJc = newCollectionforDTB.toObject();
-            console.log("Test", newOBJc._id);
-            const newItemforDB = await Item.create({
-              _ownerCollection: newOBJc._id,
-              itemName,
-              _ownerCollection,
-              itemQuantity,
-              itemPrice,
-              itemProperties,
-              size,
-              itemColor,
-            });
-            console.log("Test const", newItemforDB);
-        }
+        newCollectionforDTB.save( async (err, res) => {
+            if(err) {
+                console.log(err);
+            } else {
+                console.log(res);
+                if (addNewItem) {
+                  let collectionId = res._id.toString();
+                console.log("Test", collectionId);
+                    try {
+                        const newItemforDB = await Item.create({
+                          _ownerCollection: collectionId,
+                          _userCreator: creatorUser,
+                          itemImage: pictureForNewItem,
+                          itemName,
+                          itemQuantity,
+                          itemPrice,
+                          itemProperties,
+                          size,
+                          itemColor,
+                        });
+
+                        await Collection.findByIdAndUpdate(
+                          { _id: newCollectionforDTB._id },
+                          { $push: { _collectionItems: newItemforDB._id } }
+                        );
+                    } catch(err) {
+                        console.log("Catch error: ", err);
+                    }
+                }
+            }
+        });
         
         return res.redirect('/collection');
     } catch(err){
