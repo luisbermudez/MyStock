@@ -1,0 +1,27 @@
+<div id="userPasswordEdit">
+    <div class="chevronDiv">
+        <h2>Edit password</h2>
+    </div>
+
+    <a href="/user-profile">
+        <i class="bi-chevron-left"></i>
+    </a>
+        
+<form action="/userProfile/{{userin._id}}/edit" method="POST" enctype="multipart/form-data">
+    <div class="mb-3 mt-5">
+        <span id="newPassword">New Password</span>
+        <input id="newPasswordInput" type="password" name="newPassword">
+    </div>
+    <span id="newPassErrMess"></span>
+    <div class="mb-3 mt-5">
+        <span id="confirmPassword">Confirm Password</span>
+        <input id="confirmPasswordInput" class="" type="password" name="confirmPassword">
+    </div>
+    <span id="confirmPassErrMess"></span>
+        <div id="updateOrCancelEdit">
+            <a class="btn btn-outline-dark" href="/user-profile" role="button">Cancel</a>
+            <button type="submit" class="btn btn-dark">Update Password</button>
+        </div>
+</form>
+<script src="/js/javascriptForPassEdit.js"></script>
+</div>
