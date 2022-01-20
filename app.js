@@ -39,7 +39,10 @@ const collection = require('./routes/collection.routes');
 app.use('/', collection);
 
 const profile = require('./routes/profile.routes');
-app.use('/', profile)
+app.use('/', profile);
+
+const sendMail = require('./routes/sendMail.routes');
+app.use('/', sendMail);
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);

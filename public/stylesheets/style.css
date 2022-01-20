@@ -12,6 +12,7 @@ body {
   margin: 0;
   padding: 0;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #FAFAF8
 }
 
 #genContainer {
@@ -348,7 +349,7 @@ body {
     height: 35px;
     width: 35px;
     /* box-sizing: border-box; */
-    color: black;
+    color: #C9CCD5;
   }
   #navBar > .divIconEl svg:hover {
     height: 42px;
@@ -356,7 +357,7 @@ body {
   }
 
   #navBar > .divIconEl a {
-    color: black;
+    color: #C9CCD5;
   }
 
   /* Signup style */
@@ -578,7 +579,8 @@ body {
   /* Items edit view */
   #editItemForm,
   #userProfileEdit,
-  #userPasswordEdit {
+  #userPasswordEdit,
+  #editCollectionForm {
     margin-top: 100px;
     position: relative;
   }
@@ -595,7 +597,7 @@ body {
   }
 
   #editItemForm section,
-  #editCollectionForm,
+  #editCollectionForm section,
   #userProfileEdit section {
     display: flex;
     justify-content: space-between;
@@ -851,7 +853,8 @@ body {
     right: 400px;
   }
 
-  #editItemForm img {
+  #editItemForm img,
+  #editCollectionForm img {
     height: 150px;
     width: 150px;
   }
@@ -887,7 +890,8 @@ body {
   /* Multiple views desktop main section */
   #newItemForm,
   #itemDetailsCont,
-  #editItemForm {
+  #editItemForm,
+  #editCollectionForm {
     padding: 0 380px; 
   }
 

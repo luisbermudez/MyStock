@@ -113,7 +113,7 @@
         signupNewPassCheck = signupNewPassInput.value;
 
         const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
-         if(!regex.test(signupNewPassCheck)){
+        if(!regex.test(signupNewPassCheck)){
             singupMatchErr.innerHTML = "Password should have at least: 6 characters long, 1 number and 1 uppercase letter."
         }else{
             singupMatchErr.innerHTML = ""

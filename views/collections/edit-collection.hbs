@@ -1,15 +1,34 @@
 <div id="editCollectionForm">
+    <div class="chevronDiv">
+        <h4>Edit Collection</h4>
+    </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Are you sure?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Deleting this Collection is permanent and cannot be undone.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Cancel</button>
+                <form action="/collection/{{collections._id}}/delete" method="post">
+                    <button type="submit" class="btn btn-danger ms-2">Delete</button>
+                </form>
+            </div>
+            </div>
+        </div>
+    </div>
+
     <a href="/collection/{{collections._id}}">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
-        </svg>
+        <i class="bi-chevron-left"></i>
     </a>
 
-    <h3>Edit collection</h3>
-
-    <form action="/collection/{{collections._id}}/delete" method="post">
+    {{!-- <form action="/collection/{{collections._id}}/delete" method="post">
         <button class="btn-sm btn btn-danger" type="submit">Delete Collection</button>
-    </form>
+    </form> --}}
 
     <form action="/collection/{{collections._id}}/edit" method="post" enctype="multipart/form-data">
         <section>
@@ -21,27 +40,11 @@
                 </svg>
             </label>
             <input type="file" name="collectionImage" class="form-control" id="itemImageUpload">
-
-        {{!-- <div class="mb-3">
-            <label class="form-label">Item image:</label>
-            <input value="{{theItem.itemImage}}" type="file" name="itemImage" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-        </div> --}}
         <div class="mb-3">
-            <label class="form-label">Item name:</label>
+            <label class="form-label">Collection name:</label>
             <input value="{{collections.collectionName}}" type="text" name="collectionName" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
         </div>
         </section>
-
-        <!--<section>
-            <div class="mb-3">
-                <label class="form-label">Quantity:</label>
-                <input value="{{theItem.itemQuantity}}" type="number" name="itemQuantity" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Price:</label>
-                <input value="{{theItem.itemPrice}}" type="number" name="itemPrice" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-            </div>
-        </section>-->
         <div id="updateOrCancelEdit">
             <a class="btn btn-outline-dark" href="/collection/{{collection._id}}" role="button">Cancel</a>
             <button type="submit" class="btn btn-dark">Update Collection</button>

@@ -8,6 +8,7 @@ const req = require("express/lib/request");
 
 const passport = require("passport");
 
+
 router.get("/", loggedOut, (req,res,next) => res.render("auth/landing"));
 
 router.get("/signup", loggedOut,(req, res, next) => res.render("auth/signup"));
@@ -79,6 +80,7 @@ router.post("/signup", async (req, res, next) => {
     }
 });
 
+//login
 router.get("/login", loggedOut, (req, res, next) => res.render("auth/login"));
 
 router.post("/login", async (req, res, next) => {
@@ -114,6 +116,8 @@ router.post("/login", async (req, res, next) => {
       next(error);
   }
 });
+
+
 
 router.post('/logout', (req, res, next) => {
     req.session.destroy(err => {
