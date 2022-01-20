@@ -45,7 +45,6 @@ router.post('/collection-add', Upload.fields([
     const creatorUser = req.session.currentUser._id;
 
     let pictureForNewCollection = req.files.collectionImage[0].path;
-    let pictureForNewItem = req.files.itemImage[0].path;
 
     try{
         const newCollectionforDTB = new Collection({
@@ -60,6 +59,7 @@ router.post('/collection-add', Upload.fields([
             } else {
                 console.log(res);
                 if (addNewItem) {
+                    let pictureForNewItem = req.files.itemImage[0].path;
                   let collectionId = res._id.toString();
                 console.log("Test", collectionId);
                     try {
@@ -114,6 +114,7 @@ router.post('/collection/:collectionsId/delete', async (req, res, next) =>{
 
     try{
         await Collection.findByIdAndDelete(collectionsId);
+        await Item.deleteMany({ _ownerCollection: collectionsId });
         res.redirect('/collection');
     }catch(err){
         console.log(err);

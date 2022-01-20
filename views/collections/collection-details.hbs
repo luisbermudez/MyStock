@@ -13,9 +13,11 @@
     <h6>Price: ${{theItem.itemPrice}}</h6>-->
     <a href="/edit-collection/{{collections._id}}"><i class="bi bi-pencil-square"></i></a>
 
-    {{#each collections._collectionItems}}
-        {{> itemCard this}}
-    {{/each}}
+    <div id="collectionDetailItemsView">
+        {{#each collections._collectionItems}}
+            {{> itemCard this}}
+        {{/each}}
+    </div>
 
     {{> navBar}}
     {{> sideBar}}

@@ -1,11 +1,46 @@
 <div id="itemsCont">
-    <div id="pictureDiv">Collection name?</div>
+    <div id="pictureDiv"></div>
 
-    {{#if items}}
+    {{#if noCollections}}
+        <div id="noCollections">
+            <h5>You don't have any collection yet.</h5>
+            <a href="/collection-add" type="button" class="btn btn-dark">New collection</a>
+        </div>
+        
+    {{else if items}}
+        <article>
+            <div><i id="listView" class="bi bi-list-ul"></i></div>
+            <div><i id="gridView" class="selectedView bi bi-grid-fill"></i></div>
+        </article>
+
+        <div id="mobileViewer">
+            {{#each items}}
+                {{> itemCard}}
+            {{/each}}
+        </div>
+        
         <div id="viewer">
             {{#each items}}
                 {{> itemCard}}
             {{/each}}
+        </div>
+
+        <div id="listViewer">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th style="width: 35%" scope="col">Name</th>
+                        <th style="width: 35%" scope="col">Collection</th>
+                        <th style="width: 15%" scope="col">Price</th>
+                        <th style="width: 15%" scope="col">Quantity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each items}}
+                        {{> rowItem}}
+                    {{/each}}
+                </tbody>
+            </table>
         </div>
         <a href="/add-new-item" class="addNewIcon newIconNotEmpty">+</a>
     {{else}}
@@ -20,3 +55,4 @@
     {{> navBar}}
     {{> sideBar}}
 </div>
+<script src="/js/itemsview.js"></script>
