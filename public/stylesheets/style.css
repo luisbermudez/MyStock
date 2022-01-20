@@ -306,21 +306,6 @@ body {
     z-index: 1;
   }
 
-  /* #homeCont > div:nth-child(2) {
-    display: flex;
-    justify-content: center;
-    align-items: baseline;
-  }
-
-  #homeCont > div:nth-child(2) h5 {
-    color: rgb(19, 19, 19);
-    font-weight: 100;
-  }
-
-  #homeCont > div:nth-child(2) a {
-    margin-left: 20px;
-  } */
-
   /* Navbar style */
   #navBar {
     border-top: 1px solid rgb(201, 201, 201);
@@ -406,6 +391,10 @@ body {
     margin: 22px 0;
   }
 
+  #noCollections a {
+    margin-top: 30px;
+  }
+
   /* Items empty style */
   #itemsCont,
   #collectionView {
@@ -413,7 +402,7 @@ body {
     width: 100%;
   }
 
-  #emptyItems {
+  #emptyItems, #noCollections {
     height: 100vh;
     width: 100%;
     display: flex;
@@ -508,17 +497,32 @@ body {
   #collectionDetailsCont > #pictureDiv {
     text-align: center;
     line-height: 100px;
-    background: rgb(190, 190, 190);
+    border-bottom: 1px solid rgb(226, 226, 226);
+    background-color: white;
     color: white;
   }
 
-  #viewer {
+  #mobileViewer {
     height: 100%;
     margin-top: 150px;
   }
 
+  #viewer {
+    /* height: 100%;
+    margin-top: 150px; */
+    display: none;
+  }
+
+  #listViewer {
+    display: none;
+  }
+
   .itemCardProt .btn {
     margin-top: 10px;
+  }
+
+  itemsCont article {
+    display: none;
   }
 
   /* Items details style */
@@ -688,10 +692,8 @@ body {
     margin-bottom: 200px;
   } */
 
-  /* Collection view style */
-  #collectionView #collectionViewer {
-    padding-top: 150px;
-    padding-bottom: 150px;
+  .collectionCardProt {
+    position: relative;
   }
 }
 
@@ -873,6 +875,65 @@ body {
     flex-wrap: wrap;
   }
 
+  itemsCont article {
+    display: block;
+    border: 1px solid black;
+  }
+
+  .bi-list-ul, .bi-grid-fill {
+    color: black;
+    font-size: 28px;
+    position: fixed;
+    top: 110px;
+    right: 210px;
+    z-index: 1;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    padding-top: 4px;
+    border-radius: 3px;
+  }
+
+  .bi-list-ul:hover, .bi-grid-fill:hover {
+    cursor: pointer;
+  }
+
+  .bi-grid-fill {
+    right: 160px;
+    font-size: 20px;
+    padding: 8px 0;
+  }
+
+  .selectedView {
+    background-color: black;
+    color: white;
+  }
+
+  .notSelectedView {
+    background-color: white;
+    color: black;
+  }
+  #mobileViewer {
+    display: none;
+  }
+
+  #listViewer {
+    display: none;
+    padding: 210px 80px 90px 40px;
+  }
+
+  #listViewer img {
+    height: 70px;
+    width: 70px;
+    border-radius: 5px;
+    margin-right: 20px;
+  }
+
+  #eachItemRow {
+    line-height: 60px;
+    position: relative;
+  }
+
   /* Item card style */
   .itemCardProt {
     padding: 0;
@@ -880,9 +941,9 @@ body {
     width: 340px;
   }
 
+
   /* Item details style */
-  #itemDetailsCont .bi-pencil-square,
-  #collectionDetailsCont .bi-pencil-square {
+  #itemDetailsCont .bi-pencil-square {
     top: 317px;
     right: 390px;
   }
@@ -912,5 +973,30 @@ body {
   .dropdown-menu a:hover {
     background-color: rgba(224, 224, 224, 0.308);
     color: white;
+  }
+
+  .collectionCardProt {
+    width: 500px;
+    margin-left: 40px;
+    margin-right: 40px;
+  }
+  
+  #collectionViewer {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 190px 20px 90px 50px;
+  }
+
+  /* Collection style */
+  #collectionDetailItemsView {
+    padding: 40px 50px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  /* Collection details */
+  #collectionDetailsCont .bi-pencil-square {
+    top: 317px;
+    right: 50px;
   }
 }

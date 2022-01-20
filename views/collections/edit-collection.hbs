@@ -26,9 +26,31 @@
         <i class="bi-chevron-left"></i>
     </a>
 
-    {{!-- <form action="/collection/{{collections._id}}/delete" method="post">
-        <button class="btn-sm btn btn-danger" type="submit">Delete Collection</button>
-    </form> --}}
+    <h3>Edit collection</h3>
+
+    <button id="deleteBin" type="button" data-bs-toggle="modal" data-bs-target="#collectionDeleteModal">
+        <i class="bi bi-trash"></i>
+    </button>
+
+    <div class="modal fade" id="collectionDeleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Are you sure?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Deleting this collection and its items is permanent and cannot be undone.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Cancel</button>
+                <form action="/collection/{{collections._id}}/delete" method="post">
+                    <button type="submit" class="btn btn-danger ms-2">Delete</button>
+                </form>
+            </div>
+            </div>
+        </div>
+    </div>
 
     <form action="/collection/{{collections._id}}/edit" method="post" enctype="multipart/form-data">
         <section>

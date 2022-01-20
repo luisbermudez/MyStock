@@ -12,10 +12,22 @@ const async = require("hbs/lib/async");
 
 router.get('/items', loggedIn, async (req, res, next) => {
     const creatorUser = req.session.currentUser._id;
+    let zeroCollections;
+
     try {
-        const itemsFromDB = await Item.find({ _userCreator: creatorUser });
-        console.log(req.session.currentUser._id)
-        res.render("items/items", { items: itemsFromDB });
+        const collectionsFromDB = await Collection.find({
+          _userCreator: creatorUser,
+        });
+
+        if (collectionsFromDB.length === 0) {
+          zeroCollections = true;
+        }
+
+        const itemsFromDB = await Item.find({
+          _userCreator: creatorUser,
+        }).populate("_ownerCollection");
+
+        res.render("items/items", { items: itemsFromDB, noCollections: zeroCollections });
     } catch(err) {
       console.log(err);
       next(err);
@@ -29,6 +41,7 @@ router.get("/add-new-item", loggedIn, async(req, res, next) => {
     const collectionsFromDB = await Collection.find({
       _userCreator: creatorUser
     });
+
     res.render('items/addNewItem', { collectionsList: collectionsFromDB })
   }catch(err) {
     console.log(err);
