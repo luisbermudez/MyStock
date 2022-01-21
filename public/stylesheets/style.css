@@ -37,7 +37,11 @@ body {
   #collectionDetailsCont,
   #newCollectionForm,
   #editCollectionForm,
-  #userPasswordEdit {
+  #userPasswordEdit,
+  #forgotPasscont,
+  #resetYourPassCont,
+  #message,
+  #singupfullcont {
     width: 100%;
     height: 100vh;
     padding: 0 30px;
@@ -239,13 +243,18 @@ body {
     height: 100vh;
     width: 100vw;
     background-repeat: no-repeat;
-    background-image: url("/images/bgLandingMobile.png");
+    background-image: url("/images/landing.png"); 
     background-size: cover;
-    background-position: center; 
+    background-position: center;  
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: center;
+  }
+  #landinPCont {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
   }
 
   #landingPage a{
@@ -346,12 +355,21 @@ body {
   }
 
   /* Signup style */
+  #singupfullcont{
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;  
+    background-image: url("/images/sigup.png"); 
+  }
   #signupCont {
     /* background-color: rgb(138, 144, 153);
     background-color: rgb(123, 157, 173); 
     background-color: rgb(153, 181, 198); */
-    background-color: rgb(107, 142, 154);
+    background-color: #2F302F;
   }
+
+
 
   .inputDiv input {
     background-color: rgba(255, 255, 255, 0.349);
@@ -695,6 +713,10 @@ body {
   .collectionCardProt {
     position: relative;
   }
+
+  .bd-placeholder-img-lg {
+    font-size: 3.5rem;
+  }
 }
 
 
@@ -713,7 +735,10 @@ body {
   #newCollectionForm,
   #editCollectionForm,
   #collectionDetailsCont,
-  #userPasswordEdit {
+  #userPasswordEdit,
+  #resetYourPassCont,
+  #message,
+  #singupfullcont{
     margin-left: 75px;
   }
 
@@ -721,6 +746,9 @@ body {
   #loginCont {
     width: 600px;
     height: 100vh;
+  }
+  #singupfullcont{
+    background-image: url("/images/sigup.png");
   }
 
   /* Error Message Alert setup */
@@ -757,18 +785,29 @@ body {
   #landingPage {
     padding: 0px;
     width: 100vw;
-    background-image: url("/images/bgLandingdesk.png");
+    background-image: url("/images/landing.png");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
+    display: flex;
+	  flex-direction: column;
+	  flex-wrap: wrap-reverse;
+	  justify-content: flex-end;
+	  align-items: flex-end;
+	  align-content: space-between;
+    padding-right: 130px;
+    padding-bottom: 190px;
   }
 
   #landingPage a{
-    width: 600px;
-    padding: 30px 0px;
-    font-size: 45px;
-    margin-top: 40px;
+    width: 250px;
+    padding: 20px 0px;
+    font-size: 20px;
+    margin-top: 27px;
+    margin-right:40px;
     border-radius: 70px;
+    background-color: #E4A980;
+    color: rgb(34, 33, 33);
   }
 
   /* Add new icon style */
@@ -952,7 +991,9 @@ body {
   #newItemForm,
   #itemDetailsCont,
   #editItemForm,
-  #editCollectionForm {
+  #editCollectionForm,
+  #forgotPasscont,
+  #resetYourPassCont {
     padding: 0 380px; 
   }
 
