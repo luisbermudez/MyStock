@@ -67,18 +67,11 @@ router.post('/userProfile/:userId/edit', loggedIn, Upload.single("profilePicture
 });
 
 //edit password
-router.get('/edit-pass', loggedIn, async(req,res, next) => {
-    const { userId } = req.body;
-    try{
-        const userFromDB = await User.findById(userId)
-        res.render('user/private/edit-pass', {userIn: req.session.currentUser});
-    }catch(err){
-        console.log(err)
-        next(err);
-    }
+router.get('/edit-pass', loggedIn, (req,res, next) => {
+    res.render('user/private/edit-pass');
 });
 
-router.post('edit-pass', loggedIn, async(req, res, next) => {
+router.post('/edit-pass', loggedIn, async(req, res, next) => {
 
 
 }) 

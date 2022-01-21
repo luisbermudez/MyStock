@@ -1,5 +1,6 @@
+
 module.exports = {
-    templateForPassword: (message) => { return `
+    templateForPassword: (dynamicTemplateData) => { return `
     <!doctype html>
     <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
       <head>
@@ -65,7 +66,7 @@ module.exports = {
         
         
       <div style="background-color:#bedae6;">
-      <p>${message}</p>
+      <p>${dynamicTemplateData.message}</p>
         
       
       <!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:600px;" width="600" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
@@ -179,7 +180,7 @@ Please click on the button below to begin.</span></div>
       <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:separate;line-height:100%;">
         <tr>
           <td align="center" bgcolor="#8bb420" role="presentation" style="border:none;border-radius:3px;cursor:auto;mso-padding-alt:10px 25px;background:#8bb420;" valign="middle">
-            <a href="https://mjml.io" style="display: inline-block; background: #8bb420; font-family: Arial, sans-serif; font-size: 16px; font-weight: bold; line-height: 120%; margin: 0; text-transform: none; padding: 10px 25px; mso-padding-alt: 0px; border-radius: 3px; text-decoration: none; color: inherit;" target="_blank">
+            <a href="${dynamicTemplateData.url}" style="display: inline-block; background: #8bb420; font-family: Arial, sans-serif; font-size: 16px; font-weight: bold; line-height: 120%; margin: 0; text-transform: none; padding: 10px 25px; mso-padding-alt: 0px; border-radius: 3px; text-decoration: none; color: inherit;" target="_blank">
               Reset Password
             </a>
           </td>
