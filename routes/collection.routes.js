@@ -125,10 +125,16 @@ router.post('/collection/:collectionsId/delete', async (req, res, next) =>{
 router.get('/edit-collection/:collectionId', loggedIn, async(req,res,next) => {
     const { collectionId } = req.params;
     try{
-    const collectionFromDB = await Collection.findById(
-        collectionId,
-    )
-        res.render('collections/edit-collection', { collections: collectionFromDB});
+        const collectionFromDB = await Collection.findById(
+            collectionId,
+        )
+
+        const itemsFromDB = await Item.find({ _ownerCollection: collectionId });
+
+        res.render("collections/edit-collection", {
+          collections: collectionFromDB,
+          items: itemsFromDB,
+        });
     }catch(err){
         console.log(err)
         next(err);
@@ -137,31 +143,32 @@ router.get('/edit-collection/:collectionId', loggedIn, async(req,res,next) => {
 
 router.post('/edit-collection/:collectionId', Upload.single("collectionImage"), loggedIn, async (req, res, next) => {
     const { collectionId } = req.params;
-    const { collectionName, collectionImage } = req.body
+    const { collectionName } = req.body
     let picture;
 
     try{
         if(req.file) {
             picture = req.file.path;
             const collectionFromDB = await Collection.findByIdAndUpdate(
-                collectionId,
-                {
-                    collectionName,
-                    collectionImage
-                },
-                { new: true }
+              collectionId,
+              {
+                collectionName,
+                collectionImage: picture,
+              },
+              { new: true }
             );
-            return res.redirect (`/collection/${collectionFromDB._id}`);
+
+            return res.redirect(`/collection/${collectionFromDB._id}`);
         }else{
             const collectionFromDB = await Collection.findByIdAndUpdate(
                 collectionId,
                 {
-                    collectionName,
-                    collectionImage
+                    collectionName
                 },
                 { new: true }
             );
-            return res.redirect (`/collection/${collectionFromDB._id}`);
+
+            return res.redirect(`/collection/${collectionFromDB._id}`);
         }
     } catch(err) {
         console.log(err);

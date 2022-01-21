@@ -19,7 +19,7 @@ router.post('/forgotPassword', (req, res, next) => {
         pass: 'qqnngmikilijkoau'
       }
     });
-    const userFromDB = await User.findById(userId)
+    // const userFromDB = await User.findById(userId)
     const message = `reset your password here:`
     transporter.sendMail({
       from: '"Recover your password " <MystokHelp@project.com>',

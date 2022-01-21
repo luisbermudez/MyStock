@@ -34,6 +34,40 @@ router.get('/items', loggedIn, async (req, res, next) => {
     }
 });
 
+router.post("/searchItems", loggedIn, async (req, res, next) => {
+  const creatorUser = req.session.currentUser._id;
+  const { searchSelection, searchInput } = req.body;
+
+    if (searchSelection === "all") {
+      return res.redirect("/items");
+    }
+
+    if (searchInput === "") {
+      return res.redirect("/items");
+    }
+      try {
+        query = { _userCreator: creatorUser, [searchSelection]: searchInput };
+        const searchFromDB = await Item.find(query).populate(
+          "_ownerCollection"
+        );
+
+        if (searchFromDB.length === 0) {
+          const itemsFromDB = await Item.find({
+            _userCreator: creatorUser,
+          }).populate("_ownerCollection");
+
+          return res.render("items/items", { items: itemsFromDB, zeroItems: true });
+        }
+
+        return res.render("items/items", { items: searchFromDB });
+      } catch (err) {
+        console.log(err);
+        next(err);
+      }
+
+  return res.redirect("/items");
+});
+
 // New item
 router.get("/add-new-item", loggedIn, async(req, res, next) => {
   const creatorUser = req.session.currentUser._id;
@@ -41,6 +75,10 @@ router.get("/add-new-item", loggedIn, async(req, res, next) => {
     const collectionsFromDB = await Collection.find({
       _userCreator: creatorUser
     });
+
+    if (collectionsFromDB.length === 0) {
+      return res.redirect("/items");
+    }
 
     res.render('items/addNewItem', { collectionsList: collectionsFromDB })
   }catch(err) {
@@ -177,207 +215,94 @@ router.post("/item/:itemId/edit", Upload.single("itemImage"), loggedIn, async (r
     try {
         if (req.file) {
           picture = req.file.path;
-
-          if(itemProperties) {
-            if(size === undefined) {
-              const itemFromDB = await Item.findByIdAndUpdate(
-                itemId,
-                {
-                  itemName,
-                  _ownerCollection,
-                  itemImage: picture,
-                  itemQuantity,
-                  itemPrice,
-                  itemProperties,
-                  size: undefined,
-                  itemColor,
-                },
-                { new: true }
-              );
-
-              const checkDuplkts = await Collection.findOne({
-                _id: _ownerCollection,
-                _collectionItems: itemId,
-              });
-
-              if (checkDuplkts) {
-                return res.redirect(`/item/${itemFromDB._id}`);
-              } else {
-                await Collection.findByIdAndUpdate(
-                  { _id: _ownerCollection },
-                  { $push: { _collectionItems: itemId } }
-                );
-
-                return res.redirect(`/item/${itemFromDB._id}`);
-              }
-            } else {
-              const itemFromDB = await Item.findByIdAndUpdate(
-                itemId,
-                {
-                  itemName,
-                  _ownerCollection,
-                  itemImage: picture,
-                  itemQuantity,
-                  itemPrice,
-                  itemProperties,
-                  size,
-                  itemColor,
-                },
-                { new: true }
-              );
-
-              const checkDuplkts = await Collection.findOne({
-                _id: _ownerCollection,
-                _collectionItems: itemId,
-              });
-
-              if (checkDuplkts) {
-                return res.redirect(`/item/${itemFromDB._id}`);
-              } else {
-                await Collection.findByIdAndUpdate(
-                  { _id: _ownerCollection },
-                  { $push: { _collectionItems: itemId } }
-                );
-
-                return res.redirect(`/item/${itemFromDB._id}`);
-              }
-            }
-
-          } else {
-            const itemFromDB = await Item.findByIdAndUpdate(
-              itemId,
-              {
-                itemName,
-                _ownerCollection,
-                itemImage: picture,
-                itemQuantity,
-                itemPrice,
-                itemProperties: "false",
-                size: undefined,
-                itemColor: undefined,
-              },
-              { new: true }
-            );
-
-            const checkDuplkts = await Collection.findOne({
-              _id: _ownerCollection,
-              _collectionItems: itemId,
-            });
-
-            if (checkDuplkts) {
-              return res.redirect(`/item/${itemFromDB._id}`);
-            } else {
-              await Collection.findByIdAndUpdate(
-                { _id: _ownerCollection },
-                { $push: { _collectionItems: itemId } }
-              );
-
-              return res.redirect(`/item/${itemFromDB._id}`);
-            }
-          }
-          
+          checkExtraProp();
         } else {
-
-          if(itemProperties) {
-            if (size === undefined) {
-              const itemFromDB = await Item.findByIdAndUpdate(
-                itemId,
-                {
-                  itemName,
-                  _ownerCollection,
-                  itemImage: picture,
-                  itemQuantity,
-                  itemPrice,
-                  itemProperties,
-                  size: undefined,
-                  itemColor,
-                },
-                { new: true }
-              );
-
-              const checkDuplkts = await Collection.findOne({
-                _id: _ownerCollection,
-                _collectionItems: itemId,
-              });
-
-              if (checkDuplkts) {
-                return res.redirect(`/item/${itemFromDB._id}`);
-              } else {
-                await Collection.findByIdAndUpdate(
-                  { _id: _ownerCollection },
-                  { $push: { _collectionItems: itemId } }
-                );
-
-                return res.redirect(`/item/${itemFromDB._id}`);
-              }
-            } else {
-              const itemFromDB = await Item.findByIdAndUpdate(
-                itemId,
-                {
-                  itemName,
-                  _ownerCollection,
-                  itemImage: picture,
-                  itemQuantity,
-                  itemPrice,
-                  itemProperties,
-                  size,
-                  itemColor,
-                },
-                { new: true }
-              );
-
-              const checkDuplkts = await Collection.findOne({
-                _id: _ownerCollection,
-                _collectionItems: itemId,
-              });
-
-              if (checkDuplkts) {
-                return res.redirect(`/item/${itemFromDB._id}`);
-              } else {
-                await Collection.findByIdAndUpdate(
-                  { _id: _ownerCollection },
-                  { $push: { _collectionItems: itemId } }
-                );
-
-                return res.redirect(`/item/${itemFromDB._id}`);
-              }
-            }
-
-          } else {
-            const itemFromDB = await Item.findByIdAndUpdate(
-              itemId,
-              {
-                itemName,
-                _ownerCollection,
-                itemQuantity,
-                itemPrice,
-                itemProperties: "false",
-                size: undefined,
-                itemColor: undefined,
-              },
-              { new: true }
-            );
-
-            const checkDuplkts = await Collection.findOne({
-              _id: _ownerCollection,
-              _collectionItems: itemId,
-            });
-
-            if (checkDuplkts) {
-              return res.redirect(`/item/${itemFromDB._id}`);
-            } else {
-              await Collection.findByIdAndUpdate(
-                { _id: _ownerCollection },
-                { $push: { _collectionItems: itemId } }
-              );
-            }
-
-            return res.redirect(`/item/${itemFromDB._id}`);
-          }
+          checkExtraProp();
         }
     } catch(err) {
         console.log(err);
         next(err);
+    }
+
+    // Function declaration
+    async function checkExtraProp() {
+      if (itemProperties) {
+        checkSizeValue();
+      } else {
+        const itemFromDB = await Item.findByIdAndUpdate(
+          itemId,
+          {
+            itemName,
+            _ownerCollection,
+            itemImage: picture,
+            itemQuantity,
+            itemPrice,
+            itemProperties: "false",
+            $unset: {
+              size: 1,
+              itemColor: 1,
+            },
+          },
+          { new: true }
+        );
+        checkForDuplicates(_ownerCollection, itemId, itemFromDB);
+      }
+    }
+
+    async function checkSizeValue() {
+      if(size === "null") {
+        const itemFromDB = await Item.findByIdAndUpdate(
+          itemId,
+          {
+            itemName,
+            _ownerCollection,
+            itemImage: picture,
+            itemQuantity,
+            itemPrice,
+            itemProperties,
+            size: "null",
+            itemColor,
+          },
+          { new: true }
+        );
+        checkForDuplicates(_ownerCollection, itemId, itemFromDB);
+      } else {
+        const itemFromDB = await Item.findByIdAndUpdate(
+          itemId,
+          {
+            itemName,
+            _ownerCollection,
+            itemImage: picture,
+            itemQuantity,
+            itemPrice,
+            itemProperties,
+            size,
+            itemColor,
+          },
+          { new: true }
+        );
+        checkForDuplicates(_ownerCollection, itemId, itemFromDB);
+      }
+    }
+
+    async function checkForDuplicates(collection, itemID, item) {
+      try {
+        const checkDuplkts = await Collection.findOne({
+          _id: collection,
+          _collectionItems: itemID,
+        });
+
+        if (!checkDuplkts) {
+          await Collection.findByIdAndUpdate(
+            { _id: _ownerCollection },
+            { $push: { _collectionItems: itemId } }
+          );
+        }
+        return res.redirect(`/item/${item._id}`);
+      } catch (err) {
+        console.log(err);
+        next(err);
+      }
     }
 });
 
