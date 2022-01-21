@@ -1,22 +1,25 @@
+<div id="userProfileFullCont">
 <div id="userProfile">
         <a href="/home"> 
             <i class="bi-chevron-left"></i>
         </a>
     <img src="{{userIn.profilePicture}}" alt="userPicture">
         <hr>
-            <h1>Name/Company: {{userIn.nameCompany}}</h1>
+            <h1>Name: {{userIn.nameCompany}}</h1>
         <hr>
-    
     <div class="user-info">
         <h2>Email: {{userIn.email}}</h2>
-        <h2><a href="/edit-pass">Password: *********</a></h2>
+        
         {{!-- <a class="btn btn-dark btn-sm" href="/user-edit">Edit profile</a> --}}
     </div>
-    <a href="/user-edit"><i class="bi bi-pencil-square"></i></a>
-
-    <form id="logout-form" action="/logout" method="POST">
-        <button>Logout</button> 
-    </form>
+    <a href="/user-edit"><i id="aButtonPencil" class="bi bi-pencil-square"></i></a>
+</div>
+    <div id="buttonsProfile">
+        <a id="buttonPass" class="btn btn-dark" href="/edit-pass">Edit Password</a>
+        <form id="logout-form" action="/logout" method="POST">
+            <button class="btn-red">Logout</button> 
+        </form>
+    </div>
     {{> navBar}}
     {{> sideBar}}
 </div>
