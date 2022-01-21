@@ -32,7 +32,7 @@ body {
   #itemDetailsCont, 
   #editItemForm,
   #collectionView,
-  #userProfile,
+  #userProfileFullCont,
   #userProfileEdit,
   #userEdit,
   #collectionDetailsCont,
@@ -56,12 +56,57 @@ body {
     color: rgb(250, 248, 242);
   }
 
-  #signupCont p, #loginCont p {
-    color: rgb(27, 27, 27);
+  #singupfullcont{
+    height: 100vh !important;
+    width: 100vw !important;
+    background-image: url("/images/singup.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;  
+    padding-left: 20px;
   }
+
+  #signupCont{
+    width: 350px;
+    height: 90vh;
+    padding-top: 9px;
+    margin-top: 35px;
+    border-radius: 25px;
+    margin-left: 12px !important;
+  }
+
+  #loginCont {
+    width: 350px;
+    height: 80vh;
+    padding-top: 9px;
+    margin-top: 75px;
+    border-radius: 25px;
+    margin-left: 35px;
+  }
+  #loginCont {
+    background-color: #EC496A !important;
+  }
+
+  #gLogin{
+    background-color: #E4A980 !important;
+  }
+
+  #aLogin{
+    text-decoration: none;
+    color: #E4A980;
+  }
+
+  #signupCont p{
+    color: #E4A980;
+  }
+
+  /* #signupCont p, #loginCont p {
+    color: rgb(27, 27, 27);
+  } */
   #signupCont p > a, #loginCont p > a {
     color: rgb(233, 233, 233);
   }
+  confirmPasswordInput
 
   /* Error Messages Alert Style */
   .errorMessageCont {
@@ -246,7 +291,7 @@ body {
     height: 100vh;
     width: 100vw;
     background-repeat: no-repeat;
-    background-image: url("/images/landing.png"); 
+    background-image: url("/images/iphone78.png"); 
     background-size: cover;
     background-position: center;  
     display: flex;
@@ -270,8 +315,20 @@ body {
   }
 
   /* Login Style */
+  #loginfullcont{
+    height: 100vh;
+    width: 100vh;
+    background-image: url("/images/login.png");
+    /* padding-left: 350px; */
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  
   #loginCont {
-    background-color: rgb(102, 94, 121);
+    background-color: #2f302f;
+    padding-top: 30px 30px;
+    margin-bottom: 0;
   }
   #loginSignupLink, #signupLoginLink {
     font-size: 0.9rem;
@@ -362,8 +419,7 @@ body {
     width: 100%;
     height: 100%;
     background-size: cover;
-    background-position: center;  
-    background-image: url("/images/sigup.png"); 
+    background-position: center;   
   }
   #signupCont {
     /* background-color: rgb(138, 144, 153);
@@ -683,7 +739,8 @@ body {
     justify-content: space-between;
   }
 
-  #editItemForm h3 {
+  #editItemForm h3,
+  #userProfileEdit h3 {
     margin: 80px 0 20px;
   }
 
@@ -722,7 +779,8 @@ body {
 
   #editItemForm img,
   #userProfileEdit img,
-  #collectionImageView {
+  #collectionImageView,
+  #userProfileEdit img {
     height: 112px;
     width: 112px;
     margin: 0 20px 15px 0;
@@ -951,6 +1009,72 @@ body {
   #itemDetailsCont .bi-pencil-square {
     top: 312px !important;
   }
+  #userProfileFullCont{
+    padding: 0 18px;
+  }
+
+  #userProfileFullCont h1{
+    font-size: 25px;
+  }
+
+  #userProfileFullCont h2{
+    font-size: 20px;
+  }
+
+  #buttonsProfile {
+    padding-top: 80px;
+    padding-right: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    align-content: flex-end;
+    justify-content: flex-end;
+  }
+
+  #buttonsProfile form {
+    padding-top: 15px;
+  }
+
+  .btn-red {
+    padding: 10px 20px;
+    font-size: 15px;
+    background-color: #EC496A;
+    color: #f3f3f3;
+    border-radius: 5px;
+    border-style: none;
+  }
+
+  #aButtonPencil {
+    padding-top: 20px;
+  }
+
+  #resetYourPassCont {
+    display: flex;
+    justify-items: center;
+    flex-direction: column;
+  }
+
+  #resetYourPassCont h2 {
+    display: flex;
+    justify-self: center;
+    margin-top: 60px !important;
+    padding: 0 50px !important;
+  }
+
+  #resetYourPassCont form {
+    padding: 0 10px !important;
+  }
+
+  #icon-box{
+    width: 150px;
+    height: 150px;
+    margin: 10px 15px;
+  }
+
+  #resetYourPassCont input:active{
+    border: 3px solid #ffb6c8;
+  }
+
 }
 
 
@@ -971,18 +1095,50 @@ body {
   #collectionDetailsCont,
   #userPasswordEdit,
   #resetYourPassCont,
-  #message,
-  #singupfullcont{
+  #message {
     margin-left: 75px;
   }
 
   #signupCont,
   #loginCont {
     width: 600px;
-    height: 100vh;
+    height: 85vh;
+    padding-top: 9px;
+    margin-top: 70px;
+    border-radius: 25px;
   }
+  #loginCont {
+    background-color: #EC496A;
+  }
+  #signupCont p{
+    color: #E4A980;
+  }
+
+  #loginfullcont{
+    height: 100vh;
+    width: 200vh;
+    background-image: url("/images/login.png");
+    padding-left: 350px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  
+  #aLogin {
+    color: #E4A980
+  }
+  #gLogin{
+    background-color: #E4A980;
+  }
+
+
   #singupfullcont{
-    background-image: url("/images/sigup.png");
+    background-image: url("/images/singup.png")!important;
+    padding-left: 350px;
+    height: 100vh;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
   }
 
   /* Error Message Alert setup */
@@ -1129,7 +1285,8 @@ body {
   }
 
   #editItemForm img,
-  #editCollectionForm img {
+  #editCollectionForm img,
+  #userProfileEdit img {
     height: 150px;
     width: 150px;
   }
@@ -1278,7 +1435,9 @@ body {
   #editItemForm,
   #editCollectionForm,
   #forgotPasscont,
-  #resetYourPassCont {
+  #resetYourPassCont,
+  #userProfileEdit,
+  #userProfileFullCont {
     padding: 0 380px; 
   }
 
@@ -1374,5 +1533,98 @@ body {
 
   #collectionDetailsCont h2 {
     margin-left: 150px !important;
+  }
+  
+  #userProfile {
+    padding:0  400px !important;
+    margin-top: 0px !important;
+  }
+
+  #userProfile h1{
+    font-size: 30px;
+  }
+
+  #userProfile h2{
+    font-size: 23px;
+    margin-top: 45px;
+  }
+  
+  #userProfile a{
+    color: #2F302F;
+    text-decoration: none;
+  }
+
+  #aButtonPencil  {
+    margin-right: 430px !important; 
+    margin-top: 60px;
+  }
+
+  /* #userProfile button {
+    margin-left:430px;
+    margin-bottom: 600px;
+    background-color: aquamarine;
+  } */
+
+  #buttonsProfile {
+    display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: flex-end;
+	align-items: flex-end;
+	align-content: flex-end;
+  padding-top: 180px;
+  padding-bottom: 160px;
+  }
+
+  #buttonsProfile form {
+    margin-right: 300px;
+    padding-left: 50px;
+  }
+
+  #userProfileEdit{
+    display: flex;
+    flex-direction: row;
+  }
+
+  .btn-red{ 
+    background-color: #EC496A;
+    border-style: none;
+    padding: 11px 21px;
+    color: #f3f3f3;
+    border-radius: 3px;
+    font-size: 18px;
+  }
+
+  #userProfileFullCont{
+    display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: flex-end;
+	align-content: center;
+  }
+
+  #resetYourPassCont {
+    display: flex;
+    justify-items: center;
+    flex-direction: column;
+  }
+
+  #resetYourPassCont h2 {
+    display: flex;
+    justify-self: center;
+    margin-top: 60px !important;
+    padding: 0 50px !important;
+  }
+
+  #resetYourPassCont form {
+    padding: 0 70px !important;
+    display: flex;
+    justify-self: center;
+    flex-wrap: wrap;
+  }
+
+  #button-update{
+    margin-left: 15px;
   }
 }

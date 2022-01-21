@@ -72,7 +72,32 @@ router.get('/edit-pass', loggedIn, (req,res, next) => {
 });
 
 router.post('/edit-pass', loggedIn, async(req, res, next) => {
-
+    const { newPassword, confirmPassword } = req.body;
+   
+    console.log("erroor?", req.body, req.session.currentUser)
+    try{
+      if(req.session.currentUser._id) {
+        if(newPassword !== confirmPassword){
+            return res.render('user/private/edit-pass', {errorMessage: 'Your password does not match'})
+        }
+        const salt = bcryptjs.genSaltSync(10);
+        const passwordHash = bcryptjs.hashSync(newPassword, salt);
+       
+        const updatedPassword = await User.findByIdAndUpdate(
+            req.session.currentUser._id,
+          {
+            password: passwordHash
+          },
+          { new: true }
+        );
+        console.log("const update", updatedPassword)
+        return res.redirect(`/user-profile`);
+      } else {
+          console.log("error no esta pasando el primer if")
+      }
+    } catch(err){
+      res.render('user/private/edit-pass', {errorMessage: 'Sorry we have a problem'})
+    }
 
 }) 
 

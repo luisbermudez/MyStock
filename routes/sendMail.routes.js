@@ -3,6 +3,8 @@ const nodemailer = require('nodemailer');
 const templates = require('../templates/template');
 const User = require("../models/User.model");
 const async = require("hbs/lib/async");
+const { update } = require("../models/User.model");
+const bcryptjs = require('bcryptjs');
 
 router.get('/message', (req, res, next) => {
     res.render('sendMail/message')
@@ -24,19 +26,27 @@ router.get('/resetPassword/:id', async(req, res, next) => {
 
 router.post('/resetPassword/:id', async(req, res, next) => {
   const { id } = req.params;
-  console.log("postId", id)
-  // try{
-  //   const { id } = req.params;
-  //   const { password } = req.body;
-  //   const user = await User.findById(userId);
-  //   const salt = bcryptjs.genSaltSync(10);
-  //   const newPassword = bcryptjs.hashSync(password, salt);
-  //   user.password = newPassword
-  //   await user.save();
-  //   res.render("auth/login")
-  // }catch(err){
-  //   res.render('sendMail/resetPassword', {errorMessage: 'Sorry we have a problem'})
-  // }
+
+  const { newPassword, confirmPassword } = req.body;
+  console.log("erroor?", req.body, req.session.currentUser)
+  try{
+      if(newPassword !== confirmPassword){
+          return res.render(`sendMail/resetPassword`, {errorMessage: 'Your password does not match'})
+      }
+      const salt = bcryptjs.genSaltSync(10);
+      const passwordHash = bcryptjs.hashSync(newPassword, salt);
+      const updatedPassword = await User.findByIdAndUpdate(
+          id,
+        {
+          password: passwordHash
+        },
+        { new: true }
+      );
+      console.log("const update", updatedPassword)
+      return res.redirect(`/login`);
+  } catch(err){
+    res.render(`sendMail/resetPassword`, {errorMessage: 'Sorry we have a problem'})
+  }
 })
 
 //ForgotPassword
@@ -61,11 +71,11 @@ router.post('/forgotPassword', async(req, res, next) => {
         }
       });
       const dynamicTemplateData = {
-        url:`http://localhost:3001/resetPassword/${user._id}`,
+        url: `https://inventoryapp-2.herokuapp.com/resetPassword/${user._id}`,
         email: user.email,
         name: user.nameCompany,
-        message: `reset your password here:`
-      }
+        message: `reset your password here:`,
+      };
       transporter.sendMail({
         from: '"Recover your password " <MystokHelp@project.com>',
         to: email, 
