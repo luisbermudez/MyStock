@@ -1,12 +1,31 @@
 <div id="itemsCont">
-    <div id="pictureDiv"></div>
+    <div id="pictureDiv">
+        <form action="/searchItems" method="post">
+            <div id="searchCont">
+                <select name="searchSelection" id="searchSelection">
+                    <option value="itemName">Name</option>
+                    <option value="itemQuantity">Quantity</option>
+                    <option value="size">Size</option>
+                    <option value="itemColor">Color</option>
+                    <option value="all">All</option>
+                </select>
+                <input 
+                 name="searchInput" id="searchInput" type="text" placeholder="Search for items">
+            </div>
+            <button id="searchButtonItemsView" type="submit" class="btn btn-dark">Search</button>
+        </form>
+    </div>
+
+    {{#if zeroItems}}
+        <h5 class="searchErr">No items with description entered were found.</h5>
+    {{/if}}
 
     {{#if noCollections}}
         <div id="noCollections">
             <h5>You don't have any collection yet.</h5>
+            <p>For you to be able to create items you must have a collection first.</p>
             <a href="/collection-add" type="button" class="btn btn-dark">New collection</a>
         </div>
-        
     {{else if items}}
         <article>
             <div><i id="listView" class="bi bi-list-ul"></i></div>
@@ -20,12 +39,14 @@
         </div>
         
         <div id="viewer">
+            
             {{#each items}}
                 {{> itemCard}}
             {{/each}}
         </div>
 
         <div id="listViewer">
+            
             <table class="table">
                 <thead>
                     <tr>

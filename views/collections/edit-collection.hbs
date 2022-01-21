@@ -2,31 +2,10 @@
     <div class="chevronDiv">
         <h4>Edit Collection</h4>
     </div>
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Are you sure?</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                Deleting this Collection is permanent and cannot be undone.
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Cancel</button>
-                <form action="/collection/{{collections._id}}/delete" method="post">
-                    <button type="submit" class="btn btn-danger ms-2">Delete</button>
-                </form>
-            </div>
-            </div>
-        </div>
-    </div>
 
     <a href="/collection/{{collections._id}}">
         <i class="bi-chevron-left"></i>
     </a>
-
-    <h3>Edit collection</h3>
 
     <button id="deleteBin" type="button" data-bs-toggle="modal" data-bs-target="#collectionDeleteModal">
         <i class="bi bi-trash"></i>
@@ -52,17 +31,18 @@
         </div>
     </div>
 
-    <form action="/collection/{{collections._id}}/edit" method="post" enctype="multipart/form-data">
+    <form action="/edit-collection/{{collections._id}}" method="post" enctype="multipart/form-data">
         <section>
-            <img src="{{collections.collectionImage}}">
-            <label for="">
-                <svg id="itemImageUploadBtn" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-camera-fill" viewBox="0 0 16 16">
+            <img id="collectionImageView" src="{{collections.collectionImage}}">
+            <label for="collectionImageUpload">
+                <svg id="collectionImageUploadBtn" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-camera-fill" viewBox="0 0 16 16">
                     <path d="M10.5 8.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
                     <path d="M2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2zm.5 2a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm9 2.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0z"/>
                 </svg>
             </label>
-            <input type="file" name="collectionImage" class="form-control" id="itemImageUpload">
-        <div class="mb-3">
+            <input type="file" name="collectionImage" class="form-control" id="collectionImageUpload">
+
+        <div class="mb-3 mt-5">
             <label class="form-label">Collection name:</label>
             <input value="{{collections.collectionName}}" type="text" name="collectionName" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
         </div>
@@ -72,6 +52,29 @@
             <button type="submit" class="btn btn-dark">Update Collection</button>
         </div>
     </form>
+
+    {{!-- <hr>
+
+    <form id="collectionItemsEdit" action="">
+        <a><i class="bi bi-pencil-square"></i></a>
+
+        <div id="collectionEditItemsView">
+            <table class="collectionItemList table">
+                <thead>
+                    <tr>
+                        <th style="width: 35%" scope="col">Name</th>
+                        <th style="width: 15%" scope="col">Price</th>
+                        <th style="width: 15%" scope="col">Quantity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each items}}
+                        {{> collectionItemsRow this}}
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </form> --}}
 
 
     {{> navBar}}
