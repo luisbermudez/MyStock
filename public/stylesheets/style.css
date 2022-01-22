@@ -68,6 +68,17 @@ body {
     padding-left: 20px;
   }
 
+  #userPasswordEdit {
+    height: 90vh !important;
+    width: 100vw !important;
+    background-image: url("/images/lightbg.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;  
+    display: flex;
+    justify-content: center;
+  }
+
   #signupCont{
     width: 350px;
     height: 90vh;
@@ -1602,7 +1613,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-top: 90px !important;
+    padding-top: 60px !important;
   }
   #fixedUpperSection h2,
   #fixedUpperSection hr {
@@ -1642,10 +1653,7 @@ body {
     margin-left: 150px !important;
   }
   
-  #userProfile {
-    padding:0  400px !important;
-    margin-top: 0px !important;
-  }
+
 
   #userProfile h1{
     font-size: 30px;
@@ -1849,6 +1857,17 @@ body {
 
     #resetYourPassFullCont{
       height: 100vh !important;
+      width: 100vw !important;
+      background-image: url("/images/lightbg.png");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;  
+      display: flex;
+      justify-content: center;
+    }
+
+    #userPasswordEdit {
+      height: 80vh !important;
       width: 100vw !important;
       background-image: url("/images/lightbg.png");
       background-repeat: no-repeat;
