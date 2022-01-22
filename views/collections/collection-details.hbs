@@ -6,16 +6,14 @@
     <a href="/collection">
         <i class="bi-chevron-left"></i>
     </a>
-    {{!-- <a href="/collection">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
-        </svg>
-    </a> --}}
 
-    <img src="{{collections.collectionImage}}" alt="{{collections.collectionName}} image">
-    <hr>
-    <h2>{{collections.collectionName}}</h2>
-    <hr>
+    <div id="fixedUpperSection">
+        <img id="collectionDetialImg" src="{{collections.collectionImage}}" alt="{{collections.collectionName}} image">
+        <hr>
+        <h2>{{collections.collectionName}}</h2>
+    </div>
+
+    
     <!-- <h6>Quantity: {{collection.itemQuantity}}</h6>
     <h6>Price: ${{theItem.itemPrice}}</h6>-->
     <a href="/edit-collection/{{collections._id}}"><i class="bi bi-pencil-square"></i></a>

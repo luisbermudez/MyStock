@@ -71,11 +71,11 @@ router.post('/forgotPassword', async(req, res, next) => {
         }
       });
       const dynamicTemplateData = {
-        url:`http://localhost:3001/resetPassword/${user._id}`,
+        url: `https://inventoryapp-2.herokuapp.com/resetPassword/${user._id}`,
         email: user.email,
         name: user.nameCompany,
-        message: `reset your password here:`
-      }
+        message: `reset your password here:`,
+      };
       transporter.sendMail({
         from: '"Recover your password " <MystokHelp@project.com>',
         to: email, 

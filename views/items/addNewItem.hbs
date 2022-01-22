@@ -12,12 +12,12 @@
         <section>
             <div class="mb-3">
                 <label class="form-label">Item image:</label>
-                <input type="file" name="itemImage" class="form-control" id="">
+                <input type="file" name="itemImage" class="form-control" id="itemAddItemImage">
                 <div class="form-text">Add an image of the new product.</div>
             </div>
             <div class="mb-3">
                 <label class="form-label">Item name:</label>
-                <input type="text" name="itemName" class="form-control" id="">
+                <input type="text" name="itemName" class="form-control" id="itemAddItemName">
             </div>
         </section>
 
@@ -32,7 +32,7 @@
         </div>
         <div class="mb-3">
             <label class="form-label">Quantity:</label>
-            <input type="number" name="itemQuantity" class="form-control" id="">
+            <input type="number" name="itemQuantity" class="form-control" id="itemAddItemQuantity">
         </div>
         <div class="mb-3">
             <label class="form-label">Price:</label>
@@ -57,9 +57,47 @@
                 <input type="text" name="itemColor" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
             </div>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary" id="itemAddSubBtn" disabled>Submit</button>
         </form>
 
     {{> navBar}}
     {{> sideBar}}
 </div>
+
+<script>
+    const itemAddItemName = document.getElementById("itemAddItemName");
+    const itemAddItemImage = document.getElementById("itemAddItemImage");
+    const itemAddItemQuantity = document.getElementById("itemAddItemQuantity");
+
+    const itemAddSubBtn = document.getElementById("itemAddSubBtn");
+
+    itemAddItemImage.addEventListener("input", () => {
+        if(itemAddItemImage.files.length > 0 &&
+        itemAddItemName.value !== "" &&
+        itemAddItemQuantity.value !== "") {
+            itemAddSubBtn.disabled = false;
+        } else {
+            itemAddSubBtn.disabled = true;
+        }
+    })
+
+    itemAddItemName.addEventListener("input", () => {
+        if(itemAddItemImage.files.length > 0 &&
+        itemAddItemName.value !== "" &&
+        itemAddItemQuantity.value !== "") {
+            itemAddSubBtn.disabled = false;
+        } else {
+            itemAddSubBtn.disabled = true;
+        }
+    })
+    
+    itemAddItemQuantity.addEventListener("input", () => {
+        if(itemAddItemImage.files.length > 0 &&
+        itemAddItemName.value !== "" &&
+        itemAddItemQuantity.value !== "") {
+            itemAddSubBtn.disabled = false;
+        } else {
+            itemAddSubBtn.disabled = true;
+        }
+    })
+</script>

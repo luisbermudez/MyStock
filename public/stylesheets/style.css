@@ -187,6 +187,7 @@ body {
   #homeCont .bi-cloud {
     font-size: 7rem;
     margin: 20px 30px;
+    color: #2f302f;
   }
 
 
@@ -295,7 +296,7 @@ body {
 
   .addNewIcon:hover {
     cursor: pointer;
-    color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
   }
 
   /*Landing page*/
@@ -531,13 +532,14 @@ body {
 
   .collectionCardProt,
   #collectionCardQ,
-  #itemCardQ {
+  #itemCardQ,
+  #collectionCardQTEST {
     box-shadow: 3px 3px 8px #9e9e9e94;
     display: flex;
     align-items: center;
     border-radius: 10px;
     margin: 30px 0;
-    padding: 10px 0;
+    padding: 10px 0 10px 10px;
   }
 
   .collectionCardProt h5,
@@ -669,7 +671,7 @@ body {
 
   /* Items details style */
   #itemDetailsCont > img,
-  #collectionDetailsCont > img {
+  #collectionDetialImg {
     height: 180px;
     width: 180px;
     margin: 45px auto 30px;
@@ -721,6 +723,7 @@ body {
     position: absolute;
     bottom: 14px;
     right: 37px;
+    color: rgb(145, 145, 145);
   }
   
   /* Items edit view */
@@ -885,9 +888,10 @@ body {
 
   #collectionUpperDiv, 
   #homeUpperDiv {
-    background-color: white;
-    border-color: rgb(230, 230, 230);
-    color: black;
+    background-color: #EC496A;
+    border-color: #EC496A;
+    color: white;
+    z-index: 2;
   }
 
   #searchSelection {
@@ -901,8 +905,10 @@ body {
   #collectionCardQ a,
   #itemCardQ a 
   {
-    background-color: #EC496A;
-    border-color: #EC496A;
+    background-color: #2f302f;
+    /* background-color: #94b1d4; */
+    border-color: #2f302f;
+    /* border-color: #94b1d4; */
     color: white;
   }
 
@@ -934,6 +940,89 @@ body {
     background-color: transparent;
   }
 
+  /* Cards background style */
+  .itemCardProt,
+  #collectionCardProt,
+  #collectionCardQ,
+  #itemCardQ {
+    background-color: white;
+  }
+
+  #collectionCardQ,
+  #itemCardQ {
+    align-items: center;
+    padding: 20px 10px 20px 0px;
+  }
+
+  /* #collectionCardQ .bi-clouds {
+    background-color: yellowgreen;
+    font-size: 5rem;
+  } */
+
+  /* #collectionCardQ div:nth-child(2) {
+    background-color: yellowgreen;
+    padding: 0px;
+  } */
+
+  #collectionCardQ div:nth-child(2) h5,
+  #itemCardQ div:nth-child(2) h5 {
+    margin-top: 0px;
+  }
+
+  /* Collection details */
+  .chevronDiv {
+    background-color: white !important;
+    z-index: 2 !important;
+    position: fixed;
+    top: 0;
+    left: 0px;
+  }
+
+  .bi-chevron-left,
+  .bi-pencil-square {
+    z-index: 2;
+  }
+
+  .bi-pencil-square {
+    position: fixed !important;
+    top: 320px !important;
+  }
+
+  #collectionDetailsCont {
+    padding-top: 370px;
+  }
+
+  #fixedUpperSection {
+    position: fixed;
+    background-color: white;
+    z-index: 1;
+    width: 100%;
+    left: 0px;
+    top: 10px;
+    border-radius: 0px 0px -5px -5px;
+    border-bottom: 1px solid rgb(212, 212, 212);
+  }
+
+  #collectionDetailsCont hr {
+    margin: 0px 30px;
+  }
+
+  #collectionDetailsCont h2 {
+    margin: 0px;
+    background-color: white;
+    color: black;
+    padding: 15px 40px;
+    padding-right: 100px;
+  }
+
+  #homeCont {
+    padding-top: 40px;
+    margin-bottom: 100px;
+  }
+
+  #itemDetailsCont .bi-pencil-square {
+    top: 312px !important;
+  }
   #userProfileFullCont{
     padding: 0 18px;
   }
@@ -1259,7 +1348,7 @@ body {
   }
 
   #sideBar {
-    border-right: 1px solid rgb(182, 182, 182);
+    border-right: 1px solid #2f302f;
     background-color: #2f302f;
     padding: 30px 0;
     display: flex;
@@ -1272,7 +1361,7 @@ body {
     position: fixed;
     left: 0;
     top: 0;
-    z-index: 1;
+    z-index: 3;
   }
 
   #sideBar svg {
@@ -1465,7 +1554,7 @@ body {
     border: none;
     margin-left: 15px !important;
     font-size: 1.2rem;
-    background-color: rgba(22, 22, 22, 0.952);
+    background-color: #313131e5;
   }
 
   .dropdown-menu a {
@@ -1487,7 +1576,7 @@ body {
   #collectionViewer {
     display: flex;
     flex-wrap: wrap;
-    padding: 190px 20px 90px 50px;
+    padding: 160px 20px 90px 50px;
     background-color: rgb(250, 250, 248);
   }
 
@@ -1514,6 +1603,48 @@ body {
     align-items: center;
     justify-content: center;
     padding-top: 90px !important;
+  }
+  #fixedUpperSection h2,
+  #fixedUpperSection hr {
+    margin-left: 70px !important;
+    margin-right: 0px !important;
+    right: 0px !important;
+  }
+
+  #collectionUpperDiv, 
+  #homeUpperDiv {
+    background-color: white;
+    border-color: white;
+    color: black;
+    border-bottom: 1px solid rgb(218, 218, 218);
+  }
+
+  #homeCont {
+    padding-top: 90px;
+    margin-bottom: 0px;
+  }
+
+  #editItemForm .chevronDiv,
+  #editCollectionForm .chevronDiv{
+    background-color: rgb(250, 250, 248) !important;
+  }
+
+  #collectionDetailsCont .bi-pencil-square {
+    top: 324px !important;
+    right: 120px;
+  }
+
+  #itemDetailsCont .bi-pencil-square {
+    top: 317px !important;
+  }
+
+  #collectionDetailsCont h2 {
+    margin-left: 150px !important;
+  }
+  
+  #userProfile {
+    padding:0  400px !important;
+    margin-top: 0px !important;
   }
 
   #userProfile h1{
