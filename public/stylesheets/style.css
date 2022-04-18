@@ -20,6 +20,8 @@ body {
   display: flex;
   justify-content: center;
   background-color: rgb(250, 250, 248);
+
+  
 }
 
 /* Mobile style */
@@ -66,6 +68,17 @@ body {
     padding-left: 20px;
   }
 
+  #userPasswordEdit {
+    height: 90vh !important;
+    width: 100vw !important;
+    background-image: url("/images/lightbg.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;  
+    display: flex;
+    justify-content: center;
+  }
+
   #signupCont{
     width: 350px;
     height: 90vh;
@@ -73,6 +86,17 @@ body {
     margin-top: 35px;
     border-radius: 25px;
     margin-left: 12px !important;
+  }
+
+  #resetYourPassFullCont{
+    height: 100vh !important;
+    width: 100vw !important;
+    background-image: url("/images/lightbg.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;  
+    display: flex;
+    justify-content: center;
   }
 
   #loginCont {
@@ -667,7 +691,7 @@ body {
     box-sizing: content-box;
   }
 
-  #userProfile > img,
+  #userProfile img,
   #userProfileEdit > img,
   #userEdit > img {
     height: 200px;
@@ -677,6 +701,7 @@ body {
     display: block;
     box-sizing: content-box;
   }
+
 
   #itemDetailsCont h2,
   #collectionDetailsCont h2,
@@ -1074,8 +1099,101 @@ body {
   #resetYourPassCont input:active{
     border: 3px solid #ffb6c8;
   }
+  /*forgotPass*/
+  #forgotPassFullCont{
+    height: 100vh !important;
+    width: 100vw !important;
+    background-image: url("/images/lightbg.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;  
+    display: flex;
+    justify-content: center;
+  }
 
+  #forgotPasscont{
+    width: 50vh;
+    height: 50vh;
+    padding-top: 9px;
+    margin-top: 40px;
+    padding-right: 0;
+    padding-left: 0;
+    border-radius: 25px;
+    background-color: #2f302f;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    color: #fdfcfd;
+  }
+
+  #forgotPasscont .mb-3 {
+    width: 40vh;
+    height: 20vh;
+  }
+
+  #forgotPasscont h2{
+    padding:0;
+    margin-top: 15px;
+  }
+
+  #forgotPasscont .col-form-label{
+    padding: 0;
+  }
+  .col-sm-2{
+    padding-right: 5px;
+    font-size: 15px;
+  }
+
+  /* Message sent */
+  #messageCont{
+    height: 100vh !important;
+    width: 100vw !important;
+    background-image: url("/images/lightbg.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;  
+    display: flex;
+    justify-content: center;
+  }
+  #message{
+    width: 50vh;
+    height: 50vh;
+    padding-top: 9px;
+    margin-top: 40px;
+    padding-right: 0;
+    padding-left: 0;
+    border-radius: 25px;
+    background-color: #2f302f;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    color: #fdfcfd;
+  }
+
+  #message h1{
+    font-size: 22px;
+    padding: 30px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    text-align: center;
+  }
+
+  #message .mb-3{
+    margin: 0px !important;
+    width: 200px;
+    height: 20px;
+    padding-left: 10px;
+  }
+
+  #message h2{
+    height: 20px;
+    padding:0;
+    margin-top: 5px;
+    font-size: 20px;
+    margin-bottom: 16px;
+  }
 }
+
 
 
 @media (min-width: 1024px) {
@@ -1491,18 +1609,18 @@ body {
     background-color: transparent;
   }
 
+  #userProfile { 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 60px !important;
+  }
   #fixedUpperSection h2,
   #fixedUpperSection hr {
     margin-left: 70px !important;
     margin-right: 0px !important;
     right: 0px !important;
   }
-
-  /* #collectionCardQ a,
-  #itemCardQ a {
-    background-color: #EC496A;
-    border-color: #EC496A;
-  } */
 
   #collectionUpperDiv, 
   #homeUpperDiv {
@@ -1535,10 +1653,7 @@ body {
     margin-left: 150px !important;
   }
   
-  #userProfile {
-    padding:0  400px !important;
-    margin-top: 0px !important;
-  }
+
 
   #userProfile h1{
     font-size: 30px;
@@ -1554,16 +1669,17 @@ body {
     text-decoration: none;
   }
 
-  #aButtonPencil  {
-    margin-right: 430px !important; 
-    margin-top: 60px;
+  #userProfile hr{
+    display: flex;
+    flex-wrap: wrap;
   }
 
-  /* #userProfile button {
-    margin-left:430px;
-    margin-bottom: 600px;
-    background-color: aquamarine;
-  } */
+  #aButtonPencil {
+    padding-right: 450px;
+    padding-top: 150px;
+  }
+
+
 
   #buttonsProfile {
     display: flex;
@@ -1572,13 +1688,21 @@ body {
 	justify-content: flex-end;
 	align-items: flex-end;
 	align-content: flex-end;
-  padding-top: 180px;
+  padding-top: 70px;
   padding-bottom: 160px;
   }
 
+  #userProfile img{ 
+    height: 320px;
+    width: 315px;
+    margin: 45px auto 30px;
+    padding: 20px 0;
+    display: block;
+    box-sizing: content-box;
+  }
+
   #buttonsProfile form {
-    margin-right: 300px;
-    padding-left: 50px;
+    padding-left: 10px;
   }
 
   #userProfileEdit{
@@ -1597,11 +1721,11 @@ body {
 
   #userProfileFullCont{
     display: flex;
-	flex-direction: column;
 	flex-wrap: wrap;
 	justify-content: center;
 	align-items: flex-end;
-	align-content: center;
+	align-content: center;justify-self: center;
+
   }
 
   #resetYourPassCont {
@@ -1627,4 +1751,130 @@ body {
   #button-update{
     margin-left: 15px;
   }
+
+  #userPasswordEdit{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    padding-top: 100px;
+  }
+
+  #updBottonProf {
+    margin-left: 20px;
+  }
+
+  /*forgotPass*/
+  #forgotPassFullCont{
+    height: 100vh !important;
+    width: 100vw !important;
+    background-image: url("/images/lightbg.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;  
+    display: flex;
+    justify-content: center;
+  }
+
+  #forgotPasscont{
+    width: 80vh;
+    height: 60vh;
+    padding-top: 9px;
+    margin-top: 40px;
+    padding-right: 0;
+    padding-left: 0;
+    border-radius: 25px;
+    background-color: #2f302f;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    color: #fdfcfd;
+  }
+
+  #forgotPasscont h2{
+    padding:0;
+    margin-top: 20px;
+  }
+
+  #forgotPasscont .col-form-label{
+    padding: 0;
+  }
+  .col-sm-2{
+    padding-right: 5px;
+    font-size: 28px;
+  }
+
+    /* Message sent */
+    #messageCont{
+      height: 100vh !important;
+      width: 100vw !important;
+      background-image: url("/images/lightbg.png");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;  
+      display: flex;
+      justify-content: center;
+    }
+    #message{
+      width: 70vh;
+      height: 60vh;
+      padding-top: 9px;
+      margin-top: 40px;
+      margin-left: 0px;
+      padding-right: 0;
+      padding-left: 0;
+      border-radius: 25px;
+      background-color: #2f302f;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      color: #fdfcfd;
+    }
+  
+    #message h1{
+      font-size: 24px;
+      padding: 40px;
+      margin-top: 15px;
+      margin-bottom: 0px;
+      text-align: center;
+    }
+  
+    #message .mb-3{
+      margin: 0px !important;
+      width: 300px;
+      height: 20px;
+      padding-left: 10px;
+      padding-right: 20px;
+      font-size: 20px;
+    }
+  
+    #message h2{
+      height: 20px;
+      padding:0;
+      margin-top: 5px;
+      font-size: 22px;
+      margin-bottom: 16px;
+    }
+
+    #resetYourPassFullCont{
+      height: 100vh !important;
+      width: 100vw !important;
+      background-image: url("/images/lightbg.png");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;  
+      display: flex;
+      justify-content: center;
+    }
+
+    #userPasswordEdit {
+      height: 80vh !important;
+      width: 100vw !important;
+      background-image: url("/images/lightbg.png");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;  
+      display: flex;
+      justify-content: center;
+    }
+
 }

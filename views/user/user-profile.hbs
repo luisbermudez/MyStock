@@ -3,16 +3,20 @@
         <a href="/home"> 
             <i class="bi-chevron-left"></i>
         </a>
+        <div>
     <img src="{{userIn.profilePicture}}" alt="userPicture">
+    <div id="nameProf">
         <hr>
             <h1>Name: {{userIn.nameCompany}}</h1>
+            <a href="/user-edit"><i id="aButtonPencil" class="bi bi-pencil-square"></i></a>
         <hr>
+    </div>
+
     <div class="user-info">
         <h2>Email: {{userIn.email}}</h2>
-        
-        {{!-- <a class="btn btn-dark btn-sm" href="/user-edit">Edit profile</a> --}}
     </div>
-    <a href="/user-edit"><i id="aButtonPencil" class="bi bi-pencil-square"></i></a>
+    </div>
+
 </div>
     <div id="buttonsProfile">
         <a id="buttonPass" class="btn btn-dark" href="/edit-pass">Edit Password</a>
